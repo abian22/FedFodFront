@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "Medium";
+    src: url("./assets/fonts/Montserrat-semiBold.ttf");
+}
+
+body {
+    background-color: black;
+    border:0px;
+    margin: 0;
+    font-family: "Medium";
+}
+
+.landing__page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.landing__page--logo {
+    width: 300px;
+    margin-top: 10%;
+}
+
+.landing__page__buttons {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.landing__page__buttons--button {
+    all: unset;
+    color: white;
+    margin-top: 30px;
+    border: solid white;
+    width: 220px;
+    height: 35px;
+    text-align: center;
+    justify-content: center ;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
