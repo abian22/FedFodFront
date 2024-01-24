@@ -2,9 +2,8 @@ import "./App.scss";
 import { useState } from "react";
 import { useThemeContext } from "./context/ThemeContext";
 import ReactSwitch from "react-switch";
-import darkPizza from "./assets/images/darkMode pizza.png";
-import lightPizza from "./assets/images/lightMode pizza.png";
-
+import router from "./router/Router";
+import { RouterProvider } from "react-router-dom";
 
 function App() {
   const { contextTheme, setContextTheme } = useThemeContext();
@@ -16,8 +15,8 @@ function App() {
   };
   return (
     <>
-      <div className="app" id={contextTheme}>
-        <div className="app--landing__page__buttons--switch-container">
+      <main className="app" id={contextTheme}>
+        <div className="app--switch-container">
           <ReactSwitch
             onChange={handleSwitch}
             checked={checked}
@@ -33,27 +32,8 @@ function App() {
             className="react-switch"
           />
         </div>
-        <main className="app--landing__page">
-          <img
-            className="app--landing__page--logo"
-            src={contextTheme === "Light" ? lightPizza : darkPizza}
-          />
-        </main>
-        <section className="app--landing__page__buttons">
-          <button
-            className="app--landing__page__buttons--button"
-            id={contextTheme}
-          >
-            LOG IN
-          </button>
-          <button
-            className="app--landing__page__buttons--button"
-            id={contextTheme}
-          >
-            SIGN IN
-          </button>
-        </section>
-      </div>
+        <RouterProvider router={router} />
+      </main>
     </>
   );
 }

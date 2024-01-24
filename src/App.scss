@@ -2,23 +2,23 @@
 .app {
     min-height: 100vh;
 }
-.app--landing__page__buttons--switch-container {
+.app--switch-container {
     display: flex;
     justify-content: flex-end; 
     margin-right: 20px; 
   }
 
-.app--landing__page {
+.landing__page {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.app--landing__page--logo {
+.landing__page--logo {
     width: 300px;
     margin-top: 10%;
 }
 
-.app--landing__page__buttons {
+.landing__page__buttons {
     margin-top: 100px;
     display: flex;
     justify-content: center;
@@ -26,7 +26,7 @@
     flex-direction: column;
 }
 
-.app--landing__page__buttons--button{
+.landing__page__buttons--button{
     all: unset;
     color: white;
     margin-top: 30px;
