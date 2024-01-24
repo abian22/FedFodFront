@@ -1,26 +1,19 @@
-@font-face {
-    font-family: "Medium";
-    src: url("./assets/fonts/Montserrat-semiBold.ttf");
+
+.app {
+    min-height: 100vh;
 }
 
-body {
-    background-color: black;
-    border:0px;
-    margin: 0;
-    font-family: "Medium";
-}
-
-.landing__page {
+.app--landing__page {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.landing__page--logo {
+.app--landing__page--logo {
     width: 300px;
     margin-top: 10%;
 }
 
-.landing__page__buttons {
+.app--landing__page__buttons {
     margin-top: 100px;
     display: flex;
     justify-content: center;
@@ -28,7 +21,7 @@ body {
     flex-direction: column;
 }
 
-.landing__page__buttons--button {
+.app--landing__page__buttons--button{
     all: unset;
     color: white;
     margin-top: 30px;
@@ -40,4 +33,25 @@ body {
     border-radius: 20px;
     font-size: 14px;
 }
+
+#Dark {
+    background-color: black;
+    color: white
+}
+
+#Dark button {
+    border: solid;
+    border-color: white;
+}
+
+#Light {
+    background-color: white;
+    color:black
+}
+
+#Light button {
+    border-color: black;
+    border: solid;
+}
+
 

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Medium";
+    src: url("./assets/fonts/Montserrat-semiBold.ttf");
+}
+
+body{
+    margin:0px;
+    font-family: "Medium";
+}
