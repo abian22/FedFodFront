@@ -10,20 +10,20 @@ function LandingPage() {
 
   return (
     <>
-      <main className="landing__page">
+      <main className="main">
         <img
-          className="landing__page--logo"
+          className="main__logo"
           src={contextTheme === "Light" ? lightPizza : darkPizza}
         />
       </main>
-      <section className="landing__page__buttons">
+      <section className="section">
         <Link to="/login" style={{textDecoration:"none"}}>
-        <button className="landing__page__buttons--button" id={contextTheme}>
+        <button className="section__buttons" id={contextTheme}>
           LOG IN
         </button>
         </Link>
         <Link to="/signUp" style={{textDecoration:"none"}}>
-        <button className="landing__page__buttons--button" id={contextTheme}>
+        <button className="section__buttons" id={contextTheme}>
           SIGN UP
         </button>
         </Link>

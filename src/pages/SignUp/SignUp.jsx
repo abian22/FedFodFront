@@ -11,95 +11,48 @@ function SignUp() {
       </div>
       <div className="container">
         <form className="formContainer">
-          <label className="signUpLabel">
+          <label className="formContainer__signUpLabel">
             Username
-            <input className="signUpInput" />
+            <input className="formContainer__signUpInput" />
             <img
+              className="formContainer__signUpLabel__userIcon"
               src={darkUser}
               alt="icon"
-              style={{
-                display: "flex",
-                position: "absolute",
-                top: "180px",
-                width: "20px",
-                height: "20px",
-                marginLeft: "5px",
-                justifyContent: "start",
-                alignItems: "start",
-                alignContent: "start",
-              }}
             />
           </label>
-          <label className="signUpLabel">
+          <label className="formContainer__signUpLabel">
             Email
-            <input className="signUpInput" />
+            <input className="formContainer__signUpInput" />
             <img
+              className="formContainer__signUpLabel__emailIcon"
               src={darkEmail}
               alt="icon"
-              style={{
-                display: "flex",
-                position: "absolute",
-                top: "270px",
-                width: "20px",
-                height: "20px",
-                marginLeft: "5px",
-                justifyContent: "start",
-                alignItems: "start",
-                alignContent: "start",
-              }}
             />
           </label>
-          <label className="signUpLabel">
+          <label className="formContainer__signUpLabel">
             Password
-            <input className="signUpInput" style={{ marginBottom: "50px" }} />
+            <input
+              className="formContainer__signUpInput"
+              style={{ marginBottom: "50px" }}
+            />
             <img
+              className="formContainer__signUpLabel__passwordIcon"
               src={darkPassword}
               alt="icon"
-              style={{
-                display: "flex",
-                position: "absolute",
-                top: "357px",
-                width: "20px",
-                height: "20px",
-                marginLeft: "5px",
-                justifyContent: "start",
-                alignItems: "start",
-                alignContent: "start",
-              }}
             />
           </label>
           <button
-            style={{
-              width: "92%",
-              height: "50px",
-              marginBottom: "20px",
-              justifyContent: "center",
-              fontFamily: "semiBold",
-              marginLeft: "10px",
-            }}
+            className="formContainer__signUpButton"
+            style={{ marginBottom: "20px" }}
           >
             SIGN UP
           </button>
-          <button
-            style={{
-              width: "92%",
-              height: "50px",
-              fontFamily: "semiBold",
-              marginLeft: "10px",
-            }}
-          >
-            {" "}
+          <button className="formContainer__signUpButton">
             <img
+              className="formContainer__signUpButton__googleIcon"
               src={google}
-              style={{
-                display: "flex",
-                height: "24px",
-                position: "absolute",
-                marginTop: "-3px",
-                marginLeft: "0px",
-              }}
-            />{" "}
-            continue with google
+            />
+            CONTINUE WITH GOOGLE
           </button>
         </form>
       </div>

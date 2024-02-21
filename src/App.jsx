@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <main className="app" id={contextTheme}>
-        <div className="app--switch-container">
+        <div className="app__switchContainer">
           <ReactSwitch
             onChange={handleSwitch}
             checked={checked}

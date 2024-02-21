@@ -1,46 +1,15 @@
 
 .app {
     min-height: 100vh;
-}
-.app--switch-container {
-    display: flex;
-    justify-content: flex-end; 
-    margin-right: 20px; 
-  }
 
-.landing__page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.landing__page--logo {
-    width: 300px;
-    margin-top: 10%;
+    &__switchContainer{
+        display: flex;
+        justify-content: flex-end; 
+        margin-right: 20px; 
+      }
 }
 
-.landing__page__buttons {
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.landing__page__buttons--button{
-    all: unset;
-    color: white;
-    margin-top: 30px;
-    border: solid white;
-    width: 220px;
-    height: 35px;
-    text-align: center;
-    justify-content: center ;
-    border-radius: 20px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-#Dark {
+#Dark  {
     background-color: black;
     color: white
 }

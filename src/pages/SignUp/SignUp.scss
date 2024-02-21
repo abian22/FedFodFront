@@ -1,11 +1,22 @@
+@mixin icon($topPosition) {
+  display: flex;
+  position: absolute;
+  top: $topPosition;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  justify-content: start;
+  align-items: start;
+  align-content: start;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-
 }
-.signUpContainer{
+.signUpContainer {
   display: flex;
   justify-content: center;
 }
@@ -19,22 +30,43 @@
   padding: 20px;
   max-width: 500px;
   min-width: 300px;
-}
+  &__signUpLabel {
+    margin-bottom: 5px;
+    width: 82%;
+    padding-right: 30px;
 
-.signUpLabel{
-  margin-bottom: 5px;
-  width:82%;
-  padding-right: 30px;
-}
+    &__userIcon {
+      @include icon(180px);
+    }
 
-.signUpInput {
-  margin-bottom: 20px;
-  width: 100%;
-  height: 30px;
-  padding: 5px;
-  padding-left: 30px;
-  font-family: "medium";
-  border:"solid";
-  border-radius: px;
-  
+    &__emailIcon {
+      @include icon(270px);
+    }
+
+    &__passwordIcon {
+      @include icon(360px);
+    }
+  }
+  &__signUpInput {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    padding-left: 30px;
+    font-family: "medium";
+    border: "solid";
+  }
+  &__signUpButton {
+    width: 92%;
+    height: 50px;
+    font-family: "semiBold";
+    margin-left: 10px;
+    &__googleIcon {
+      display: flex;
+      height: 24px;
+      position: absolute;
+      margin-top: -3px;
+      margin-left: 0px;
+    }
+  }
 }
