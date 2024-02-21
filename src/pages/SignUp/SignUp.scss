@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+}
+.signUpContainer{
+  display: flex;
+  justify-content: center;
+}
+.formContainer {
+  border: solid;
+  height: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+.signUpLabel{
+  margin-bottom: 5px;
+  width:82%;
+  padding-right: 30px;
+}
+
+.signUpInput {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  padding-left: 30px;
+  font-family: "medium";
+  border:"solid";
+  border-radius: px;
+  
+}

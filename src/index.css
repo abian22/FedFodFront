@@ -1,9 +1,14 @@
 @font-face {
-    font-family: "Medium";
+    font-family: "semiBold";
     src: url("./assets/fonts/Montserrat-semiBold.ttf");
 }
+@font-face {
+    font-family: "medium";
+    src: url("./assets/fonts/Montserrat-Medium.ttf");
+}
+
 
 body{
     margin:0px;
-    font-family: "Medium";
+    font-family: "semiBold";
 }
