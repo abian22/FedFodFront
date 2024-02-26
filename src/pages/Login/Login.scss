@@ -1,0 +1,21 @@
+@mixin icon($topPosition) {
+    display: flex;
+    position: absolute;
+    top: $topPosition;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    justify-content: start;
+    align-items: start;
+    align-content: start;
+  }
+
+  .formContainer__loginLabel--emailIcon {
+    @include icon(192px);
+  }
+
+  .formContainer__loginLabel--passwordIcon {
+    @include icon(292px);
+
+  }
+  

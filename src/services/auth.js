@@ -1,18 +1,22 @@
-import { Redirect } from 'react-router-dom';
-
 import api from "./serviceConfig"
 
-export async function login(loginData) {
-    const response = await api.post("/user/login", loginData)
+ async function login(loginData) {
+    const response = await api.post("user/login", loginData)
     return response
 }
 
-export async function signUp(signUpData) {
-    const response = await api.post("/user/signUp", signUpData)
-    return response
-}
+ async function signUp(signUpData) {
+    try {
+      const response = await api.post("user/signUp", signUpData);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error("Error in signUp service:", error);
+      throw error; 
+    }
+  }
 
-export async function logout() {
-    localStorage.removeItem("token")
-    return <Redirect to="/" />;
-}
+  export {
+    login,
+    signUp
+  }

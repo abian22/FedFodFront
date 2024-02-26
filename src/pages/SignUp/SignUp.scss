@@ -4,7 +4,7 @@
   top: $topPosition;
   width: 20px;
   height: 20px;
-  margin-left: 5px;
+  margin-left: 10px;
   justify-content: start;
   align-items: start;
   align-content: start;
@@ -30,21 +30,28 @@
   padding: 20px;
   max-width: 500px;
   min-width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  
   &__signUpLabel {
     margin-bottom: 5px;
     width: 82%;
     padding-right: 30px;
+    &--inputTitle{
+      margin-bottom: 10px
+    }
+    
 
     &__userIcon {
-      @include icon(180px);
+      @include icon(192px);
     }
 
     &__emailIcon {
-      @include icon(270px);
+      @include icon(292px);
     }
 
     &__passwordIcon {
-      @include icon(360px);
+      @include icon(388px);
     }
   }
   &__signUpInput {
@@ -55,18 +62,24 @@
     padding-left: 30px;
     font-family: "medium";
     border: "solid";
+    border-color: black;
+    border-radius: 20px;
   }
-  &__signUpButton {
+  &__signUpButton  {
     width: 92%;
     height: 50px;
     font-family: "semiBold";
     margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+
     &__googleIcon {
       display: flex;
       height: 24px;
       position: absolute;
       margin-top: -3px;
       margin-left: 0px;
+      
     }
   }
 }
