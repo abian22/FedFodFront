@@ -9,24 +9,21 @@ import { useState } from "react";
 import { signUp } from "../../services/auth";
 
 function SignUp() {
+  const navigate = useNavigate();
   const { contextTheme } = useThemeContext();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-   const navigate = useNavigate();
+  const [account, setAccount] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   async function createAccount() {
-    console.log("Entering createAccount");
-
     try {
-      console.log("Entering createAccount");
-      console.log("Valid data. Calling signUp service.");
       const signUpResponse = await signUp({
-        username,
-        email,
-        password,
+        username: account.username,
+        email: account.email,
+        password: account.password,
       });
-      console.log("signUp service response:", signUpResponse);
       localStorage.setItem("token", signUpResponse.data.token);
       navigate("/");
     } catch (error) {
@@ -34,6 +31,7 @@ function SignUp() {
       alert("Any field is invalid");
     }
   }
+
   return (
     <>
       <div className="signUpContainer ">
@@ -48,7 +46,9 @@ function SignUp() {
             <input
               className="formContainer__signUpInput"
               placeholder="Your Username..."
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) =>
+                setAccount({ ...account, username: e.target.value })
+              }
             />
             <img
               className="formContainer__signUpLabel__userIcon"
@@ -61,7 +61,9 @@ function SignUp() {
             <input
               className="formContainer__signUpInput"
               placeholder="Your Email..."
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setAccount({ ...account, email: e.target.value })
+              }
             />
             <img
               className="formContainer__signUpLabel__emailIcon"
@@ -76,7 +78,9 @@ function SignUp() {
             <input
               className="formContainer__signUpInput"
               placeholder="Your Password..."
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setAccount({ ...account, password: e.target.value })
+              }
               style={{ marginBottom: "50px" }}
             />
             <img
@@ -90,18 +94,19 @@ function SignUp() {
             id={contextTheme}
             style={{ marginBottom: "20px" }}
             onClick={(e) => {
-              e.preventDefault()
+              e.preventDefault();
               createAccount();
             }}
           >
             SIGN UP
           </button>
-          <button 
-           onClick={(e) => {
-            e.preventDefault()
-            
-          }}
-          className="formContainer__signUpButton" id={contextTheme}>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            className="formContainer__signUpButton"
+            id={contextTheme}
+          >
             <img
               className="formContainer__signUpButton__googleIcon"
               src={google}

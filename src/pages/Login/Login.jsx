@@ -8,18 +8,19 @@ import { login } from "../../services/auth";
 import "./Login.scss";
 
 function Login() {
-  const { contextTheme } = useThemeContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { contextTheme } = useThemeContext();
+  const [loginAccount, setLogginAccount] = useState({
+    email: "",
+    password: "",
+  });
 
   async function logAccount() {
     try {
       const loginResponse = await login({
-        email,
-        password,
+        email: loginAccount.email,
+        password: loginAccount.password,
       });
-      console.log("signUp service response:", loginResponse);
       localStorage.setItem("token", loginResponse.data.token);
       navigate("/");
     } catch (error) {
@@ -27,6 +28,7 @@ function Login() {
       alert("Any field is invalid");
     }
   }
+
   return (
     <>
       <div className="signUpContainer ">
@@ -39,7 +41,9 @@ function Login() {
             <input
               className="formContainer__signUpInput"
               placeholder="Your email..."
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setLogginAccount({ ...loginAccount, email: e.target.value })
+              }
             />
             <img
               className="formContainer__loginLabel--emailIcon"
@@ -54,7 +58,9 @@ function Login() {
             <input
               className="formContainer__signUpInput"
               placeholder="Your Password..."
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setLogginAccount({ ...loginAccount, password: e.target.value })
+              }
               style={{ marginBottom: "50px" }}
             />
             <img
