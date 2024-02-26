@@ -1,10 +1,10 @@
-@mixin icon($topPosition) {
+@mixin icon($topPosition, $marginLeft) {
   display: flex;
   position: absolute;
   top: $topPosition;
   width: 20px;
   height: 20px;
-  margin-left: 10px;
+  margin-left: $marginLeft;
   justify-content: start;
   align-items: start;
   align-content: start;
@@ -43,15 +43,19 @@
     
 
     &__userIcon {
-      @include icon(192px);
+      @include icon(192px, 10px);
     }
 
     &__emailIcon {
-      @include icon(292px);
+      @include icon(292px, 10px);
     }
 
     &__passwordIcon {
-      @include icon(388px);
+      @include icon(388px, 10px);
+    }
+    &__eyeIcon {
+      @include icon(388px, 410px);
+      cursor:pointer;
     }
   }
   &__signUpInput {
