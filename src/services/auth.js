@@ -1,13 +1,14 @@
 import api from "./serviceConfig"
+import { redirect } from "react-router";
 
- async function login(loginData) {
-    const response = await api.post("user/login", loginData)
+async function login(loginData) {
+    const response = await api.post("/user/login", loginData)
     return response
 }
 
  async function signUp(signUpData) {
     try {
-      const response = await api.post("user/signUp", signUpData);
+      const response = await api.post("/user/signUp", signUpData);
       console.log(response);
       return response;
     } catch (error) {
@@ -16,7 +17,13 @@ import api from "./serviceConfig"
     }
   }
 
+   async function logout() {
+    localStorage.removeItem('token')
+    redirect('/')
+  }
+
   export {
     login,
-    signUp
+    signUp,
+    logout
   }

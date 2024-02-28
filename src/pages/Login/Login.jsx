@@ -1,11 +1,13 @@
+import { jwtDecode } from "jwt-decode";
 import { useThemeContext } from "../../context/ThemeContext";
 import { useState } from "react";
 import darkEmail from "../../assets/icons/darkEmail.svg";
 import darkPassword from "../../assets/icons/darkPassword.svg";
 import darkEye from "../../assets/icons/darkEye.svg";
-import google from "../../assets/icons/icons8-google.svg";
+// import google from "../../assets/icons/icons8-google.svg";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/auth";
+import { GoogleLogin } from "@react-oauth/google";
 import "./Login.scss";
 
 function Login() {
@@ -40,7 +42,7 @@ function Login() {
         password: loginAccount.password,
       });
       localStorage.setItem("token", loginResponse.data.token);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error:", error);
       alert("Any field is invalid");
@@ -57,14 +59,15 @@ function Login() {
           <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isEmailValid === false ? "red" : "white" }}
+              id={contextTheme}
+              style={{ color: isEmailValid === false ? "red" : "" }}
             >
               Email
             </div>
             <input
               className="formContainer__signUpInput"
               placeholder="Example@gmail.com"
-              style={{ borderColor: isEmailValid === false ? "red" : "white" }}
+              style={{ borderColor: isEmailValid === false ? "red" : "black" }}
               onChange={(e) =>
                 setLogginAccount({ ...loginAccount, email: e.target.value })
               }
@@ -81,7 +84,8 @@ function Login() {
           <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isPasswordValid === false ? "red" : "white" }}
+              id={contextTheme}
+              style={{ color: isPasswordValid === false ? "red" : "" }}
             >
               Password
             </div>
@@ -98,7 +102,7 @@ function Login() {
               }}
               style={{
                 marginBottom: "50px",
-                borderColor: isEmailValid === false ? "red" : "white",
+                borderColor: isEmailValid === false ? "red" : "black",
               }}
             />
             <img
@@ -123,7 +127,25 @@ function Login() {
           >
             LOGIN
           </button>
-          <button
+          <GoogleLogin
+            theme="filled_black"
+            shape="circle"
+            width="320"
+            text="signin_with"
+            className="formContainer__signUpButton"
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              var credentialResponseDecoded = jwtDecode(
+                credentialResponse.credential
+              );
+              console.log(credentialResponseDecoded);
+              navigate("/home");
+            }}
+            onError={() => {
+              alert("Error login failed");
+            }}
+          />
+          {/* <button
             onClick={(e) => {
               e.preventDefault();
             }}
@@ -135,7 +157,7 @@ function Login() {
               src={google}
             />
             LOGIN WITH GOOGLE
-          </button>
+          </button> */}
         </form>
       </div>
     </>

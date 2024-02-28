@@ -1,6 +1,7 @@
 import "./SignUp.scss";
 import { useThemeContext } from "../../context/ThemeContext";
-import google from "../../assets/icons/icons8-google.svg";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 import darkUser from "../../assets/icons/darkUser.svg";
 import darkEmail from "../../assets/icons/darkEmail.svg";
 import darkPassword from "../../assets/icons/darkPassword.svg";
@@ -28,7 +29,7 @@ function SignUp() {
 
   async function createAccount() {
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
+    console.log("entra en create");
     try {
       if (account.username.trim() === "") {
         setIsUsernameValid(false);
@@ -48,10 +49,10 @@ function SignUp() {
         password: account.password,
       });
       localStorage.setItem("token", signUpResponse.data.token);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error:", error);
-      alert("Any field is invalid");
+      alert("Any field is invalid or email already exist");
     }
   }
 
@@ -65,7 +66,8 @@ function SignUp() {
           <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isUsernameValid === false ? "red" : "white" }}
+              id={contextTheme}
+              style={{ color: isUsernameValid === false ? "red" : "" }}
             >
               Username
             </div>
@@ -73,7 +75,7 @@ function SignUp() {
               className="formContainer__signUpInput"
               placeholder="Your Username..."
               style={{
-                borderColor: isUsernameValid === false ? "red" : "white",
+                borderColor: isUsernameValid === false ? "red" : "black",
               }}
               onChange={(e) =>
                 setAccount({ ...account, username: e.target.value })
@@ -91,14 +93,15 @@ function SignUp() {
           <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isEmailValid === false ? "red" : "white" }}
+              style={{ color: isEmailValid === false ? "red" : "" }}
+              id={contextTheme}
             >
               Email
             </div>
             <input
               className="formContainer__signUpInput"
               placeholder="Example@gmail.com"
-              style={{ borderColor: isEmailValid === false ? "red" : "white" }}
+              style={{ borderColor: isEmailValid === false ? "red" : "black" }}
               onChange={(e) =>
                 setAccount({ ...account, email: e.target.value })
               }
@@ -115,7 +118,8 @@ function SignUp() {
           <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isPasswordValid === false ? "red" : "white" }}
+              id={contextTheme}
+              style={{ color: isPasswordValid === false ? "red" : "" }}
             >
               Password
             </div>
@@ -126,7 +130,7 @@ function SignUp() {
               onClick={handlePassword}
               style={{
                 marginBottom: "50px",
-                borderColor: isPasswordValid === false ? "red" : "white",
+                borderColor: isPasswordValid === false ? "red" : "black",
               }}
               onChange={(e) =>
                 setAccount({ ...account, password: e.target.value })
@@ -157,7 +161,36 @@ function SignUp() {
           >
             SIGN UP
           </button>
-          <button
+          <GoogleLogin
+          theme="filled_black"
+          shape="circle"
+          width="320"
+          text="signup_with"
+
+            onSuccess={async (credentialResponse) => {
+              try {
+                console.log(credentialResponse);
+                var credentialResponseDecoded = jwtDecode(
+                  credentialResponse.credential
+                );
+                const signUpResponse = await signUp({
+                  username: credentialResponseDecoded.given_name,
+                  email: credentialResponseDecoded.email,
+                  password: credentialResponseDecoded.sub,
+                });
+                localStorage.setItem("token", signUpResponse.data.token);
+                console.log(credentialResponseDecoded);
+                navigate("/home");
+              } catch (error) {
+                console.error("Error during Google sign-up:", error);
+                alert("This account already exists or an error occurred");
+              }
+            }}
+            onError={() => {
+              alert("Error during Google sign-up");
+            }}
+          />
+          {/* <button
             onClick={(e) => {
               e.preventDefault();
             }}
@@ -169,7 +202,7 @@ function SignUp() {
               src={google}
             />
             CONTINUE WITH GOOGLE
-          </button>
+          </button> */}
         </form>
       </div>
     </>

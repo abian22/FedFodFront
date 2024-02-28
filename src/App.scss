@@ -16,6 +16,11 @@
     border: solid;
     border-color: white;
 }
+
+#Dark input {
+    border-color: white;
+}
+
 #Dark button:hover {
     color: black;
     background-color: white;
@@ -31,6 +36,10 @@
 #Light button {
     border-color: black;
     border: solid;
+}
+
+#Light input {
+    border-color: black;
 }
 
 #Light button:hover {
