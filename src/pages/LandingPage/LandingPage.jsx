@@ -1,8 +1,10 @@
 import "./LandingPage.scss";
 import { useThemeContext } from "../../context/ThemeContext";
+import { Link } from "react-router-dom";
 import darkPizza from "../../assets/images/darkMode pizza.png";
 import lightPizza from "../../assets/images/lightMode pizza.png";
-import { Link } from "react-router-dom";
+import SignUpButton from "../../components/SignUpButton/SignUpButton";
+import LoginButton from "../../components/LoginButton/LoginButton";
 
 
 function LandingPage() {
@@ -18,14 +20,10 @@ function LandingPage() {
       </main>
       <section className="section">
         <Link to="/login" style={{textDecoration:"none"}}>
-        <button className="section__buttons" id={contextTheme}>
-          LOG IN
-        </button>
+        <LoginButton style={"section__buttons"}/>
         </Link>
         <Link to="/signUp" style={{textDecoration:"none"}}>
-        <button className="section__buttons" id={contextTheme}>
-          SIGN UP
-        </button>
+        <SignUpButton style={"section__buttons"}/>
         </Link>
       </section>
     </>

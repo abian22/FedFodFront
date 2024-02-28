@@ -9,6 +9,7 @@ import darkEye from "../../assets/icons/darkEye.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signUp } from "../../services/auth";
+import SignUpButton from "../../components/SignUpButton/SignUpButton";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -150,7 +151,11 @@ function SignUp() {
               alt="icon"
             />
           </label>
-          <button
+          <SignUpButton
+          onCreateAccount={createAccount}
+          style={"formContainer__signUpButton"}
+          />
+          {/* <button
             className="formContainer__signUpButton"
             id={contextTheme}
             style={{ marginBottom: "20px" }}
@@ -160,7 +165,7 @@ function SignUp() {
             }}
           >
             SIGN UP
-          </button>
+          </button> */}
           <GoogleLogin
           theme="filled_black"
           shape="circle"

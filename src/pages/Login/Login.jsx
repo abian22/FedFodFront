@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../services/auth";
 import { GoogleLogin } from "@react-oauth/google";
 import "./Login.scss";
+import LoginButton from "../../components/LoginButton/LoginButton";
 
 function Login() {
   const navigate = useNavigate();
@@ -116,7 +117,8 @@ function Login() {
               alt="icon"
             />
           </label>
-          <button
+          <LoginButton onLogin={logAccount} style={"formContainer__signUpButton"}/>
+          {/* <button
             className="formContainer__signUpButton"
             id={contextTheme}
             style={{ marginBottom: "20px" }}
@@ -126,7 +128,7 @@ function Login() {
             }}
           >
             LOGIN
-          </button>
+          </button> */}
           <GoogleLogin
             theme="filled_black"
             shape="circle"
