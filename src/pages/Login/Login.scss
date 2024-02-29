@@ -11,16 +11,24 @@
   }
 
   .formContainer__loginLabel--emailIcon {
-    @include icon(192px, 10px);
+    @include icon(202px, 10px);
   }
 
   .formContainer__loginLabel--passwordIcon {
-    @include icon(292px, 10px);
+    @include icon(302px, 10px);
 
   }
   .formContainer__loginLabel--eyeIcon {
-    @include icon(292px, 410px);
+    @include icon(302px, 410px);
     cursor: pointer;
+    @include icon(302px, 410px);
+    cursor:pointer;
+    @media only screen and (max-width: 700px) {
+      @include icon(302px, 300px);
+    }
 
+    @media only screen and (max-width: 500px) {
+      @include icon(302px, 280px);
+    }
   }
   

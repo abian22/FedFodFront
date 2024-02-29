@@ -43,19 +43,26 @@
     
 
     &__userIcon {
-      @include icon(192px, 10px);
+      @include icon(202px, 10px);
     }
 
     &__emailIcon {
-      @include icon(292px, 10px);
+      @include icon(302px, 10px);
     }
 
     &__passwordIcon {
-      @include icon(388px, 10px);
+      @include icon(398px, 10px);
     }
     &__eyeIcon {
-      @include icon(388px, 410px);
+      @include icon(398px, 410px);
       cursor:pointer;
+      @media only screen and (max-width: 700px) {
+        @include icon(398px, 300px);
+      }
+
+      @media only screen and (max-width: 500px) {
+        @include icon(398px, 280px);
+      }
     }
   }
   &__signUpInput {
