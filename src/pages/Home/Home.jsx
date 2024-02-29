@@ -22,7 +22,6 @@ function Home() {
     {
       title: "LOGOUT",
       fun: () => {
-        console.log("Logout clicked"); // Agrega esto para verificar si se está llamando
         localStorage.removeItem("token");
         navigate("/login");
       },
@@ -85,7 +84,7 @@ function Home() {
                 style={{padding:"5px", cursor:"pointer", zIndex:"4px"}}
                 onClick={() => {
                   toggleMenu();
-                  item.fun(); // Llama a la función asociada directamente aquí
+                  item.fun(); 
                 }}
               >
                 {item.title}
