@@ -43,25 +43,30 @@
     
 
     &__userIcon {
-      @include icon(202px, 10px);
+      @include icon(218px, 10px);
     }
 
     &__emailIcon {
-      @include icon(302px, 10px);
+      @include icon(319px, 10px);
     }
 
     &__passwordIcon {
-      @include icon(398px, 10px);
+      @include icon(415px, 10px);
     }
     &__eyeIcon {
-      @include icon(398px, 410px);
+      @include icon(415px, 410px);
       cursor:pointer;
       @media only screen and (max-width: 700px) {
-        @include icon(398px, 300px);
+        @include icon(415px, 380px);
       }
-
-      @media only screen and (max-width: 500px) {
-        @include icon(398px, 280px);
+      @media only screen and (max-width: 638px) {
+        @include icon(415px, 350px);
+      }
+      @media only screen and (max-width: 590px) {
+        @include icon(415px, 300px);
+      }
+      @media only screen and (max-width: 510px) {
+        @include icon(415px, 280px);
       }
     }
   }

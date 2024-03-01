@@ -1,15 +1,15 @@
-import { jwtDecode } from "jwt-decode";
-import { useThemeContext } from "../../context/ThemeContext";
 import { useState } from "react";
-import darkEmail from "../../assets/icons/darkEmail.svg";
-import darkPassword from "../../assets/icons/darkPassword.svg";
-import darkEye from "../../assets/icons/darkEye.svg";
-// import google from "../../assets/icons/icons8-google.svg";
+import { useThemeContext } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/auth";
+import { jwtDecode } from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
-import "./Login.scss";
+import { login } from "../../services/auth";
+import emailIcon from "../../assets/icons/emailIcon.svg";
+import passwordIcon from "../../assets/icons/passwordIcon.svg";
+import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import LoginButton from "../../components/LoginButton/LoginButton";
+import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
+import "./Login.scss";
 
 function Login() {
   const navigate = useNavigate();
@@ -52,7 +52,8 @@ function Login() {
 
   return (
     <>
-      <div className="signUpContainer ">
+      <HeaderBeforeLogin />
+      <div className="signUpContainer">
         <h2>Login</h2>
       </div>
       <div className="container">
@@ -78,7 +79,7 @@ function Login() {
             />
             <img
               className="formContainer__loginLabel--emailIcon"
-              src={darkEmail}
+              src={emailIcon}
               alt="icon"
             />
           </label>
@@ -108,27 +109,19 @@ function Login() {
             />
             <img
               className="formContainer__loginLabel--passwordIcon"
-              src={darkPassword}
+              src={passwordIcon}
               alt="icon"
             />
             <img
               className="formContainer__loginLabel--eyeIcon"
-              src={darkEye}
+              src={eyeIcon}
               alt="icon"
             />
           </label>
-          <LoginButton onLogin={logAccount} style={"formContainer__signUpButton"}/>
-          {/* <button
-            className="formContainer__signUpButton"
-            id={contextTheme}
-            style={{ marginBottom: "20px" }}
-            onClick={(e) => {
-              e.preventDefault();
-              logAccount();
-            }}
-          >
-            LOGIN
-          </button> */}
+          <LoginButton
+            onLogin={logAccount}
+            style={"formContainer__signUpButton"}
+          />
           <GoogleLogin
             theme="filled_black"
             shape="circle"
@@ -140,6 +133,7 @@ function Login() {
               var credentialResponseDecoded = jwtDecode(
                 credentialResponse.credential
               );
+              localStorage.setItem("token", credentialResponseDecoded.token);
               console.log(credentialResponseDecoded);
               navigate("/home");
             }}
@@ -147,19 +141,6 @@ function Login() {
               alert("Error login failed");
             }}
           />
-          {/* <button
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            className="formContainer__signUpButton"
-            id={contextTheme}
-          >
-            <img
-              className="formContainer__signUpButton__googleIcon"
-              src={google}
-            />
-            LOGIN WITH GOOGLE
-          </button> */}
         </form>
       </div>
     </>

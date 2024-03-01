@@ -1,0 +1,15 @@
+.headerBeforeLogginContainer {
+  border-bottom: solid;
+  width: 100%;
+  height: 15px;
+  display: flex;
+  justify-content: flex-end;
+  &__lightArrow {
+    border-radius: 50px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+  }
+}
+

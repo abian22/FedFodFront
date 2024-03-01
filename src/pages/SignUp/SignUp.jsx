@@ -1,15 +1,16 @@
 import "./SignUp.scss";
+import { useState } from "react";
 import { useThemeContext } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import darkUser from "../../assets/icons/darkUser.svg";
-import darkEmail from "../../assets/icons/darkEmail.svg";
-import darkPassword from "../../assets/icons/darkPassword.svg";
-import darkEye from "../../assets/icons/darkEye.svg";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { signUp } from "../../services/auth";
+import userIcon from "../../assets/icons/userIcon.svg";
+import emailIcon from "../../assets/icons/emailIcon.svg";
+import passwordIcon from "../../assets/icons/passwordIcon.svg";
+import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import SignUpButton from "../../components/SignUpButton/SignUpButton";
+import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ function SignUp() {
 
   return (
     <>
+      <HeaderBeforeLogin />
       <div className="signUpContainer ">
         <h2>SignUp</h2>
       </div>
@@ -87,7 +89,7 @@ function SignUp() {
             />
             <img
               className="formContainer__signUpLabel__userIcon"
-              src={darkUser}
+              src={userIcon}
               alt="icon"
             />
           </label>
@@ -112,7 +114,7 @@ function SignUp() {
             />
             <img
               className="formContainer__signUpLabel__emailIcon"
-              src={darkEmail}
+              src={emailIcon}
               alt="icon"
             />
           </label>
@@ -142,36 +144,25 @@ function SignUp() {
             />
             <img
               className="formContainer__signUpLabel__passwordIcon"
-              src={darkPassword}
+              src={passwordIcon}
               alt="icon"
             />
             <img
               className="formContainer__signUpLabel__eyeIcon"
-              src={darkEye}
+              src={eyeIcon}
               alt="icon"
             />
           </label>
           <SignUpButton
-          onCreateAccount={createAccount}
-          style={"formContainer__signUpButton"}
+            onCreateAccount={createAccount}
+            style={"formContainer__signUpButton"}
           />
-          {/* <button
-            className="formContainer__signUpButton"
-            id={contextTheme}
-            style={{ marginBottom: "20px" }}
-            onClick={(e) => {
-              e.preventDefault();
-              createAccount();
-            }}
-          >
-            SIGN UP
-          </button> */}
-          <GoogleLogin
-          theme="filled_black"
-          shape="circle"
-          width="320"
-          text="signup_with"
 
+          <GoogleLogin
+            theme="filled_black"
+            shape="circle"
+            width="320"
+            text="signup_with"
             onSuccess={async (credentialResponse) => {
               try {
                 console.log(credentialResponse);
@@ -195,19 +186,6 @@ function SignUp() {
               alert("Error during Google sign-up");
             }}
           />
-          {/* <button
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            className="formContainer__signUpButton"
-            id={contextTheme}
-          >
-            <img
-              className="formContainer__signUpButton__googleIcon"
-              src={google}
-            />
-            CONTINUE WITH GOOGLE
-          </button> */}
         </form>
       </div>
     </>

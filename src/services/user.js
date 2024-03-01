@@ -1,8 +1,13 @@
 import api from "./serviceConfig"
 
-async function getAllUsers(loginData) {
-    const response = await api.post("api/user/login", loginData)
-    return response
+export async function getProfile() {
+    const result = await api.get('/user/me',
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+        console.log(result)
+    return result.data
 }
 
-export default getAllUsers

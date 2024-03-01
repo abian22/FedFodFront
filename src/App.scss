@@ -1,55 +1,68 @@
 .app {
-    min-height: 100vh;
-    &__switchContainer{
-        display: flex;
-        justify-content: flex-end; 
-        margin-right: 20px; 
-      }
+  min-height: 100vh;
+  &__switchContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
 }
 
-#Dark  {
-    background-color: black;
-    color: white
+#Dark {
+  background-color: black;
+  color: white;
+  transition: all 0.5s ease;
 }
 
 #Dark button {
-    border: solid;
-    border-color: white;
+  border: solid;
+  border-color: white;
 }
 
 #Dark input {
-    border-color: white;
+  border-color: white;
 }
 
 #Dark button:hover {
-    color: black;
-    background-color: white;
-    transition: color 0.5s, background-color 0.5s;
-    background-position: 0 0
+  color: black;
+  background-color: white;
+  transition: color 0.5s, background-color 0.5s;
+  background-position: 0 0;
+}
+
+#Dark svg:hover {
+  fill: white;
 }
 
 #Light {
-    background-color: white;
-    color:black
+  background-color: white;
+  color: black;
+  transition: all 1s ease;
 }
 
 #Light button {
-    border-color: black;
-    border: solid;
+  border-color: black;
+  border: solid;
 }
 
 #Light input {
-    border-color: black;
+  border-color: black;
+}
+
+#Light svg {
+  stroke: black;
+  fill: white;
 }
 
 #Light button:hover {
-    color: white;
-    background-color: black;
-    transition: color 0.5s, background-color 0.5s;
+  color: white;
+  background-color: black;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+#Light svg:hover {
+  fill: black;
 }
 
 .react-switch {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-
-
