@@ -128,17 +128,26 @@ function Login() {
             width="320"
             text="signin_with"
             className="formContainer__signUpButton"
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-              var credentialResponseDecoded = jwtDecode(
-                credentialResponse.credential
-              );
-              localStorage.setItem("token", credentialResponseDecoded.token);
-              console.log(credentialResponseDecoded);
-              navigate("/home");
+            onSuccess={async (credentialResponse) => {
+              try {
+                console.log(credentialResponse);
+                var credentialResponseDecoded = jwtDecode(
+                  credentialResponse.credential
+                );
+                const signUpResponse = await login({
+                  email: credentialResponseDecoded.email,
+                  password: credentialResponseDecoded.sub,
+                });
+                localStorage.setItem("token", signUpResponse.data.token);
+                console.log(credentialResponseDecoded);
+                navigate("/home");
+              } catch (error) {
+                console.error("Error during Google login:", error);
+                alert("Error during Google login");
+              }
             }}
             onError={() => {
-              alert("Error login failed");
+              alert("Error during Google sign-up");
             }}
           />
         </form>
