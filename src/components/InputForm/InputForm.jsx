@@ -11,11 +11,9 @@ function InputForm({
   eyeIcon,
   handlePassword,
   isPassVisible,
-  password,
 }) {
   const { contextTheme } = useThemeContext();
 
-  console.log("password", password);
   return (
     <>
       <label className="formContainer__signUpLabel">
@@ -29,7 +27,7 @@ function InputForm({
         <input
           className="formContainer__signUpInput"
           placeholder={placeholder}
-          type={isPassVisible && password ? "text" : "password"}
+          type={title === "Password" && isPassVisible === false? "password" : "text"}
           style={{
             borderColor: isFieldValid === false ? "red" : "black",
           }}
@@ -39,7 +37,7 @@ function InputForm({
           }}
         />
         <img className={iconStyle} src={icon} alt="icon" />
-        {password && (
+        {title === "Password" && (
           <img
             className="formContainer__signUpLabel__eyeIcon"
             onClick={handlePassword}

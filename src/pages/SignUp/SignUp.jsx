@@ -78,7 +78,6 @@ function SignUp() {
             contextId={contextTheme}
             accountData={(value) => setAccount({ ...account, username: value })}
             createAccountFunction={createAccount}
-            password={false}
           />
           <InputForm
             title="Email"
@@ -89,7 +88,6 @@ function SignUp() {
             contextId={contextTheme}
             accountData={(value) => setAccount({ ...account, email: value })}
             createAccountFunction={createAccount}
-            password={false}
           />
           <InputForm
             title="Password"
@@ -101,9 +99,8 @@ function SignUp() {
             accountData={(value) => setAccount({ ...account, password: value })}
             createAccountFunction={createAccount}
             eyeIcon={eyeIcon}
-            handlePassword={() => setIsPassVisible(!isPassVisible)}
+            handlePassword={handlePassword}
             isPassVisible={isPassVisible}
-            password={true}
           />
           {/* <label className="formContainer__signUpLabel">
             <div
