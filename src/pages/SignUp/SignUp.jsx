@@ -11,6 +11,7 @@ import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import SignUpButton from "../../components/SignUpButton/SignUpButton";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
+import InputForm from "../../components/InputForm/InputForm";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ function SignUp() {
   });
 
   function handlePassword() {
+    console.log("funciona")
+    console.log(isPassVisible)
     setIsPassVisible(!isPassVisible);
   }
 
@@ -33,7 +36,7 @@ function SignUp() {
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     console.log("entra en create");
     try {
-      if (account.username.trim() === "") {
+      if (account.username || account.username.trim() === "") {
         setIsUsernameValid(false);
       } else setIsUsernameValid(true);
 
@@ -66,7 +69,43 @@ function SignUp() {
       </div>
       <div className="container">
         <form className="formContainer">
-          <label className="formContainer__signUpLabel">
+          <InputForm
+            title="Username"
+            placeholder="Your Username..."
+            isFieldValid={isUsernameValid}
+            iconStyle="formContainer__signUpLabel__userIcon"
+            icon={userIcon}
+            contextId={contextTheme}
+            accountData={(value) => setAccount({ ...account, username: value })}
+            createAccountFunction={createAccount}
+            password={false}
+          />
+          <InputForm
+            title="Email"
+            placeholder="Your email..."
+            isFieldValid={isEmailValid}
+            iconStyle="formContainer__signUpLabel__emailIcon"
+            icon={emailIcon}
+            contextId={contextTheme}
+            accountData={(value) => setAccount({ ...account, email: value })}
+            createAccountFunction={createAccount}
+            password={false}
+          />
+          <InputForm
+            title="Password"
+            placeholder="Your Password..."
+            isFieldValid={isPasswordValid}
+            iconStyle="formContainer__signUpLabel__passwordIcon"
+            icon={passwordIcon}
+            contextId={contextTheme}
+            accountData={(value) => setAccount({ ...account, password: value })}
+            createAccountFunction={createAccount}
+            eyeIcon={eyeIcon}
+            handlePassword={() => setIsPassVisible(!isPassVisible)}
+            isPassVisible={isPassVisible}
+            password={true}
+          />
+          {/* <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
               id={contextTheme}
@@ -152,7 +191,7 @@ function SignUp() {
               src={eyeIcon}
               alt="icon"
             />
-          </label>
+          </label>  */}
           <SignUpButton
             onCreateAccount={createAccount}
             style={"formContainer__signUpButton"}
