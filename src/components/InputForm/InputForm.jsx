@@ -7,10 +7,11 @@ function InputForm({
   iconStyle,
   icon,
   accountData,
-  createAccountFunction,
+  loginOrSignupFunction,
   eyeIcon,
   handlePassword,
   isPassVisible,
+  eyeIconStyle
 }) {
   const { contextTheme } = useThemeContext();
 
@@ -27,19 +28,19 @@ function InputForm({
         <input
           className="formContainer__signUpInput"
           placeholder={placeholder}
-          type={title === "Password" && isPassVisible === false? "password" : "text"}
+          type={title === "Password" && isPassVisible === false ? "password" : "text"}
           style={{
             borderColor: isFieldValid === false ? "red" : "black",
           }}
           onChange={(e) => accountData(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") createAccountFunction();
+            if (e.key === "Enter") loginOrSignupFunction();
           }}
         />
         <img className={iconStyle} src={icon} alt="icon" />
         {title === "Password" && (
           <img
-            className="formContainer__signUpLabel__eyeIcon"
+            className={eyeIconStyle}
             onClick={handlePassword}
             src={eyeIcon}
             alt="icon"

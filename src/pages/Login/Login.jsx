@@ -7,6 +7,7 @@ import { login } from "../../services/auth";
 import emailIcon from "../../assets/icons/emailIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import eyeIcon from "../../assets/icons/eyeIcon.svg";
+import InputForm from "../../components/InputForm/InputForm";
 import LoginButton from "../../components/LoginButton/LoginButton";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
 import "./Login.scss";
@@ -58,7 +59,31 @@ function Login() {
       </div>
       <div className="container">
         <form className="formContainer">
-          <label className="formContainer__signUpLabel">
+        <InputForm
+            title="Email"
+            placeholder="Your Email..."
+            isFieldValid={isEmailValid}
+            iconStyle="formContainer__loginLabel--emailIcon"
+            icon={emailIcon}
+            contextId={contextTheme}
+            accountData={(value) => setLogginAccount({...loginAccount , email: value })}
+            loginOrSignupFunction={logAccount}
+          />
+          <InputForm
+            title="Password"
+            placeholder="Your Password..."
+            isFieldValid={isPasswordValid}
+            iconStyle="formContainer__loginLabel--passwordIcon"
+            icon={passwordIcon}
+            contextId={contextTheme}
+            accountData={(value) => setLogginAccount({...loginAccount, password: value })}
+            loginOrSignupFunction={logAccount}
+            handlePassword={handlePassword}
+            eyeIcon={eyeIcon}
+            isPassVisible={isPassVisible}
+            eyeIconStyle="formContainer__loginLabel--eyeIcon"
+          />
+          {/* <label className="formContainer__signUpLabel">
             <div
               className="formContainer__signUpLabel--inputTitle"
               id={contextTheme}
@@ -117,7 +142,7 @@ function Login() {
               src={eyeIcon}
               alt="icon"
             />
-          </label>
+          </label> */}
           <LoginButton
             onLogin={logAccount}
             style={"formContainer__signUpButton"}

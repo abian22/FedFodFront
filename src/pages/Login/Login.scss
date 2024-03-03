@@ -19,6 +19,7 @@
 
   }
   .formContainer__loginLabel--eyeIcon {
+    cursor: pointer;
     @include icon(318px, 410px);
     @media only screen and (max-width: 700px) {
       @include icon(318px, 380px);
