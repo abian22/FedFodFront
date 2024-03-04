@@ -68,6 +68,9 @@
       @media only screen and (max-width: 510px) {
         @include icon(415px, 280px);
       }
+      @media only screen and (max-width: 450px) {
+        @include icon(415px, 250px);
+      }
     }
   }
   &__signUpInput {

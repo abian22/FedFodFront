@@ -16,14 +16,13 @@ function Header() {
 
   useEffect(() => {
     getProfileImg();
-  },[] );
+  }, []);
 
   const toggleMenuProfile = () => {
     setIsMenuProfileOpen(!isMenuProfileOpen);
   };
 
   const toggleMenu = () => {
-
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -104,6 +103,30 @@ function Header() {
             </ul>
           </div>
         )}
+        <div className="headerContainer__screenMenu">
+          <ul
+            style={{
+              display: "flex",
+              position: "absolute",
+              top: "-8px",
+              right: "150px",
+            }}
+          >
+            {menu.map((option, index) => (
+              <li
+                className="menuContainer__menuUl--menuLi"
+                style={{ marginRight: "10px", listStyle: "none" }}
+                key={index}
+                onClick={() => {
+                  option.fun();
+                }}
+              >
+                {option.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div className="headerContainer__profileContainer">
           <img
             className="headerContainer__profileImg"
