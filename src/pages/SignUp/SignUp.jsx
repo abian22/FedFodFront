@@ -36,7 +36,7 @@ function SignUp() {
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     console.log("entra en create");
     try {
-      if (account.username || account.username.trim() === "") {
+      if (account.username === "") {
         setIsUsernameValid(false);
       } else setIsUsernameValid(true);
 

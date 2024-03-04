@@ -64,7 +64,7 @@ function Header() {
       title: "LOGOUT",
       fun: () => {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/");
       },
     },
   ];
