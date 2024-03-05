@@ -1,2 +1,38 @@
+.headerContainer {
+  border-bottom: solid;
+  &__menuItemsContainer {
+    display: flex;
+    margin: 0;
+    padding: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  &__profileImg {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}
 
-
+.profileMenuContainer {
+  position: absolute;
+  top: 55px;
+  right: 24%;
+  &__profileMenuUl {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: lightGrey;
+    border-radius: 10px;
+  }
+  &__profileMenuLi {
+    list-style: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: black;
+  }
+  :hover {
+    color: white;
+  }
+}

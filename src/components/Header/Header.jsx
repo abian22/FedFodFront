@@ -9,7 +9,7 @@ import "./Header.scss";
 
 function Header() {
   const navigate = useNavigate();
-  const { contextTheme, setContextTheme } = useThemeContext();
+  const { setContextTheme } = useThemeContext();
   const [isMenuProfileOpen, setIsMenuProfileOpen] = useState(false);
   const [profileImg, setProfileImg] = useState("");
   const [checked, setChecked] = useState(true);
@@ -63,16 +63,8 @@ function Header() {
 
   return (
     <>
-      <header style={{ borderBottom: "solid" }}>
-        <ul
-          style={{
-            display: "flex",
-            margin: "0px",
-            padding: "10px",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-        >
+      <nav className="headerContainer">
+        <ul className="headerContainer__menuItemsContainer">
           {menuData.map((item, index) => (
             <MenuItem
               key={index}
@@ -84,32 +76,21 @@ function Header() {
             />
           ))}
           <img
-            style={{
-              height: "30px",
-              width: "30px",
-              borderRadius: "15px",
-              cursor: "pointer",
-            }}
+            className="headerContainer__profileImg"
             src={profileImg}
             onClick={toggleMenuProfile}
           />
           {isMenuProfileOpen && (
             <div
-              style={{
-                backgroundColor: "grey",
-                display: "flex",
-                position: "absolute",
-                top: "55px",
-                right: "24%",
-                borderRadius:"10px",
-                width:"auto",
-              }}
-            >
-              <ul style={{display:"flex", flexDirection:"column", justifyContent:"center", alignContent:"center", alignItems:"center"}}>
+              className="profileMenuContainer"
+              >
+              <ul
+                className="profileMenuContainer__profileMenuUl"
+                >
                 {settings.map((item, index) => (
                   <li
+                  className="profileMenuContainer__profileMenuLi"
                     key={index}
-                    style={{ listStyle: "none" }}
                     onClick={() => {
                       toggleMenuProfile();
                       item.fun();
@@ -124,7 +105,7 @@ function Header() {
 
           <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
         </ul>
-      </header>
+      </nav>
     </>
   );
 }

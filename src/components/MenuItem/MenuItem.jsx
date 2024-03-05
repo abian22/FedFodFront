@@ -1,15 +1,23 @@
 import { useThemeContext } from "../../context/ThemeContext";
-import "./MenuItem.scss"
+import { useNavigate } from "react-router";
+import "./MenuItem.scss";
 
-const MenuItem = ({ title, path, fun, mailNotificationCount, notificationNotificationCount }) => {
+const MenuItem = ({
+  title,
+  path,
+  fun,
+  mailNotificationCount,
+  notificationNotificationCount,
+}) => {
   const { contextTheme } = useThemeContext();
+  const navigate = useNavigate();
   return (
     <li
       style={{ listStyle: "none", marginTop: "10px", cursor: "pointer" }}
       onClick={() => {
-        if (fun) {
-          fun();
-        }
+        if (title === "home") {
+          navigate(`/${title}`);
+        } else navigate(`/home/${title}`);
       }}
     >
       <svg
@@ -25,9 +33,7 @@ const MenuItem = ({ title, path, fun, mailNotificationCount, notificationNotific
       </svg>
 
       {title === "mail" && mailNotificationCount > 0 && (
-        <div className="notification-badge">
-          {mailNotificationCount}
-        </div>
+        <div className="notification-badge">{mailNotificationCount}</div>
       )}
 
       {title === "notification" && notificationNotificationCount > 0 && (

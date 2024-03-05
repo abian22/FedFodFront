@@ -5,6 +5,10 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Home from "../pages/Home/Home";
 import Profile from "../pages/Profile/Profile";
+import Search from "../pages/Search/Search";
+import Chat from "../pages/Chat/Chat";
+import Notifications from "../pages/Notifications/Notifications";
+import Upload from "../pages/Upload/Upload";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +41,22 @@ const router = createBrowserRouter([
       {
         path: "/home/profile",
         element: <Profile />,
+      },
+      {
+        path: "/home/search",
+        element: <Search />,
+      },
+      {
+        path: "/home/upload",
+        element: <Upload />,
+      },
+      {
+        path: "/home/notification",
+        element: <Notifications />,
+      },
+      {
+        path: "/home/chat",
+        element: <Chat />,
       },
     ],
   },
