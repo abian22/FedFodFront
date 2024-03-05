@@ -4,6 +4,7 @@ import { useThemeContext } from "./context/ThemeContext";
 import ReactSwitch from "react-switch";
 import router from "./router/Router";
 import { RouterProvider } from "react-router-dom";
+import SwitchComponent from "./components/SwitchComponent/SwitchComponent";
 
 function App() {
   const { contextTheme, setContextTheme } = useThemeContext();
@@ -16,21 +17,8 @@ function App() {
   return (
     <>
       <main className="app" id={contextTheme}>
-        <div className="app__switchContainer">
-          <ReactSwitch
-            onChange={handleSwitch}
-            checked={checked}
-            onColor="#86d3ff"
-            onHandleColor="#2693e6"
-            handleDiameter={30}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-            height={20}
-            width={48}
-            className="react-switch"
-          />
+        <div className="app__switchContainer" style={{position:"absolute"}}>
+        {/* <SwitchComponent handleSwitch={handleSwitch} checked={checked} /> */}
         </div>
         <RouterProvider router={router} />
       </main>

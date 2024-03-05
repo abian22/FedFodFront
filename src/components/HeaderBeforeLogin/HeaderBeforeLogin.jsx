@@ -1,13 +1,22 @@
 import { useThemeContext } from "../../context/ThemeContext";
+import { useState } from "react";
+import SwitchComponent from "../SwitchComponent/SwitchComponent";
 import { Link } from "react-router-dom";
 
 import "./HeaderBeforeLogin.scss";
 function HeaderBeforeLogin() {
-  const { contextTheme } = useThemeContext();
+  const { contextTheme, setContextTheme } = useThemeContext();
+  const [checked, setChecked] = useState(true);
+
+  const handleSwitch = (nextChecked) => {
+    setContextTheme((state) => (state === "Light" ? "Dark" : "Light"));
+    setChecked(nextChecked);
+  };
 
   return (
     <>
       <div className="headerBeforeLogginContainer">
+        <SwitchComponent handleSwitch={handleSwitch} checked={checked}/>
         <Link to="/" style={{ textDecoration: "none" }}>
           <svg
             id={contextTheme}
@@ -22,6 +31,7 @@ function HeaderBeforeLogin() {
             <path d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z" />
           </svg>
         </Link>
+        
       </div>
     </>
   );
