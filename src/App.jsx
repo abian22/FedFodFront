@@ -17,9 +17,7 @@ function App() {
   return (
     <>
       <main className="app" id={contextTheme}>
-        <div className="app__switchContainer" style={{position:"absolute"}}>
-        {/* <SwitchComponent handleSwitch={handleSwitch} checked={checked} /> */}
-        </div>
+     
         <RouterProvider router={router} />
       </main>
     </>

@@ -1,4 +1,4 @@
-import ReactSwitch from 'react-switch';
+import ReactSwitch from "react-switch";
 
 const SwitchComponent = ({ handleSwitch, checked }) => {
   return (

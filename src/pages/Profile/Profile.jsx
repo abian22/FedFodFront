@@ -1,8 +1,12 @@
 function Profile() {
   return (
-    <div>
-      Profile
+    <>
+    <div className="signUpContainer">
+    <form className="formContainer">
+      
+    </form>
     </div>
+    </>
   )
 }
 
