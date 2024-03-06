@@ -10,6 +10,7 @@ import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import InputForm from "../../components/InputForm/InputForm";
 import LoginButton from "../../components/LoginButton/LoginButton";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
+import AccountInfoContainer from "../../components/AccountInfoContainer/AccountInfoContainer";
 import "./Login.scss";
 
 function Login() {
@@ -54,129 +55,68 @@ function Login() {
   return (
     <>
       <HeaderBeforeLogin />
-      <div className="signUpContainer">
-        <h2>Login</h2>
-      </div>
-      <div className="container">
-        <form className="formContainer">
+      <AccountInfoContainer title="Login">
         <InputForm
-            title="Email"
-            placeholder="Your Email..."
-            isFieldValid={isEmailValid}
-            iconStyle="formContainer__loginLabel--emailIcon"
-            icon={emailIcon}
-            contextId={contextTheme}
-            accountData={(value) => setLogginAccount({...loginAccount , email: value })}
-            loginOrSignupFunction={logAccount}
-          />
-          <InputForm
-            title="Password"
-            placeholder="Your Password..."
-            isFieldValid={isPasswordValid}
-            iconStyle="formContainer__loginLabel--passwordIcon"
-            icon={passwordIcon}
-            contextId={contextTheme}
-            accountData={(value) => setLogginAccount({...loginAccount, password: value })}
-            loginOrSignupFunction={logAccount}
-            handlePassword={handlePassword}
-            eyeIcon={eyeIcon}
-            isPassVisible={isPassVisible}
-            eyeIconStyle="formContainer__loginLabel--eyeIcon"
-          />
-          {/* <label className="formContainer__signUpLabel">
-            <div
-              className="formContainer__signUpLabel--inputTitle"
-              id={contextTheme}
-              style={{ color: isEmailValid === false ? "red" : "" }}
-            >
-              Email
-            </div>
-            <input
-              className="formContainer__signUpInput"
-              placeholder="Example@gmail.com"
-              style={{ borderColor: isEmailValid === false ? "red" : "black" }}
-              onChange={(e) =>
-                setLogginAccount({ ...loginAccount, email: e.target.value })
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") logAccount();
-              }}
-            />
-            <img
-              className="formContainer__loginLabel--emailIcon"
-              src={emailIcon}
-              alt="icon"
-            />
-          </label>
-          <label className="formContainer__signUpLabel">
-            <div
-              className="formContainer__signUpLabel--inputTitle"
-              id={contextTheme}
-              style={{ color: isPasswordValid === false ? "red" : "" }}
-            >
-              Password
-            </div>
-            <input
-              className="formContainer__signUpInput"
-              placeholder="Your Password..."
-              type={isPassVisible ? "" : "password"}
-              onClick={handlePassword}
-              onChange={(e) =>
-                setLogginAccount({ ...loginAccount, password: e.target.value })
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") logAccount();
-              }}
-              style={{
-                marginBottom: "50px",
-                borderColor: isEmailValid === false ? "red" : "black",
-              }}
-            />
-            <img
-              className="formContainer__loginLabel--passwordIcon"
-              src={passwordIcon}
-              alt="icon"
-            />
-            <img
-              className="formContainer__loginLabel--eyeIcon"
-              src={eyeIcon}
-              alt="icon"
-            />
-          </label> */}
-          <LoginButton
-            onLogin={logAccount}
-            style={"formContainer__signUpButton"}
-          />
-          <GoogleLogin
-            theme="filled_black"
-            shape="circle"
-            width="320"
-            text="signin_with"
-            className="formContainer__signUpButton"
-            onSuccess={async (credentialResponse) => {
-              try {
-                console.log(credentialResponse);
-                var credentialResponseDecoded = jwtDecode(
-                  credentialResponse.credential
-                );
-                const signUpResponse = await login({
-                  email: credentialResponseDecoded.email,
-                  password: credentialResponseDecoded.sub,
-                });
-                localStorage.setItem("token", signUpResponse.data.token);
-                console.log(credentialResponseDecoded);
-                navigate("/home");
-              } catch (error) {
-                console.error("Error during Google login:", error);
-                alert("Error during Google login");
-              }
-            }}
-            onError={() => {
-              alert("Error during Google sign-up");
-            }}
-          />
-        </form>
-      </div>
+          title="Email"
+          placeholder="Your Email..."
+          isFieldValid={isEmailValid}
+          iconStyle="formContainer__loginLabel--emailIcon"
+          icon={emailIcon}
+          contextId={contextTheme}
+          accountData={(value) =>
+            setLogginAccount({ ...loginAccount, email: value })
+          }
+          loginOrSignupFunction={logAccount}
+        />
+        <InputForm
+          title="Password"
+          placeholder="Your Password..."
+          isFieldValid={isPasswordValid}
+          iconStyle="formContainer__loginLabel--passwordIcon"
+          icon={passwordIcon}
+          contextId={contextTheme}
+          accountData={(value) =>
+            setLogginAccount({ ...loginAccount, password: value })
+          }
+          loginOrSignupFunction={logAccount}
+          handlePassword={handlePassword}
+          eyeIcon={eyeIcon}
+          isPassVisible={isPassVisible}
+          eyeIconStyle="formContainer__loginLabel--eyeIcon"
+        />
+        <LoginButton
+          onLogin={logAccount}
+          style={"formContainer__signUpButton"}
+        />
+        <GoogleLogin
+          theme="filled_black"
+          shape="circle"
+          width="320"
+          text="signin_with"
+          className="formContainer__signUpButton"
+          onSuccess={async (credentialResponse) => {
+            try {
+              console.log(credentialResponse);
+              var credentialResponseDecoded = jwtDecode(
+                credentialResponse.credential
+              );
+              const signUpResponse = await login({
+                email: credentialResponseDecoded.email,
+                password: credentialResponseDecoded.sub,
+              });
+              localStorage.setItem("token", signUpResponse.data.token);
+              console.log(credentialResponseDecoded);
+              navigate("/home");
+            } catch (error) {
+              console.error("Error during Google login:", error);
+              alert("Error during Google login");
+            }
+          }}
+          onError={() => {
+            alert("Error during Google sign-up");
+          }}
+        />
+      </AccountInfoContainer>
     </>
   );
 }

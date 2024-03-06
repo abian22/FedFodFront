@@ -8,6 +8,7 @@ import Profile from "../pages/Profile/Profile";
 import Search from "../pages/Search/Search";
 import Chat from "../pages/Chat/Chat";
 import Notifications from "../pages/Notifications/Notifications";
+import MyAccount from "../pages/MyAccount/MyAccount";
 import Upload from "../pages/Upload/Upload";
 
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/home/chat",
         element: <Chat />,
+      },
+      {
+        path: "/home/myAccount",
+        element: <MyAccount />,
       },
     ],
   },

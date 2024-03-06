@@ -53,6 +53,12 @@ function Header() {
       },
     },
     {
+      title: "MY ACCOUNT",
+      fun: () => {
+        navigate("/home/myAccount");
+      },
+    },
+    {
       title: "LOGOUT",
       fun: () => {
         localStorage.removeItem("token");

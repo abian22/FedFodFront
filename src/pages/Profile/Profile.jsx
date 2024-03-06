@@ -1,13 +1,6 @@
+import AccountInfoContainer from "../../components/AccountInfoContainer/AccountInfoContainer";
 function Profile() {
-  return (
-    <>
-    <div className="signUpContainer">
-    <form className="formContainer">
-      
-    </form>
-    </div>
-    </>
-  )
+  return <>Profile</>;
 }
 
-export default Profile
+export default Profile;

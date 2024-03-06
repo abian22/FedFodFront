@@ -12,6 +12,7 @@ import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import SignUpButton from "../../components/SignUpButton/SignUpButton";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin/HeaderBeforeLogin";
 import InputForm from "../../components/InputForm/InputForm";
+import AccountInfoContainer from "../../components/AccountInfoContainer/AccountInfoContainer";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ function SignUp() {
   });
 
   function handlePassword() {
-    console.log("funciona")
-    console.log(isPassVisible)
+    console.log("funciona");
+    console.log(isPassVisible);
     setIsPassVisible(!isPassVisible);
   }
 
@@ -64,167 +65,75 @@ function SignUp() {
   return (
     <>
       <HeaderBeforeLogin />
-      <div className="signUpContainer ">
-        <h2>SignUp</h2>
-      </div>
-      <div className="container">
-        <form className="formContainer">
-          <InputForm
-            title="Username"
-            placeholder="Your Username..."
-            isFieldValid={isUsernameValid}
-            iconStyle="formContainer__signUpLabel__userIcon"
-            icon={userIcon}
-            contextId={contextTheme}
-            accountData={(value) => setAccount({ ...account, username: value })}
-            loginOrSignupFunction={createAccount}
-          />
-          <InputForm
-            title="Email"
-            placeholder="Your email..."
-            isFieldValid={isEmailValid}
-            iconStyle="formContainer__signUpLabel__emailIcon"
-            icon={emailIcon}
-            contextId={contextTheme}
-            accountData={(value) => setAccount({ ...account, email: value })}
-            loginOrSignupFunction={createAccount}
-          />
-          <InputForm
-            title="Password"
-            placeholder="Your Password..."
-            isFieldValid={isPasswordValid}
-            iconStyle="formContainer__signUpLabel__passwordIcon"
-            icon={passwordIcon}
-            contextId={contextTheme}
-            accountData={(value) => setAccount({ ...account, password: value })}
-            loginOrSignupFunction={createAccount}
-            eyeIcon={eyeIcon}
-            handlePassword={handlePassword}
-            isPassVisible={isPassVisible}
-            eyeIconStyle="formContainer__signUpLabel__eyeIcon"
-          />
-          {/* <label className="formContainer__signUpLabel">
-            <div
-              className="formContainer__signUpLabel--inputTitle"
-              id={contextTheme}
-              style={{ color: isUsernameValid === false ? "red" : "" }}
-            >
-              Username
-            </div>
-            <input
-              className="formContainer__signUpInput"
-              placeholder="Your Username..."
-              style={{
-                borderColor: isUsernameValid === false ? "red" : "black",
-              }}
-              onChange={(e) =>
-                setAccount({ ...account, username: e.target.value })
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") createAccount();
-              }}
-            />
-            <img
-              className="formContainer__signUpLabel__userIcon"
-              src={userIcon}
-              alt="icon"
-            />
-          </label>
-          <label className="formContainer__signUpLabel">
-            <div
-              className="formContainer__signUpLabel--inputTitle"
-              style={{ color: isEmailValid === false ? "red" : "" }}
-              id={contextTheme}
-            >
-              Email
-            </div>
-            <input
-              className="formContainer__signUpInput"
-              placeholder="Example@gmail.com"
-              style={{ borderColor: isEmailValid === false ? "red" : "black" }}
-              onChange={(e) =>
-                setAccount({ ...account, email: e.target.value })
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") createAccount();
-              }}
-            />
-            <img
-              className="formContainer__signUpLabel__emailIcon"
-              src={emailIcon}
-              alt="icon"
-            />
-          </label>
-          <label className="formContainer__signUpLabel">
-            <div
-              className="formContainer__signUpLabel--inputTitle"
-              id={contextTheme}
-              style={{ color: isPasswordValid === false ? "red" : "" }}
-            >
-              Password
-            </div>
-            <input
-              className="formContainer__signUpInput"
-              placeholder="Your Password..."
-              type={isPassVisible ? "" : "password"}
-              onClick={handlePassword}
-              style={{
-                marginBottom: "50px",
-                borderColor: isPasswordValid === false ? "red" : "black",
-              }}
-              onChange={(e) =>
-                setAccount({ ...account, password: e.target.value })
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter") createAccount();
-              }}
-            />
-            <img
-              className="formContainer__signUpLabel__passwordIcon"
-              src={passwordIcon}
-              alt="icon"
-            />
-            <img
-              className="formContainer__signUpLabel__eyeIcon"
-              src={eyeIcon}
-              alt="icon"
-            />
-          </label>  */}
-          <SignUpButton
-            onCreateAccount={createAccount}
-            style={"formContainer__signUpButton"}
-          />
+      <AccountInfoContainer title="SignUp">
+        <InputForm
+          title="Username"
+          placeholder="Your Username..."
+          isFieldValid={isUsernameValid}
+          iconStyle="formContainer__signUpLabel__userIcon"
+          icon={userIcon}
+          contextId={contextTheme}
+          accountData={(value) => setAccount({ ...account, username: value })}
+          loginOrSignupFunction={createAccount}
+        />
+        <InputForm
+          title="Email"
+          placeholder="Your email..."
+          isFieldValid={isEmailValid}
+          iconStyle="formContainer__signUpLabel__emailIcon"
+          icon={emailIcon}
+          contextId={contextTheme}
+          accountData={(value) => setAccount({ ...account, email: value })}
+          loginOrSignupFunction={createAccount}
+        />
+        <InputForm
+          title="Password"
+          placeholder="Your Password..."
+          isFieldValid={isPasswordValid}
+          iconStyle="formContainer__signUpLabel__passwordIcon"
+          icon={passwordIcon}
+          contextId={contextTheme}
+          accountData={(value) => setAccount({ ...account, password: value })}
+          loginOrSignupFunction={createAccount}
+          eyeIcon={eyeIcon}
+          handlePassword={handlePassword}
+          isPassVisible={isPassVisible}
+          eyeIconStyle="formContainer__signUpLabel__eyeIcon"
+        />
+        <SignUpButton
+          onCreateAccount={createAccount}
+          style={"formContainer__signUpButton"}
+        />
 
-          <GoogleLogin
-            theme="filled_black"
-            shape="circle"
-            width="320"
-            text="signup_with"
-            onSuccess={async (credentialResponse) => {
-              try {
-                console.log(credentialResponse);
-                var credentialResponseDecoded = jwtDecode(
-                  credentialResponse.credential
-                );
-                const signUpResponse = await signUp({
-                  username: credentialResponseDecoded.given_name,
-                  email: credentialResponseDecoded.email,
-                  password: credentialResponseDecoded.sub,
-                });
-                localStorage.setItem("token", signUpResponse.data.token);
-                console.log(credentialResponseDecoded);
-                navigate("/home");
-              } catch (error) {
-                console.error("Error during Google sign-up:", error);
-                alert("This account already exists or an error occurred");
-              }
-            }}
-            onError={() => {
-              alert("Error during Google sign-up");
-            }}
-          />
-        </form>
-      </div>
+        <GoogleLogin
+          theme="filled_black"
+          shape="circle"
+          width="320"
+          text="signup_with"
+          onSuccess={async (credentialResponse) => {
+            try {
+              console.log(credentialResponse);
+              var credentialResponseDecoded = jwtDecode(
+                credentialResponse.credential
+              );
+              const signUpResponse = await signUp({
+                username: credentialResponseDecoded.given_name,
+                email: credentialResponseDecoded.email,
+                password: credentialResponseDecoded.sub,
+              });
+              localStorage.setItem("token", signUpResponse.data.token);
+              console.log(credentialResponseDecoded);
+              navigate("/home");
+            } catch (error) {
+              console.error("Error during Google sign-up:", error);
+              alert("This account already exists or an error occurred");
+            }
+          }}
+          onError={() => {
+            alert("Error during Google sign-up");
+          }}
+        />
+      </AccountInfoContainer>
     </>
   );
 }

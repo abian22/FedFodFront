@@ -1,0 +1,81 @@
+@mixin icon($topPosition, $marginLeft) {
+  display: flex;
+  position: absolute;
+  top: $topPosition;
+  width: 20px;
+  height: 20px;
+  margin-left: $marginLeft;
+  justify-content: start;
+  align-items: start;
+  align-content: start;
+}
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  &__button {
+    width: 120px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 4px;
+    font-family: medium;
+    @media only screen and (max-width: 540px){
+         width: 80px;
+    }
+  }
+}
+
+.MyAccountUserIcon {
+  @include icon(275px, 10px);
+}
+
+.MyAccountEmailIcon {
+  @include icon(375px, 10px);
+}
+
+.MyAccountNewPasswordIcon {
+  @include icon(472px, 10px);
+}
+
+.MyAccountNewPasswordEyeIcon {
+  @include icon(472px, 410px);
+  cursor: pointer;
+  @media only screen and (max-width: 700px) {
+    @include icon(472px, 380px);
+  }
+  @media only screen and (max-width: 638px) {
+    @include icon(472px, 350px);
+  }
+  @media only screen and (max-width: 590px) {
+    @include icon(472px, 300px);
+  }
+  @media only screen and (max-width: 510px) {
+    @include icon(472px, 280px);
+  }
+  @media only screen and (max-width: 450px) {
+    @include icon(472px, 250px);
+  }
+}
+.MyAccountConfirmNewPasswordIcon {
+  @include icon(570px, 10px);
+}
+
+.MyAccountConfirmNewPasswordEyeIcon {
+  @include icon(570px, 410px);
+  cursor: pointer;
+  @media only screen and (max-width: 700px) {
+    @include icon(570px, 380px);
+  }
+  @media only screen and (max-width: 638px) {
+    @include icon(570px, 350px);
+  }
+  @media only screen and (max-width: 590px) {
+    @include icon(570px, 300px);
+  }
+  @media only screen and (max-width: 510px) {
+    @include icon(570px, 280px);
+  }
+  @media only screen and (max-width: 450px) {
+    @include icon(570px, 250px);
+  }
+}
