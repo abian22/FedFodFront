@@ -111,7 +111,7 @@ function MyAccount() {
     }
   };
 
-  const buttons = ["Save", "Leave", "Delete profile"];
+  const buttons = ["Save", "Leave", "Delete account"];
 
   return (
     <>
@@ -196,7 +196,7 @@ function MyAccount() {
                     if (button === "Leave") {
                       navigate("/home");
                     }
-                    if (button === "Delete profile") {
+                    if (button === "Delete account") {
                       handleDeleteMyAccount();
                       navigate("/");
                     }

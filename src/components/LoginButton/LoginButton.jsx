@@ -6,7 +6,6 @@ function LoginButton({ onLogin, style }) {
 
   return (
     <>
-      <Link to="/login" style={{ textDecoration: "none", marginBottom:"20px" }}>
         <button
           className={style}
           id={contextTheme}
@@ -14,7 +13,6 @@ function LoginButton({ onLogin, style }) {
         >
           LOG IN
         </button>
-      </Link>
     </>
   );
 }

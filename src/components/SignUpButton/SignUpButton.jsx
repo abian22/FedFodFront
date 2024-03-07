@@ -7,11 +7,9 @@ function SignUpButton({ onCreateAccount, style }) {
 
   return (
     <>
-      <Link to="/signUp" style={{ textDecoration: "none", marginBottom:"20px" }}>
         <button className={style} id={contextTheme} onClick={onCreateAccount}>
           SIGN UP
         </button>
-      </Link>
     </>
   );
 }

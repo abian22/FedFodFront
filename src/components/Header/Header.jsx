@@ -89,7 +89,6 @@ function Header() {
           {isMenuProfileOpen && (
             <div
               className="profileMenuContainer"
-              
               >
               <ul
                 className="profileMenuContainer__profileMenuUl"
