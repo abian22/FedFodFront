@@ -14,7 +14,6 @@ import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import InputForm from "../../components/InputForm/InputForm";
 import AccountInfoContainer from "../../components/AccountInfoContainer/AccountInfoContainer";
 import "./MyAccount.scss";
-
 function MyAccount() {
   const { contextTheme } = useThemeContext();
   const navigate = useNavigate();
