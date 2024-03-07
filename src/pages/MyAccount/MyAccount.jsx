@@ -6,18 +6,20 @@ import {
   updateProfile,
   deleteMyAccount,
 } from "../../services/user";
+import uploadProfileImg from "../../services/media";
 import userIcon from "../../assets/icons/userIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import emailIcon from "../../assets/icons/emailIcon.svg";
 import eyeIcon from "../../assets/icons/eyeIcon.svg";
 import InputForm from "../../components/InputForm/InputForm";
 import AccountInfoContainer from "../../components/AccountInfoContainer/AccountInfoContainer";
-
 import "./MyAccount.scss";
+
 function MyAccount() {
   const { contextTheme } = useThemeContext();
   const navigate = useNavigate();
   const [isNewPassVisible, setIsNewPassVisible] = useState(false);
+  const [isProfileImgOpen, setIsProfileImgOpen] = useState(false);
   const [isConfirmNewPassVisible, setIsConfirmNewPassVisible] = useState(false);
   const [accountData, setAccountData] = useState({
     username: "",
@@ -36,13 +38,30 @@ function MyAccount() {
     getProfileData();
   }, []);
 
-  function handleNewPassword() {
-    setIsNewPassVisible(!isNewPassVisible);
-  }
+  const toggleProfileImg = () => {
+    setIsProfileImgOpen(!isProfileImgOpen);
+  };
 
-  function handleConfirmNewPassword() {
+  const handleNewPassword = () => {
+    setIsNewPassVisible(!isNewPassVisible);
+  };
+
+  const handleConfirmNewPassword = () => {
     setIsConfirmNewPassVisible(!isConfirmNewPassVisible);
-  }
+  };
+
+  const handleUploadProfileImg = async (file) => {
+    try {
+      const result = await uploadProfileImg(file);
+      setAccountData((prevData) => ({
+        ...prevData,
+        profileImg: result.image.mediaUrl,
+      }));
+      window.location.reload();
+    } catch (error) {
+      console.error("Error uploading profile image:", error);
+    }
+  };
 
   const getProfileData = async () => {
     const result = await getProfile();
@@ -102,7 +121,22 @@ function MyAccount() {
           src={accountData.profileImg}
           className="headerContainer__profileImg"
           style={{ marginBottom: "20px", marginRight: "20px" }}
+          onClick={toggleProfileImg}
         />
+        {isProfileImgOpen && (
+          <>
+            <form className="selectFileContainer">
+              <label className="selectFileContainer__inputLabel">
+                Select a photo (png, jpg o jpeg)
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleUploadProfileImg(e.target.files[0])}
+                />
+              </label>
+            </form>
+          </>
+        )}
         <InputForm
           title="Username"
           placeholder={accountData.username}
@@ -148,11 +182,12 @@ function MyAccount() {
           }
         />
         <div className="buttonsContainer">
-          {buttons.map((button) => {
+          {buttons.map((button, index) => {
             return (
               <>
                 <button
                   className="buttonsContainer__button"
+                  key={index}
                   type="button"
                   id={contextTheme}
                   onClick={() => {
