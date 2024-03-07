@@ -1,10 +1,10 @@
 @font-face {
     font-family: "semiBold";
-    src: url("./assets/fonts/Montserrat-semiBold.ttf");
+    src: url("/assets/fonts/Montserrat-semiBold.ttf");
 }
 @font-face {
     font-family: "medium";
-    src: url("./assets/fonts/Montserrat-Medium.ttf");
+    src: url("/assets/fonts/Montserrat-Medium.ttf");
 }
 
 
