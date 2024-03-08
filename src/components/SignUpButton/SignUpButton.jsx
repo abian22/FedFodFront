@@ -7,7 +7,7 @@ function SignUpButton({ onCreateAccount, style }) {
 
   return (
     <>
-        <button className={style} id={contextTheme} onClick={onCreateAccount}>
+        <button className={style} id={contextTheme} onClick={onCreateAccount} style={{marginBottom:"20px"}}>
           SIGN UP
         </button>
     </>
