@@ -10,7 +10,7 @@ import "./Home.scss";
 
 function Home() {
   const { contextTheme } = useThemeContext();
-  const [videoHeight, setVideoHeight] = useState(300); 
+  const [videoHeight, setVideoHeight] = useState(300);
 
   const handleResize = () => {
     const newHeight = window.innerWidth < 900 ? 300 : 400;
@@ -18,9 +18,9 @@ function Home() {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   return (
@@ -44,7 +44,7 @@ function Home() {
           </span>
         </div>
         <main className="videoAndInteractionContainer">
-          <div style={{ border: "solid"}} id={contextTheme}>
+          <div style={{ border: "solid" }} id={contextTheme}>
             {" "}
             {/* no se si dejar este borde o no */}
             <ReactPlayer
@@ -54,9 +54,36 @@ function Home() {
               controls={true}
             />
           </div>
-          <div className="videoAndInteractionContainer__interactionContainer">
-            <img src={contextTheme === "Light" ? darkHeart : lightHeart} style={{cursor:"pointer"}}/>
-            <img src={contextTheme === "Light" ? darkComment : lightComment} style={{cursor:"pointer"}} />
+          <div
+            className="videoAndInteractionContainer__interactionContainer"
+            style={{ display: "flex" }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={contextTheme === "Light" ? darkHeart : lightHeart}
+                style={{ cursor: "pointer" }}
+              />
+              <span style={{ marginTop: "10px" }}>0</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={contextTheme === "Light" ? darkComment : lightComment}
+                style={{ cursor: "pointer" }}
+              />
+              <span style={{ marginTop: "10px" }}>0</span>
+            </div>
           </div>
         </main>
       </center>
