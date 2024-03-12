@@ -10,6 +10,7 @@ function LoginButton({ onLogin, style }) {
           className={style}
           id={contextTheme}
           onClick={onLogin}
+          type="button"
           style={{marginBottom:"20px"}}
         >
           LOG IN

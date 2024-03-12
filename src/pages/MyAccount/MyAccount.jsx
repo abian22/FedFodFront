@@ -6,7 +6,7 @@ import {
   updateProfile,
   deleteMyAccount,
 } from "../../services/user";
-import uploadProfileImg from "../../services/media";
+import { uploadProfileImg } from "../../services/media";
 import userIcon from "../../assets/icons/userIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import emailIcon from "../../assets/icons/emailIcon.svg";
