@@ -5,7 +5,7 @@ import lightComment from "../../assets/icons/lightComment.svg";
 import darkComment from "../../assets/icons/darkComment.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import ReactPlayer from "react-player";
-import "./VideoContainer.scss"
+import "./VideoContainer.scss";
 
 function VideoContainer({
   name,
@@ -14,7 +14,7 @@ function VideoContainer({
   url,
   likes,
   comments,
-  uploaded
+  uploaded,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
@@ -51,15 +51,19 @@ function VideoContainer({
           <div style={{ border: "solid" }} id={contextTheme}>
             {" "}
             {/* no se si dejar este borde o no */}
-            {url && (url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jfif")) ? (
-        <img src={url} style={{ width: "100%" }} alt="Imagen" />
-      ) : <ReactPlayer
-      url={url}
-      width="auto"
-      height={videoHeight}
-      controls={true}
-    /> }
-            
+            {url &&
+            (url.endsWith(".png") ||
+              url.endsWith(".jpg") ||
+              url.endsWith(".jfif")) ? (
+              <img src={url} style={{ width: "100%" }} alt="Imagen" />
+            ) : (
+              <ReactPlayer
+                url={url}
+                width="100%"
+                height={videoHeight}
+                controls={true}
+              />
+            )}
             {/* <ReactPlayer
               url={url}
               width="auto"
@@ -67,7 +71,9 @@ function VideoContainer({
               controls={true}
             /> */}
           </div>
-          <span style={{ display:"flex", marginTop:"10px"}}>Uploaded: {uploaded}</span>
+          <span style={{ display: "flex", marginTop: "10px" }}>
+            Uploaded: {uploaded}
+          </span>
           <div
             className="videoAndInteractionContainer__interactionContainer"
             style={{ display: "flex" }}
