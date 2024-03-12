@@ -64,12 +64,6 @@ function VideoContainer({
                 controls={true}
               />
             )}
-            {/* <ReactPlayer
-              url={url}
-              width="auto"
-              height={videoHeight}
-              controls={true}
-            /> */}
           </div>
           <span style={{ display: "flex", marginTop: "10px" }}>
             Uploaded: {uploaded}
