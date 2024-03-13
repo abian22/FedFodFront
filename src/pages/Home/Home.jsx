@@ -31,7 +31,6 @@ function Home() {
         () => Math.random() - 0.5
       );
       setRandomVideoList(randomizedVideos);
-      console.log(videosWithUserData);
     } catch (error) {
       console.error("error with getRandomMedia function", error);
     }

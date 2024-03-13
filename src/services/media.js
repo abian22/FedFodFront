@@ -28,9 +28,25 @@ async function getAllMedias() {
     return result;
   } catch (error) {
     console.error('Error with getRandomMedia function', error);
-    throw error;
+  }
+}
+
+async function postMedia(file, description) {
+  const formData = new FormData();
+    formData.append("media", file);
+    formData.append("description", description);
+    
+  try {
+    const result = await api.post('/media', formData, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+    return result.data
+  } catch (error) {
+    console.error('Error with postMedia function', error);
   }
 }
 
 
-export { uploadProfileImg, getAllMedias };
+export { uploadProfileImg, getAllMedias, postMedia };
