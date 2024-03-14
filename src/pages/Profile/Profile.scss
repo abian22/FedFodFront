@@ -1,0 +1,13 @@
+.profileData {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  &__profileImg {
+    height: 40px;
+    border-radius: 20px;
+  }
+  &__profileUsername {
+    margin-left: 10px;
+    display: flex;
+  }
+}

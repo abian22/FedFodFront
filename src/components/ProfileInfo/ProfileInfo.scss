@@ -1,0 +1,40 @@
+.profileData {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    &__profileImg {
+      height: 40px;
+      border-radius: 20px;
+    }
+    &__profileUsername {
+      margin-left: 10px;
+      display: flex;
+    }
+  }
+  
+  .mediaDivider {
+    border: 1px solid;
+    margin-bottom: 10px;
+  }
+  
+  .mediaGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 50px;
+    padding: 15px;
+    &__mediaPhoto {
+      border: solid;
+      justify-content: center;
+      margin-left: 50px;
+      width: 80%;
+      height: auto;
+      margin-bottom: 50px;
+      cursor: pointer;
+      @media screen and (min-width: 636px) {
+        width: 100%;
+        height: auto;
+        margin-left: 0px;
+      }
+    }
+  }
+  

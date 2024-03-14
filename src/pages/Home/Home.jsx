@@ -2,7 +2,6 @@ import imagen from "../../assets/images/descarga.png";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 import { getAllMedias } from "../../services/media";
 import { getUserInfo } from "../../services/user";
-
 import { useState, useEffect } from "react";
 
 function Home() {
@@ -38,19 +37,19 @@ function Home() {
 
   return (
     <>
-      {randomVideoList.map((v) => (
+      {randomVideoList.map((v, index) => (
         <VideoContainer
-          key={v._id}
+          key={index}
           profileImg={v.userData.profileImg}
           name={v.userData.username}
           description={v.description}
           url={v.mediaUrl}
+          id={v._id}
           likes={v.likes}
           uploaded={v.createdAt.slice(0, 10)}
           comments="0"
         />
       ))}
-
     </>
   );
 }

@@ -48,5 +48,34 @@ async function postMedia(file, description) {
   }
 }
 
+async function getMyMedia() {
+  try {
+    const result = await api.get('/media/me', {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+    // console.log('result from service', result.data);
+    return result.data;
+  } catch (error) {
+    console.error('Error with getRandomMedia function', error);
+  }
+}
 
-export { uploadProfileImg, getAllMedias, postMedia };
+
+async function updateMyMedia(mediaId) {
+  try {
+    const result = await api.put(`/media/me/${mediaId}`, {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    });
+    return result.data;
+  } catch (error) {
+    console.error('Error with updateMyMedia function', error);
+  }
+}
+
+
+
+export { uploadProfileImg, getAllMedias, postMedia, getMyMedia, updateMyMedia};
