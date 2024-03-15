@@ -1,8 +1,8 @@
-import imagen from "../../assets/images/descarga.png";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 import { getAllMedias } from "../../services/media";
 import { getUserInfo } from "../../services/user";
 import { useState, useEffect } from "react";
+import SearchComponent from "../../components/SearchComponent/SearchComponent"
 
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
@@ -37,6 +37,7 @@ function Home() {
 
   return (
     <>
+      <SearchComponent />
       {randomVideoList.map((v, index) => (
         <VideoContainer
           key={index}

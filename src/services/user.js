@@ -30,15 +30,37 @@ async function deleteMyAccount() {
 
 async function getUserInfo(userId) {
   try {
-    const response = await api.get(`/user/${userId}`, {
+    const result = await api.get(`/user/${userId}`, {
       headers: {
         token: localStorage.getItem("token"),
       },
     });
-    return response.data.user;
+    return result.data.user;
   } catch (error) {
     throw new Error("Error fetching user information: " + error.message);
   }
 }
 
-export { getProfile, updateProfile, deleteMyAccount, getUserInfo };
+async function searchUser(username) {
+  try {
+    const result = await api.post(
+      `/user/search`,
+      {
+        username: username,
+      },
+      {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
+    console.log(result.data);
+    return result.data;
+  } catch (error) {
+    throw new Error("Error fetching user information: " + error.message);
+  }
+}
+
+
+
+export { getProfile, updateProfile, deleteMyAccount, getUserInfo, searchUser };
