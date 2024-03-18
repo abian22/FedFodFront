@@ -6,7 +6,6 @@ async function getProfile() {
       token: localStorage.getItem("token"),
     },
   });
-  console.log(result);
   return result.data;
 }
 

@@ -1,5 +1,6 @@
 import { useThemeContext } from "../../context/ThemeContext";
 import { useState, useEffect } from "react";
+import { myLike } from "../../services/media";
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import lightComment from "../../assets/icons/lightComment.svg";
 import darkComment from "../../assets/icons/darkComment.svg";
@@ -13,12 +14,21 @@ function VideoContainer({
   profileImg,
   url,
   likes,
-  comments,
   uploaded,
+  mediaId,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
+  const [like, setLike] = useState(likes);
 
+  async function handleLike() {
+    try {
+      const result = await myLike(mediaId);
+      setLike(result.likes.length);
+    } catch (error) {
+      console.error("Error liking media", error);
+    }
+  }
   const handleResize = () => {
     const newHeight = window.innerWidth < 900 ? 300 : 400;
     setVideoHeight(newHeight);
@@ -82,8 +92,9 @@ function VideoContainer({
               <img
                 src={contextTheme === "Light" ? darkHeart : lightHeart}
                 style={{ cursor: "pointer" }}
+                onClick={handleLike}
               />
-              <span style={{ marginTop: "10px" }}>{likes}</span>
+              <span style={{ marginTop: "10px" }}>{like}</span>
             </div>
             <div
               style={{
@@ -96,7 +107,7 @@ function VideoContainer({
                 src={contextTheme === "Light" ? darkComment : lightComment}
                 style={{ cursor: "pointer" }}
               />
-              <span style={{ marginTop: "10px" }}>{comments}</span>
+              <span style={{ marginTop: "10px" }}>0</span>
             </div>
           </div>
         </main>

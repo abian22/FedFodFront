@@ -19,63 +19,82 @@ async function uploadProfileImg(file) {
 
 async function getAllMedias() {
   try {
-    const result = await api.get('/media', {
+    const result = await api.get("/media", {
       headers: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
     });
     // console.log('result from service', result.data);
     return result;
   } catch (error) {
-    console.error('Error with getRandomMedia function', error);
+    console.error("Error with getRandomMedia function", error);
   }
 }
 
 async function postMedia(file, description) {
   const formData = new FormData();
-    formData.append("media", file);
-    formData.append("description", description);
-    
+  formData.append("media", file);
+  formData.append("description", description);
+
   try {
-    const result = await api.post('/media', formData, {
+    const result = await api.post("/media", formData, {
       headers: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
     });
-    return result.data
+    return result.data;
   } catch (error) {
-    console.error('Error with postMedia function', error);
+    console.error("Error with postMedia function", error);
   }
 }
 
 async function getMyMedia() {
   try {
-    const result = await api.get('/media/me', {
+    const result = await api.get("/media/me", {
       headers: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
     });
     // console.log('result from service', result.data);
     return result.data;
   } catch (error) {
-    console.error('Error with getRandomMedia function', error);
+    console.error("Error with getRandomMedia function", error);
   }
 }
-
 
 async function updateMyMedia(mediaId) {
   try {
     const result = await api.put(`/media/me/${mediaId}`, {
       headers: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
     });
     return result.data;
   } catch (error) {
-    console.error('Error with updateMyMedia function', error);
+    console.error("Error with updateMyMedia function", error);
   }
 }
 
+async function myLike(mediaId) {
+  try {
+    const response = await api.post(`/media/${mediaId}/like`, null, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    console.error("Error al toggle likes:", error);
+    throw error;
+  }
+}
 
-
-export { uploadProfileImg, getAllMedias, postMedia, getMyMedia, updateMyMedia};
+export {
+  uploadProfileImg,
+  getAllMedias,
+  postMedia,
+  getMyMedia,
+  updateMyMedia,
+  myLike,
+};

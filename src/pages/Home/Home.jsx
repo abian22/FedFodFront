@@ -1,12 +1,11 @@
-import VideoContainer from "../../components/VideoContainer/VideoContainer";
+import { useState, useEffect } from "react";
 import { getAllMedias } from "../../services/media";
 import { getUserInfo } from "../../services/user";
-import { useState, useEffect } from "react";
-import SearchComponent from "../../components/SearchComponent/SearchComponent"
+import VideoContainer from "../../components/VideoContainer/VideoContainer";
+import SearchComponent from "../../components/SearchComponent/SearchComponent";
 
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
-
   useEffect(() => {
     getRandomMedia();
   }, []);
@@ -45,10 +44,9 @@ function Home() {
           name={v.userData.username}
           description={v.description}
           url={v.mediaUrl}
-          id={v._id}
-          likes={v.likes}
+          mediaId={v._id}
+          likes={v.likedBy.length}
           uploaded={v.createdAt.slice(0, 10)}
-          comments="0"
         />
       ))}
     </>

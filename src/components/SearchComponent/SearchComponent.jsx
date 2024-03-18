@@ -28,9 +28,7 @@ function Search() {
     setSearchUsername("");
     setUsers([]);
   }
-  console.log("searchUsuarios " + searchUsername);
 
-  console.log("usuarios" + users);
   return (
     <>
       <div className="centerContainer">
