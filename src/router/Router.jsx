@@ -9,6 +9,7 @@ import Chat from "../pages/Chat/Chat";
 import Notifications from "../pages/Notifications/Notifications";
 import MyAccount from "../pages/MyAccount/MyAccount";
 import Upload from "../pages/Upload/Upload";
+import SomeoneProfile from "../pages/SomeoneProfile/SomeoneProfile";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/home/profile",
         element: <Profile />,
+      },
+      {
+        path: "/home/:id",
+        element: <SomeoneProfile />,
       },
       {
         path: "/home/upload",

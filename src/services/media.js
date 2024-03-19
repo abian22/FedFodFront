@@ -82,13 +82,27 @@ async function myLike(mediaId) {
         token: localStorage.getItem("token"),
       },
     });
-    console.log(response)
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error al toggle likes:", error);
     throw error;
   }
 }
+
+async function userMedia(mediaId) {
+  try {
+    const result = await api.get(`/media/${mediaId}`, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return result.data;
+  } catch (error) {
+    throw new Error("Error fetching user information: " + error.message);
+  }
+}
+
 
 export {
   uploadProfileImg,
@@ -97,4 +111,5 @@ export {
   getMyMedia,
   updateMyMedia,
   myLike,
+  userMedia
 };

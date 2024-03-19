@@ -40,6 +40,7 @@ function Home() {
       {randomVideoList.map((v, index) => (
         <VideoContainer
           key={index}
+          uploadedBy={v.uploadedBy}
           profileImg={v.userData.profileImg}
           name={v.userData.username}
           description={v.description}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { searchUser } from "../../services/user";
 import close from "../../assets/icons/darkCancelIcon.svg";
 import "./SearchComponent.scss";
+import { Link } from "react-router-dom";
 function Search() {
   const [searchUsername, setSearchUsername] = useState("");
   const [users, setUsers] = useState([]);
@@ -52,6 +53,8 @@ function Search() {
             <ul className="searchResult">
               {" "}
               {users.map((u, index) => (
+                <>
+                <Link to={u._id}  style={{ textDecoration: 'none' }}>
                 <li className="searchResult__userContainer" key={index}>
                   <div>
                     <img
@@ -63,6 +66,8 @@ function Search() {
                     </span>
                   </div>
                 </li>
+                </Link>
+                </>
               ))}
             </ul>
           </div>

@@ -26,13 +26,11 @@ function Profile() {
   console.log(myMedia);
   return (
     <>
-      <div className="centerContainer">
-        <div className="profileData">
-          <img src={userInfo.profileImg} className="profileData__profileImg" />
-          <h2 className="profileData__profileUsername">{userInfo.username}</h2>
-        </div>
-      </div>
-      <ProfileInfo myMediaData={myMedia} />
+      <ProfileInfo
+      profileImg={userInfo.profileImg}
+      username={userInfo.username}
+      posts={myMedia.length}
+      mediaData={myMedia} />
     </>
   );
 }

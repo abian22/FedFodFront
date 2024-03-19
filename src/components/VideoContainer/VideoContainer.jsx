@@ -5,6 +5,7 @@ import lightHeart from "../../assets/icons/lightHeart.svg";
 import lightComment from "../../assets/icons/lightComment.svg";
 import darkComment from "../../assets/icons/darkComment.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
+import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import "./VideoContainer.scss";
 
@@ -16,6 +17,7 @@ function VideoContainer({
   likes,
   uploaded,
   mediaId,
+  uploadedBy,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
@@ -47,9 +49,14 @@ function VideoContainer({
         <section className="userDataContainer">
           <img className="userDataContainer__profileImg" src={profileImg} />
           <div className="userDataContainer__usernameContainer">
-            <span className="userDataContainer__usernameContainer--username">
-              {name}{" "}
-            </span>
+            <Link
+              to={`/home/${uploadedBy}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <span className="userDataContainer__usernameContainer--username">
+                {name}{" "}
+              </span>
+            </Link>
           </div>
         </section>
         <div className="descriptionContainer">

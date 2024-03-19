@@ -2,7 +2,7 @@ import ReactPlayer from "react-player";
 import { useState, useEffect } from "react";
 import "./ProfileInfo.scss";
 
-function ProfileInfo({ myMediaData }) {
+function ProfileInfo({ mediaData, posts, username, profileImg }) {
   const [videoHeight, setVideoHeight] = useState(80);
   const [videoMargin, setVideoMargin] = useState(50);
 
@@ -23,15 +23,21 @@ function ProfileInfo({ myMediaData }) {
   return (
     <>
       <div className="centerContainer">
+        <div className="profileData">
+          <img src={profileImg} className="profileData__profileImg" />
+          <h2 className="profileData__profileUsername">{username}</h2>
+        </div>
+      </div>
+      <div className="centerContainer">
         <div>
           <p>Followers: 100 </p>
           <p>Following: 50</p>
-          <p>Posts: {myMediaData.length}</p>
+          <p>Posts: {posts}</p>
         </div>
       </div>
       <div className="mediaDivider" />
       <div className="mediaGrid">
-        {myMediaData.map((m, index) =>
+        {mediaData.map((m, index) =>
           m.mediaUrl &&
           (m.mediaUrl.endsWith(".png") ||
             m.mediaUrl.endsWith(".jpg") ||

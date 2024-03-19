@@ -60,6 +60,4 @@ async function searchUser(username) {
   }
 }
 
-
-
 export { getProfile, updateProfile, deleteMyAccount, getUserInfo, searchUser };
