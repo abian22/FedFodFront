@@ -92,6 +92,19 @@ async function myLike(mediaId) {
 
 async function userMedia(mediaId) {
   try {
+    const result = await api.get(`/media/user/${mediaId}`, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return result.data;
+  } catch (error) {
+    throw new Error("Error fetching user information: " + error.message);
+  }
+}
+
+async function getSingleMedia(mediaId) {
+  try {
     const result = await api.get(`/media/${mediaId}`, {
       headers: {
         token: localStorage.getItem("token"),
@@ -111,5 +124,6 @@ export {
   getMyMedia,
   updateMyMedia,
   myLike,
-  userMedia
+  userMedia,
+  getSingleMedia
 };

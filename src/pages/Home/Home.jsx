@@ -38,17 +38,19 @@ function Home() {
     <>
       <SearchComponent />
       {randomVideoList.map((v, index) => (
-        <VideoContainer
-          key={index}
-          uploadedBy={v.uploadedBy}
-          profileImg={v.userData.profileImg}
-          name={v.userData.username}
-          description={v.description}
-          url={v.mediaUrl}
-          mediaId={v._id}
-          likes={v.likedBy.length}
-          uploaded={v.createdAt.slice(0, 10)}
-        />
+        <>
+          <VideoContainer
+            key={index}
+            uploadedBy={v.uploadedBy}
+            profileImg={v.userData.profileImg}
+            name={v.userData.username}
+            description={v.description}
+            url={v.mediaUrl}
+            mediaId={v._id}
+            likes={v.likedBy.length}
+            uploaded={v.createdAt.slice(0, 10)}
+          />
+        </>
       ))}
     </>
   );

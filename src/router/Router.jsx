@@ -10,6 +10,7 @@ import Notifications from "../pages/Notifications/Notifications";
 import MyAccount from "../pages/MyAccount/MyAccount";
 import Upload from "../pages/Upload/Upload";
 import SomeoneProfile from "../pages/SomeoneProfile/SomeoneProfile";
+import MediaPage from "../pages/MediaPage/MediaPage";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/home/:id",
         element: <SomeoneProfile />,
+      },
+      {
+        path:"/home/media/:mediaId",
+        element: <MediaPage />
       },
       {
         path: "/home/upload",

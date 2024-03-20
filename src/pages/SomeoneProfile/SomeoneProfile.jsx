@@ -12,7 +12,7 @@ function SomeoneProfile() {
   useEffect(() => {
     getUserData();
     getUserMedia();
-  });
+  }, []);
 
   async function getUserData() {
     const result = await getUserInfo(id);

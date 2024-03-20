@@ -110,10 +110,15 @@ function VideoContainer({
                 alignItems: "center",
               }}
             >
-              <img
-                src={contextTheme === "Light" ? darkComment : lightComment}
-                style={{ cursor: "pointer" }}
-              />
+              <Link
+                to={`/home/media/${mediaId}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <img
+                  src={contextTheme === "Light" ? darkComment : lightComment}
+                  style={{ cursor: "pointer" }}
+                />
+              </Link>
               <span style={{ marginTop: "10px" }}>0</span>
             </div>
           </div>

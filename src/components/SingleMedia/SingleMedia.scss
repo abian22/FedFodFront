@@ -1,0 +1,33 @@
+.singleMediaCenterContainer{
+    display: flex;
+    justify-content: center;
+    height: 500px;
+}
+
+.singleMediaContainer {
+    width: 550px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    max-width: 800px;
+    padding: 10px;
+    &__userData{
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        &--profileImg{
+            height: 40px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+    }
+    &__uploadDate{
+        display: flex;
+        margin-top: 10px;
+    }
+    &__likesContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+}
