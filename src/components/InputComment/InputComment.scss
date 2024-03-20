@@ -1,21 +1,19 @@
-.inputCommentContainer{
-    border: solid;
-    border-color: white;
-    height: auto;
-    background-color: grey;
-    margin-top: 40px;
-    padding: 10px;
-    margin: 10px;
-    width: 50px;
-    max-width: 500px;
-    min-width: 450px;
-    
-    &__comment{
-        width: 70%;
-        height: 30px;
-        max-width: 400px;
-        overflow-y: auto;
-        word-wrap: break-word;
-        white-space: pre-wrap;
-    }
+.inputCommentContainer {
+  border: solid;
+  border-color: white;
+  height: auto;
+  background-color: grey;
+  padding: 10px;
+  margin: 10px;
+  width: 50px;
+  min-width: 300px;
+  @media only screen and (min-width: 500px) {
+    width: 500px;
+  }
+  &__comment {
+    width: 70%;
+    height: 30px;
+    max-width: 400px;
+
+  }
 }
