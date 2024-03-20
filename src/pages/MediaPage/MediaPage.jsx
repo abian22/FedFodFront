@@ -43,7 +43,7 @@ function MediaPage() {
           mediaId={s._id}
         />
       ))}
-      <div style={{ paddingTop: "20px" }}>
+      <div style={{ marginBottom:"30px"}}>
         <InputComment />
         <CommentComponent />
       </div>
