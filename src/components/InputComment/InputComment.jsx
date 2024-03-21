@@ -23,6 +23,7 @@ function InputComment({ onCommentSubmit }) {
             value={commentText}
             onChange={handleInputChange}
             placeholder="Your comment..."
+            style={{borderRadius:"10px"}}
           />
           <button onClick={handleSubmit} style={{ marginLeft: "10px", position: "absolute" }}>
             {" "}

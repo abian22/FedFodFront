@@ -116,6 +116,18 @@ async function getSingleMedia(mediaId) {
   }
 }
 
+async function deleteMyMedia(mediaId) {
+  try {
+    const result = await api.delete(`/media/me/${mediaId}`, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return result.data;
+  } catch (error) {
+    throw new Error("Error fetching user information: " + error.message);
+  }
+}
 
 export {
   uploadProfileImg,
@@ -125,5 +137,6 @@ export {
   updateMyMedia,
   myLike,
   userMedia,
-  getSingleMedia
+  getSingleMedia,
+  deleteMyMedia
 };
