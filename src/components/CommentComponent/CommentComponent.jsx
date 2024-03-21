@@ -1,13 +1,47 @@
-import imagen from "../../assets/images/descarga.png";
 import darkCancel from "../../assets/icons/darkCancelIcon.svg";
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import lightCancel from "../../assets/icons/lightCancel.svg";
 import { useThemeContext } from "../../context/ThemeContext";
+import { getProfile } from "../../services/user";
+import { useState, useEffect } from "react";
+import { deleteMyComment } from "../../services/comment";
+import { commentLike } from "../../services/comment";
 import "./CommentComponent.scss";
 
-function CommentComponent() {
+function CommentComponent({
+  comment,
+  commentedAt,
+  username,
+  profileImg,
+  userId,
+  mediaId,
+  commentId,
+  getComments,
+  likes,
+}) {
   const { contextTheme } = useThemeContext();
+  const [userLoggedId, setUserLoggedId] = useState([]);
+  const [like, setLike] = useState(likes);
+
+  useEffect(() => {
+    getMyUserData();
+  }, []);
+
+  async function getMyUserData() {
+    const result = await getProfile();
+    setUserLoggedId(result._id);
+  }
+
+  async function deleteComment() {
+    await deleteMyComment(mediaId, commentId);
+    getComments();
+  }
+
+  async function handleLike() {
+    const result = await commentLike(commentId);
+    setLike(result.likedBy.length);
+  }
 
   return (
     <>
@@ -17,25 +51,36 @@ function CommentComponent() {
             <div style={{ display: "flex" }}>
               <img
                 className="commentContainer__alignCommentContent--profileImgOfTheComment"
-                src={imagen}
+                src={profileImg}
               />
-              <span>nombre del usuario</span>
+              <span>{username} </span>
+              <span
+                style={{
+                  marginLeft: "5px",
+                  fontFamily: "arial",
+                  fontSize: "12px",
+                }}
+              >
+                {commentedAt}
+              </span>
             </div>
-            <p className="commentContainer__textOfComment">
-              texto del comentario comentario comentario
-            </p>
+            <p className="commentContainer__textOfComment">{comment}</p>
             <div className="likeContainer">
               <img
                 className="likeContainer__likeIcon"
                 src={contextTheme === "Light" ? darkHeart : lightHeart}
+                onClick={handleLike}
               />
-              <span style={{ marginLeft: "5px" }}>0</span>
+              <span style={{ marginLeft: "5px" }}>{like}</span>
             </div>
           </div>
-          <img
-            className="commentContainer__cancelIcon"
-            src={contextTheme === "Light" ? darkCancel : lightCancel}
-          />
+          {userId === userLoggedId ? (
+            <img
+              className="commentContainer__cancelIcon"
+              onClick={deleteComment}
+              src={contextTheme === "Light" ? darkCancel : lightCancel}
+            />
+          ) : null}
         </div>
       </div>
     </>

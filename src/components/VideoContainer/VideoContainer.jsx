@@ -7,6 +7,7 @@ import darkComment from "../../assets/icons/darkComment.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
+import likedHeart from "../../assets/icons/likedHeart.svg";
 import "./VideoContainer.scss";
 
 function VideoContainer({
@@ -31,6 +32,7 @@ function VideoContainer({
       console.error("Error liking media", error);
     }
   }
+
   const handleResize = () => {
     const newHeight = window.innerWidth < 900 ? 300 : 400;
     setVideoHeight(newHeight);

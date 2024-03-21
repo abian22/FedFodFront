@@ -1,6 +1,6 @@
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
-import descarga from "../../assets/images/descarga.png";
+import likedHeart from "../../assets/icons/likedHeart.svg";
 import { useThemeContext } from "../../context/ThemeContext";
 import { useState } from "react";
 import { myLike } from "../../services/media";
@@ -30,6 +30,7 @@ function SingleMedia({ url, uploaded, likes, mediaId, username, profileImg }) {
               src={profileImg}
             />
             <span>{username}</span>
+         
           </div>
 
           <div style={{ border: "solid" }} id={contextTheme}>
