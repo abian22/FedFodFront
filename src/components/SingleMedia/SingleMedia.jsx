@@ -96,21 +96,17 @@ function SingleMedia({
             <span>{description}</span>
           ) : (
             <>
-              <div
-                style={{
-                  justifyContent: "end",
-                  display: "flex",
-                  marginBottom: "5px",
-                }}
-              >
+              <div className="singleMediaContainer__buttonContainer">
                 <button
-                  style={{ marginRight: "20px", cursor: "pointer" }}
+                  className="singleMediaContainer__buttonContainer--saveButton"
+                  id={contextTheme}
                   onClick={updateDescription}
                 >
                   save
                 </button>
                 <button
-                  style={{ cursor: "pointer" }}
+                  className="singleMediaContainer__buttonContainer--cancelButton"
+                  id={contextTheme}
                   onClick={() => setIsEditing(false)}
                 >
                   cancel

@@ -55,20 +55,20 @@ function Search() {
               {" "}
               {users.map((u, index) => (
                 <>
-                <Link to={u._id}  style={{ textDecoration: 'none' }}>
-                <li className="searchResult__userContainer" key={index}>
-                  <div>
-                    <img
-                      className="searchResult__userContainer--profileImg"
-                      alt="Profile image"
-                      src={u.profileImg}
-                    />
-                    <span className="searchResult__userContainer--username">
-                      {u.username}
-                    </span>
-                  </div>
-                </li>
-                </Link>
+                  <Link to={u._id} style={{ textDecoration: "none" }}>
+                    <li className="searchResult__userContainer" key={index}>
+                      <div>
+                        <img
+                          className="searchResult__userContainer--profileImg"
+                          alt="Profile image"
+                          src={u.profileImg}
+                        />
+                        <span className="searchResult__userContainer--username">
+                          {u.username}
+                        </span>
+                      </div>
+                    </li>
+                  </Link>
                 </>
               ))}
             </ul>

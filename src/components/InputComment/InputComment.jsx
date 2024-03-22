@@ -1,7 +1,9 @@
 import "./InputComment.scss";
 import { useState } from "react";
+import { useThemeContext } from "../../context/ThemeContext";
 
 function InputComment({ onCommentSubmit }) {
+  const { contextTheme } = useThemeContext();
   const [commentText, setCommentText] = useState("");
 
   const handleInputChange = (event) => {
@@ -11,7 +13,7 @@ function InputComment({ onCommentSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onCommentSubmit(commentText);
-    setCommentText(""); // Limpiar el campo de texto después de enviar el comentario
+    setCommentText(""); 
   };
 
   return (
@@ -23,10 +25,13 @@ function InputComment({ onCommentSubmit }) {
             value={commentText}
             onChange={handleInputChange}
             placeholder="Your comment..."
-            style={{borderRadius:"10px"}}
+            style={{ borderRadius: "10px" }}
           />
-          <button onClick={handleSubmit} style={{ marginLeft: "10px", position: "absolute" }}>
-            {" "}
+          <button
+            onClick={handleSubmit}
+            id={contextTheme}
+            className="inputCommentContainer__sendButton"
+          >
             Send{" "}
           </button>
         </div>

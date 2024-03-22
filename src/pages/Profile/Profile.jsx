@@ -23,16 +23,16 @@ function Profile() {
     setUserInfo(result);
   }
 
-  console.log("mimaedia"+ myMedia.forEach((m) => console.log(m._id)));
   return (
     <>
       <ProfileInfo
-      profileImg={userInfo.profileImg}
-      username={userInfo.username}
-      posts={myMedia.length}
-      mediaData={myMedia} 
-      mediaId={myMedia._id}
-      getProfileMedia={handleGetMyMedia}/>
+        profileImg={userInfo.profileImg}
+        username={userInfo.username}
+        posts={myMedia.length}
+        mediaData={myMedia}
+        mediaId={myMedia._id}
+        getProfileMedia={handleGetMyMedia}
+      />
     </>
   );
 }

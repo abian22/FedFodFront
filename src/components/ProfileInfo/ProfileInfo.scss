@@ -39,3 +39,12 @@
     }
   }
 }
+
+.trashIconContainer {
+  justify-content: end;
+    display: flex;
+    &__trashIcon {
+      height: 30px;
+      cursor: pointer;
+    }
+}

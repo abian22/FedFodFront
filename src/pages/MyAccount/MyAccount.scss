@@ -32,17 +32,16 @@
   background-color: lightgrey;
   padding: 7px;
   border-radius: 10px;
-  &:active{
+  &:active {
     background-color: grey;
   }
   &__inputLabel {
     color: black;
     cursor: pointer;
     font-family: "semiBold";
-    &:hover{
-      color: white
+    &:hover {
+      color: white;
     }
-   
   }
 }
 

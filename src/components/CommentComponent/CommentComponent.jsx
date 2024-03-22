@@ -74,13 +74,7 @@ function CommentComponent({
                 alt="Profile Image"
               />
               <span>{username} </span>
-              <span
-                style={{
-                  marginLeft: "5px",
-                  fontFamily: "arial",
-                  fontSize: "12px",
-                }}
-              >
+              <span className="commentContainer__alignCommentContent--commentContent">
                 {commentedAt}
               </span>
             </div>

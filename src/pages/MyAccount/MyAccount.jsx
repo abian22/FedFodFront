@@ -184,28 +184,26 @@ function MyAccount() {
         <div className="buttonsContainer">
           {buttons.map((button, index) => {
             return (
-              <>
-                <button
-                  className="buttonsContainer__button"
-                  key={index}
-                  type="button"
-                  id={contextTheme}
-                  onClick={() => {
-                    if (button === "Save") {
-                      saveNewProfileData();
-                    }
-                    if (button === "Leave") {
-                      navigate("/home");
-                    }
-                    if (button === "Delete account") {
-                      handleDeleteMyAccount();
-                      navigate("/");
-                    }
-                  }}
-                >
-                  {button}
-                </button>
-              </>
+              <button
+                className="buttonsContainer__button"
+                key={index}
+                type="button"
+                id={contextTheme}
+                onClick={() => {
+                  if (button === "Save") {
+                    saveNewProfileData();
+                  }
+                  if (button === "Leave") {
+                    navigate("/home");
+                  }
+                  if (button === "Delete account") {
+                    handleDeleteMyAccount();
+                    navigate("/");
+                  }
+                }}
+              >
+                {button}
+              </button>
             );
           })}
         </div>

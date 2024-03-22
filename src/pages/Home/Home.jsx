@@ -7,12 +7,12 @@ import { getProfile } from "../../services/user";
 
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
-  const [myId, setMyId] = useState("")
-  const [videoComments, setVideoComments] = useState(0)
+  const [myId, setMyId] = useState("");
+  const [videoComments, setVideoComments] = useState(0);
 
   useEffect(() => {
     getRandomMedia();
-    getMyProfileInfo()
+    getMyProfileInfo();
   }, []);
 
   async function getRandomMedia() {
@@ -52,7 +52,6 @@ function Home() {
     <>
       <SearchComponent />
       {randomVideoList.map((v, index) => (
-        <>
           <VideoContainer
             key={index}
             uploadedBy={v.uploadedBy}
@@ -66,7 +65,6 @@ function Home() {
             uploaded={v.createdAt.slice(0, 10)}
             isLiked={v.likedBy.includes(myId)}
           />
-        </>
       ))}
     </>
   );

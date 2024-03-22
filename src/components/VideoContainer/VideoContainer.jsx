@@ -21,7 +21,6 @@ function VideoContainer({
   mediaId,
   uploadedBy,
   isLiked,
-  userId,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
@@ -29,10 +28,12 @@ function VideoContainer({
   const [likedState, setLikedState] = useState(isLiked);
   const [commentsCount, setCommentsCount] = useState(0);
 
-  async function getAllComments(){
+  async function getAllComments() {
     try {
       const result = await getComments();
-      const filteredComments = result.filter(comment => comment.commentedMedia === mediaId);
+      const filteredComments = result.filter(
+        (comment) => comment.commentedMedia === mediaId
+      );
       setCommentsCount(filteredComments.length);
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -55,7 +56,7 @@ function VideoContainer({
   };
 
   useEffect(() => {
-    getAllComments()
+    getAllComments();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -99,20 +100,11 @@ function VideoContainer({
               />
             )}
           </div>
-          <span style={{ display: "flex", marginTop: "10px" }}>
+          <span className="videoAndInteractionContainer__uploadDate">
             Uploaded: {uploaded}
           </span>
-          <div
-            className="videoAndInteractionContainer__interactionContainer"
-            style={{ display: "flex" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+          <div className="videoAndInteractionContainer__interactionContainer">
+            <div className="videoAndInteractionContainer__interactionContainer--likes">
               <img
                 src={
                   likedState
@@ -127,13 +119,7 @@ function VideoContainer({
               />
               <span style={{ marginTop: "10px" }}>{like}</span>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            <div className="videoAndInteractionContainer__interactionContainer--comments">
               <Link
                 to={`/home/media/${mediaId}`}
                 style={{ textDecoration: "none", color: "inherit" }}

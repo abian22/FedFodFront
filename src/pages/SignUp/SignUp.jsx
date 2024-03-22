@@ -112,7 +112,6 @@ function SignUp() {
           text="signup_with"
           onSuccess={async (credentialResponse) => {
             try {
-              console.log(credentialResponse);
               var credentialResponseDecoded = jwtDecode(
                 credentialResponse.credential
               );
@@ -122,7 +121,6 @@ function SignUp() {
                 password: credentialResponseDecoded.sub,
               });
               localStorage.setItem("token", signUpResponse.data.token);
-              console.log(credentialResponseDecoded);
               navigate("/home");
             } catch (error) {
               console.error("Error during Google sign-up:", error);

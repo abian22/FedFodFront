@@ -2,7 +2,7 @@ import SingleMedia from "../../components/SingleMedia/SingleMedia";
 import { useParams } from "react-router";
 import { getSingleMedia } from "../../services/media";
 import { getUserInfo } from "../../services/user";
-import {getCommentOfMedia} from "../../services/comment";
+import { getCommentOfMedia } from "../../services/comment";
 import { useState, useEffect } from "react";
 import InputComment from "../../components/InputComment/InputComment";
 import CommentComponent from "../../components/CommentComponent/CommentComponent";
@@ -72,21 +72,19 @@ function MediaPage() {
           onCommentSubmit={(commentText) => postMyComment(commentText, mediaId)}
         />
         {commentsData.map((c, index) => (
-          <>
-            <CommentComponent
-              key={index}
-              userId={c.commentedBy}
-              mediaId={c.commentedMedia}
-              commentId={c._id}
-              comment={c.text}
-              getComments={getComments}
-              commentedAt={c.createdAt.slice(0, 10)}
-              username={c.userData.username}
-              profileImg={c.userData.profileImg}
-              likes={c.likedBy.length}
-              likedBy={c.likedBy}
-            />
-          </>
+          <CommentComponent
+            key={index}
+            userId={c.commentedBy}
+            mediaId={c.commentedMedia}
+            commentId={c._id}
+            comment={c.text}
+            getComments={getComments}
+            commentedAt={c.createdAt.slice(0, 10)}
+            username={c.userData.username}
+            profileImg={c.userData.profileImg}
+            likes={c.likedBy.length}
+            likedBy={c.likedBy}
+          />
         ))}
       </div>
     </>

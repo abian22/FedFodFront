@@ -12,7 +12,7 @@ const MenuItem = ({
   const navigate = useNavigate();
   return (
     <li
-      style={{ listStyle: "none", marginTop: "10px", cursor: "pointer" }}
+      className="menuItem"
       onClick={() => {
         if (title === "home") {
           navigate(`/${title}`);
@@ -32,11 +32,13 @@ const MenuItem = ({
       </svg>
 
       {title === "mail" && mailNotificationCount > 0 && (
-        <div className="notification-badge">{mailNotificationCount}</div>
+        <div className="menuItem__notification-badge">
+          {mailNotificationCount}
+        </div>
       )}
 
       {title === "notification" && notificationNotificationCount > 0 && (
-        <div className="notification-badge">
+        <div className="menuItem__notification-badge">
           {notificationNotificationCount}
         </div>
       )}

@@ -6,15 +6,15 @@ function LoginButton({ onLogin, style }) {
 
   return (
     <>
-        <button
-          className={style}
-          id={contextTheme}
-          onClick={onLogin}
-          type="button"
-          style={{marginBottom:"20px"}}
-        >
-          LOG IN
-        </button>
+      <button
+        className={style}
+        id={contextTheme}
+        onClick={onLogin}
+        type="button"
+        style={{ marginBottom: "20px" }}
+      >
+        LOG IN
+      </button>
     </>
   );
 }

@@ -88,15 +88,11 @@ function Header() {
             onClick={toggleMenuProfile}
           />
           {isMenuProfileOpen && (
-            <div
-              className="profileMenuContainer"
-              >
-              <ul
-                className="profileMenuContainer__profileMenuUl"
-                >
+            <div className="profileMenuContainer">
+              <ul className="profileMenuContainer__profileMenuUl">
                 {settings.map((item, index) => (
                   <li
-                  className="profileMenuContainer__profileMenuLi"
+                    className="profileMenuContainer__profileMenuLi"
                     key={index}
                     onClick={() => {
                       toggleMenuProfile();

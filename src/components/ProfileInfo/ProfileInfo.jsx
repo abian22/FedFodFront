@@ -17,7 +17,6 @@ function ProfileInfo({
   getProfileMedia,
 }) {
   const { contextTheme } = useThemeContext();
-
   const [videoMargin, setVideoMargin] = useState(50);
 
   const handleResize = () => {
@@ -41,7 +40,11 @@ function ProfileInfo({
     <>
       <div className="centerContainer">
         <div className="profileData">
-          <img src={profileImg} className="profileData__profileImg" alt="profile image"/>
+          <img
+            src={profileImg}
+            className="profileData__profileImg"
+            alt="profile image"
+          />
           <h2 className="profileData__profileUsername">{username}</h2>
         </div>
       </div>
@@ -57,7 +60,7 @@ function ProfileInfo({
         {mediaData.map((m, index) => (
           <div
             key={index}
-            className="mediaItem"
+            className="mediaGrid__mediaItem"
             style={{ marginTop: "auto", paddingBottom: "0px", border: "solid" }}
           >
             {m.mediaUrl &&
@@ -66,17 +69,10 @@ function ProfileInfo({
               m.mediaUrl.endsWith(".jfif")) ? (
               <>
                 <div>
-                  <div
-                    style={{ justifyContent: "space-between", display: "flex" }}
-                  >
+                  <div className="trashIconContainer">
                     <img
-                      src={contextTheme === "Light" ? darkEdit : lightEdit}
-                      style={{ height: "30px" }}
-                      alt="Edit icon"
-                    />
-                    <img
+                      className="trashIconContainer__trashIcon"
                       src={contextTheme === "Light" ? darkTrash : lightTrash}
-                      style={{ height: "30px", cursor: "pointer" }}
                       onClick={() => deleteMedia(m._id)}
                       alt="Trash icon"
                     />
@@ -98,13 +94,10 @@ function ProfileInfo({
               </>
             ) : (
               <div>
-                <div
-                  style={{ justifyContent: "end", display: "flex" }}
-                >
-            
+                <div className="trashIconContainer">
                   <img
+                    className="trashIconContainer__trashIcon"
                     src={contextTheme === "Light" ? darkTrash : lightTrash}
-                    style={{ height: "30px", cursor: "pointer" }}
                     onClick={() => deleteMedia(m._id)}
                     alt="Trash icon"
                   />
@@ -116,6 +109,7 @@ function ProfileInfo({
                   <ReactPlayer
                     url={m.mediaUrl}
                     playing={true}
+               
                     muted={true}
                     controls={true}
                     width="100%"
