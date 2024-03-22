@@ -2,6 +2,7 @@ import darkCancel from "../../assets/icons/darkCancelIcon.svg";
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import lightCancel from "../../assets/icons/lightCancel.svg";
+import likedHeart from "../../assets/icons/likedHeart.svg";
 import { useThemeContext } from "../../context/ThemeContext";
 import { getProfile } from "../../services/user";
 import { useState, useEffect } from "react";
@@ -19,12 +20,16 @@ function CommentComponent({
   commentId,
   getComments,
   likes,
+  likedBy,
 }) {
   const { contextTheme } = useThemeContext();
-  const [userLoggedId, setUserLoggedId] = useState([]);
+  const [userLoggedId, setUserLoggedId] = useState("");
   const [like, setLike] = useState(likes);
+  const [isLiked, setIsLiked] = useState(false);
+  const [myId, setMyId] = useState("");
 
   useEffect(() => {
+    myProfileInfo();
     getMyUserData();
   }, []);
 
@@ -38,10 +43,24 @@ function CommentComponent({
     getComments();
   }
 
-  async function handleLike() {
-    const result = await commentLike(commentId);
-    setLike(result.likedBy.length);
+  async function myProfileInfo() {
+    const result = await getProfile();
+    setMyId(result._id);
   }
+
+  async function handleLike() {
+    try {
+      const result = await commentLike(commentId);
+      setLike(result.likedBy.length);
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.error("Error liking comment", error);
+    }
+  }
+
+  useEffect(() => {
+    setIsLiked(likedBy.includes(myId));
+  }, [likedBy, myId]);
 
   return (
     <>
@@ -52,6 +71,7 @@ function CommentComponent({
               <img
                 className="commentContainer__alignCommentContent--profileImgOfTheComment"
                 src={profileImg}
+                alt="Profile Image"
               />
               <span>{username} </span>
               <span
@@ -68,7 +88,14 @@ function CommentComponent({
             <div className="likeContainer">
               <img
                 className="likeContainer__likeIcon"
-                src={contextTheme === "Light" ? darkHeart : lightHeart}
+                alt="Like icon"
+                src={
+                  isLiked
+                    ? likedHeart
+                    : contextTheme === "Light"
+                    ? darkHeart
+                    : lightHeart
+                }
                 onClick={handleLike}
               />
               <span style={{ marginLeft: "5px" }}>{like}</span>
@@ -78,6 +105,7 @@ function CommentComponent({
             <img
               className="commentContainer__cancelIcon"
               onClick={deleteComment}
+              alt="Cancel icon"
               src={contextTheme === "Light" ? darkCancel : lightCancel}
             />
           ) : null}

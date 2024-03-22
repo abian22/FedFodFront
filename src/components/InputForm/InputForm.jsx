@@ -44,7 +44,7 @@ function InputForm({
             if (e.key === "Enter") loginOrSignupFunction();
           }}
         />
-        <img className={iconStyle} src={icon} alt="icon" />
+        <img className={iconStyle} src={icon} alt={icon} />
         {title.toLowerCase().includes("password") && (
           <img
             className={eyeIconStyle}

@@ -51,16 +51,20 @@ function MediaPage() {
 
   return (
     <>
-      {/*singlemedia es un map porque sino no me lee el length de likes no sé porque*/}
+      {/*singlemedia es un map porque sino no me lee el length*/}
       {singleMediaData.map((s, index) => (
         <SingleMedia
           key={index}
           url={s.mediaUrl}
           likes={s.likedBy.length}
+          likedBy={s.likedBy}
+          uploadedBy={s.uploadedBy}
           uploaded={s.createdAt.slice(0, 10)}
           username={userData.username}
           profileImg={userData.profileImg}
+          description={s.description}
           mediaId={s._id}
+          getSingleMedia={handleSingleMedia}
         />
       ))}
       <div style={{ marginBottom: "30px" }}>
@@ -80,6 +84,7 @@ function MediaPage() {
               username={c.userData.username}
               profileImg={c.userData.profileImg}
               likes={c.likedBy.length}
+              likedBy={c.likedBy}
             />
           </>
         ))}

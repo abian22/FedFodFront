@@ -8,6 +8,7 @@ import darkHeart from "../../assets/icons/darkHeart.svg";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import likedHeart from "../../assets/icons/likedHeart.svg";
+import { getComments } from "../../services/comment";
 import "./VideoContainer.scss";
 
 function VideoContainer({
@@ -19,15 +20,30 @@ function VideoContainer({
   uploaded,
   mediaId,
   uploadedBy,
+  isLiked,
+  userId,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
   const [like, setLike] = useState(likes);
+  const [likedState, setLikedState] = useState(isLiked);
+  const [commentsCount, setCommentsCount] = useState(0);
+
+  async function getAllComments(){
+    try {
+      const result = await getComments();
+      const filteredComments = result.filter(comment => comment.commentedMedia === mediaId);
+      setCommentsCount(filteredComments.length);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  }
 
   async function handleLike() {
     try {
       const result = await myLike(mediaId);
       setLike(result.likes.length);
+      setLikedState(!likedState);
     } catch (error) {
       console.error("Error liking media", error);
     }
@@ -39,6 +55,7 @@ function VideoContainer({
   };
 
   useEffect(() => {
+    getAllComments()
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -68,13 +85,11 @@ function VideoContainer({
         </div>
         <main className="videoAndInteractionContainer">
           <div style={{ border: "solid" }} id={contextTheme}>
-            {" "}
-            {/* no se si dejar este borde o no */}
             {url &&
             (url.endsWith(".png") ||
               url.endsWith(".jpg") ||
               url.endsWith(".jfif")) ? (
-              <img src={url} style={{ width: "100%" }} alt="Imagen" />
+              <img src={url} style={{ width: "100%" }} alt="Image" />
             ) : (
               <ReactPlayer
                 url={url}
@@ -99,7 +114,14 @@ function VideoContainer({
               }}
             >
               <img
-                src={contextTheme === "Light" ? darkHeart : lightHeart}
+                src={
+                  likedState
+                    ? likedHeart
+                    : contextTheme === "Light"
+                    ? darkHeart
+                    : lightHeart
+                }
+                alt="Like icon"
                 style={{ cursor: "pointer" }}
                 onClick={handleLike}
               />
@@ -118,10 +140,11 @@ function VideoContainer({
               >
                 <img
                   src={contextTheme === "Light" ? darkComment : lightComment}
+                  alt="Comment icon"
                   style={{ cursor: "pointer" }}
                 />
               </Link>
-              <span style={{ marginTop: "10px" }}>0</span>
+              <span style={{ marginTop: "10px" }}>{commentsCount}</span>
             </div>
           </div>
         </main>

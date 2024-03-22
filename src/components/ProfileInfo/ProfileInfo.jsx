@@ -41,7 +41,7 @@ function ProfileInfo({
     <>
       <div className="centerContainer">
         <div className="profileData">
-          <img src={profileImg} className="profileData__profileImg" />
+          <img src={profileImg} className="profileData__profileImg" alt="profile image"/>
           <h2 className="profileData__profileUsername">{username}</h2>
         </div>
       </div>
@@ -72,7 +72,7 @@ function ProfileInfo({
                     <img
                       src={contextTheme === "Light" ? darkEdit : lightEdit}
                       style={{ height: "30px" }}
-                      alt="Trash icon"
+                      alt="Edit icon"
                     />
                     <img
                       src={contextTheme === "Light" ? darkTrash : lightTrash}
@@ -99,13 +99,9 @@ function ProfileInfo({
             ) : (
               <div>
                 <div
-                  style={{ justifyContent: "space-between", display: "flex" }}
+                  style={{ justifyContent: "end", display: "flex" }}
                 >
-                  <img
-                    src={contextTheme === "Light" ? darkEdit : lightEdit}
-                    style={{ height: "30px" }}
-                    alt="Trash icon"
-                  />
+            
                   <img
                     src={contextTheme === "Light" ? darkTrash : lightTrash}
                     style={{ height: "30px", cursor: "pointer" }}

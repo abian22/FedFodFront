@@ -3,11 +3,16 @@ import { getAllMedias } from "../../services/media";
 import { getUserInfo } from "../../services/user";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 import SearchComponent from "../../components/SearchComponent/SearchComponent";
+import { getProfile } from "../../services/user";
 
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
+  const [myId, setMyId] = useState("")
+  const [videoComments, setVideoComments] = useState(0)
+
   useEffect(() => {
     getRandomMedia();
+    getMyProfileInfo()
   }, []);
 
   async function getRandomMedia() {
@@ -34,6 +39,15 @@ function Home() {
     }
   }
 
+  async function getMyProfileInfo() {
+    try {
+      const result = await getProfile();
+      setMyId(result._id);
+    } catch (error) {
+      console.error("error getting user profile info", error);
+    }
+  }
+
   return (
     <>
       <SearchComponent />
@@ -47,8 +61,10 @@ function Home() {
             description={v.description}
             url={v.mediaUrl}
             mediaId={v._id}
+            userId={v.userData._id}
             likes={v.likedBy.length}
             uploaded={v.createdAt.slice(0, 10)}
+            isLiked={v.likedBy.includes(myId)}
           />
         </>
       ))}

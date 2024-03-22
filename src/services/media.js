@@ -24,7 +24,6 @@ async function getAllMedias() {
         token: localStorage.getItem("token"),
       },
     });
-    // console.log('result from service', result.data);
     return result;
   } catch (error) {
     console.error("Error with getRandomMedia function", error);
@@ -55,26 +54,31 @@ async function getMyMedia() {
         token: localStorage.getItem("token"),
       },
     });
-    // console.log('result from service', result.data);
     return result.data;
   } catch (error) {
     console.error("Error with getRandomMedia function", error);
   }
 }
 
-async function updateMyMedia(mediaId) {
+async function updateMyMedia(mediaId, newDescription) {
   try {
-    const result = await api.put(`/media/me/${mediaId}`, {
-      headers: {
-        token: localStorage.getItem("token"),
+    const result = await api.put(
+      `/media/me/${mediaId}`,
+      {
+        description: newDescription,
       },
-    });
+      {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
     return result.data;
   } catch (error) {
     console.error("Error with updateMyMedia function", error);
+    throw error;
   }
 }
-
 async function myLike(mediaId) {
   try {
     const response = await api.post(`/media/${mediaId}/like`, null, {
@@ -110,6 +114,7 @@ async function getSingleMedia(mediaId) {
         token: localStorage.getItem("token"),
       },
     });
+    console.log(result.data)
     return result.data;
   } catch (error) {
     throw new Error("Error fetching user information: " + error.message);
@@ -138,5 +143,5 @@ export {
   myLike,
   userMedia,
   getSingleMedia,
-  deleteMyMedia
+  deleteMyMedia,
 };

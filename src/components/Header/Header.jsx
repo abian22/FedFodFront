@@ -84,6 +84,7 @@ function Header() {
           <img
             className="headerContainer__profileImg"
             src={profileImg}
+            alt="Profile image"
             onClick={toggleMenuProfile}
           />
           {isMenuProfileOpen && (

@@ -33,17 +33,32 @@ async function deleteMyComment(mediaId, commentId) {
   return result.data;
 }
 async function commentLike(commentId) {
-    try {
-      const response = await api.post(`/comment/${commentId}/like`, null, {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error al toggle likes:", error);
-      throw error;
-    }
+  try {
+    const response = await api.post(`/comment/${commentId}/like`, null, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al toggle likes:", error);
+    throw error;
   }
+}
 
-export { getCommentOfMedia, postComment, deleteMyComment, commentLike };
+async function getComments() {
+  const result = await api.get(`/comment`, {
+    headers: {
+      token: localStorage.getItem("token"),
+    },
+  });
+  return result.data;
+}
+
+export {
+  getCommentOfMedia,
+  postComment,
+  deleteMyComment,
+  commentLike,
+  getComments,
+};

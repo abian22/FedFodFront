@@ -47,6 +47,7 @@ function Search() {
               <img
                 src={close}
                 className="searchResultContainer__closeIcon"
+                alt="Close icon"
                 onClick={resetResults}
               />
             )}
@@ -59,6 +60,7 @@ function Search() {
                   <div>
                     <img
                       className="searchResult__userContainer--profileImg"
+                      alt="Profile image"
                       src={u.profileImg}
                     />
                     <span className="searchResult__userContainer--username">

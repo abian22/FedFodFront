@@ -5,7 +5,6 @@ import "./MenuItem.scss";
 const MenuItem = ({
   title,
   path,
-  fun,
   mailNotificationCount,
   notificationNotificationCount,
 }) => {
