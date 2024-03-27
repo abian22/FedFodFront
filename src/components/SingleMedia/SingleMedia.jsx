@@ -6,6 +6,7 @@ import likedHeart from "../../assets/icons/likedHeart.svg";
 import { useThemeContext } from "../../context/ThemeContext";
 import { getProfile } from "../../services/user";
 import { useEffect, useState } from "react";
+import { sendNotification } from "../../services/notification";
 import { myLike, updateMyMedia, getSingleMedia } from "../../services/media";
 import ReactPlayer from "react-player";
 import "./SingleMedia.scss";
@@ -20,23 +21,24 @@ function SingleMedia({
   description,
   uploadedBy,
   getMediaData,
-  likedBy,
+  isLiked,
 }) {
   const { contextTheme } = useThemeContext();
   const [like, setLike] = useState(likes);
-  const [isLiked, setIsLiked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [myId, setMyId] = useState("");
   const [newDescription, setNewDescription] = useState(description);
+  const [loggedUserData, setLoggedUserData] = useState([]);
+  const [likedState, setLikedState] = useState(isLiked);
 
   useEffect(() => {
     myProfileInfo();
-    setIsLiked(likedBy.includes(myId));
-  }, [likedBy, myId]);
+  }, []);
 
   async function myProfileInfo() {
     const result = await getProfile();
     setMyId(result._id);
+    setLoggedUserData(result);
   }
 
   async function updateDescription() {
@@ -52,20 +54,24 @@ function SingleMedia({
   async function handleLike() {
     const result = await myLike(mediaId);
     setLike(result.likes.length);
-    handleLikeIcon();
+    setLikedState(!likedState);
+
+    if (!result.likes.includes(loggedUserData._id) && !likedState) {
+      await handleLikeNotification();
+    }
+  }
+
+  async function handleLikeNotification() {
+    await sendNotification({
+      notifiedUserId: uploadedBy,
+      actionUserId: loggedUserData._id,
+      associatedItemId: mediaId,
+      message: `${loggedUserData.username} liked your post`,
+    });
   }
 
   function handleEditing() {
     setIsEditing(!isEditing);
-  }
-
-  async function handleLikeIcon() {
-    try {
-      const result = await getSingleMedia(mediaId);
-      setIsLiked(result.likedBy.includes(myId));
-    } catch (error) {
-      console.error("Error checking like status", error);
-    }
   }
 
   return (
@@ -141,7 +147,7 @@ function SingleMedia({
           <div className="singleMediaContainer__likesContainer">
             <img
               src={
-                isLiked === true
+                likedState === true
                   ? likedHeart
                   : contextTheme === "Light"
                   ? darkHeart

@@ -84,6 +84,7 @@ function MediaPage() {
           url={s.mediaUrl}
           likes={s.likedBy.length}
           likedBy={s.likedBy}
+          isLiked={s.likedBy.includes(loggedUserData._id)}
           uploadedBy={s.uploadedBy}
           uploaded={s.createdAt.slice(0, 10)}
           username={userData.username}

@@ -79,9 +79,9 @@ function CommentComponent({
     }
   }
 
-  // useEffect(() => {
-  //   setIsLiked(likedBy.includes(myId));
-  // }, [likedBy, myId]);
+  useEffect(() => {
+    setIsLiked(likedBy.includes(myId));
+  }, [likedBy, myId]);
 
   return (
     <>
