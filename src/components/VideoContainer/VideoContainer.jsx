@@ -1,14 +1,15 @@
 import { useThemeContext } from "../../context/ThemeContext";
 import { useState, useEffect } from "react";
 import { myLike } from "../../services/media";
+import { getComments } from "../../services/comment";
+import { sendNotification } from "../../services/notification";
+import { Link } from "react-router-dom";
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import lightComment from "../../assets/icons/lightComment.svg";
 import darkComment from "../../assets/icons/darkComment.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
-import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import likedHeart from "../../assets/icons/likedHeart.svg";
-import { getComments } from "../../services/comment";
 import "./VideoContainer.scss";
 
 function VideoContainer({
@@ -21,6 +22,7 @@ function VideoContainer({
   mediaId,
   uploadedBy,
   isLiked,
+  loggedUserData,
 }) {
   const { contextTheme } = useThemeContext();
   const [videoHeight, setVideoHeight] = useState(300);
@@ -45,9 +47,22 @@ function VideoContainer({
       const result = await myLike(mediaId);
       setLike(result.likes.length);
       setLikedState(!likedState);
+  
+      if (!result.likes.includes(loggedUserData._id) && !likedState) {
+        await handleLikeNotification();
+      }
     } catch (error) {
       console.error("Error liking media", error);
     }
+  }
+  
+  async function handleLikeNotification() {
+    await sendNotification({
+      notifiedUserId: uploadedBy,
+      actionUserId: loggedUserData._id,
+      associatedItemId: mediaId,
+      message: `${loggedUserData.username} liked your post`,
+    });
   }
 
   const handleResize = () => {

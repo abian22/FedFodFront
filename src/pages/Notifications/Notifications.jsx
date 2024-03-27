@@ -1,9 +1,12 @@
-import React from 'react'
+import NotificationComponent from "../../components/NotificationComponent/NotificationComponent";
+
 
 function Notifications() {
   return (
-    <div>Notifications</div>
-  )
+   <>
+   <NotificationComponent/>
+   </>
+  );
 }
 
-export default Notifications
+export default Notifications;

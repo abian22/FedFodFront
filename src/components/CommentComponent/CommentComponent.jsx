@@ -1,13 +1,15 @@
+import { getProfile } from "../../services/user";
+import { useState, useEffect } from "react";
+import { deleteMyComment } from "../../services/comment";
+import { commentLike } from "../../services/comment";
+import { sendNotification } from "../../services/notification";
+import { useThemeContext } from "../../context/ThemeContext";
+import { getSingleMedia } from "../../services/media";
 import darkCancel from "../../assets/icons/darkCancelIcon.svg";
 import lightHeart from "../../assets/icons/lightHeart.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import lightCancel from "../../assets/icons/lightCancel.svg";
 import likedHeart from "../../assets/icons/likedHeart.svg";
-import { useThemeContext } from "../../context/ThemeContext";
-import { getProfile } from "../../services/user";
-import { useState, useEffect } from "react";
-import { deleteMyComment } from "../../services/comment";
-import { commentLike } from "../../services/comment";
 import "./CommentComponent.scss";
 
 function CommentComponent({
@@ -27,15 +29,19 @@ function CommentComponent({
   const [like, setLike] = useState(likes);
   const [isLiked, setIsLiked] = useState(false);
   const [myId, setMyId] = useState("");
+  const [loggedUserData, setLoggedUserData] = useState([])
 
   useEffect(() => {
     myProfileInfo();
     getMyUserData();
   }, []);
 
+
+
   async function getMyUserData() {
     const result = await getProfile();
     setUserLoggedId(result._id);
+    setLoggedUserData(result)
   }
 
   async function deleteComment() {
@@ -53,14 +59,29 @@ function CommentComponent({
       const result = await commentLike(commentId);
       setLike(result.likedBy.length);
       setIsLiked(!isLiked);
+      handleLikeCommentNotification()
     } catch (error) {
       console.error("Error liking comment", error);
     }
   }
 
-  useEffect(() => {
-    setIsLiked(likedBy.includes(myId));
-  }, [likedBy, myId]);
+  async function handleLikeCommentNotification() {
+    try {
+      const media = await getSingleMedia(mediaId);
+      await sendNotification({
+        notifiedUserId: media.uploadedBy,
+        actionUserId: loggedUserData._id,
+        associatedItemId: mediaId,
+        message: `${loggedUserData.username} liked your comment`,
+      });
+    } catch (error) {
+      console.error("Error sending notification:", error);
+    }
+  }
+
+  // useEffect(() => {
+  //   setIsLiked(likedBy.includes(myId));
+  // }, [likedBy, myId]);
 
   return (
     <>

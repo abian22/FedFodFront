@@ -7,16 +7,20 @@ import { useState, useEffect } from "react";
 import InputComment from "../../components/InputComment/InputComment";
 import CommentComponent from "../../components/CommentComponent/CommentComponent";
 import { postComment } from "../../services/comment";
+import { sendNotification } from "../../services/notification";
+import { getProfile } from "../../services/user";
 
 function MediaPage() {
   const [singleMediaData, setSingleMediaData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
+  const [loggedUserData, setLoggedUserData] = useState([]);
   const { mediaId } = useParams();
 
   useEffect(() => {
     handleSingleMedia();
     getComments();
+    getLoggedUserInfo();
   }, []);
 
   async function handleSingleMedia() {
@@ -36,7 +40,6 @@ function MediaPage() {
         return { ...comment, userData };
       })
     );
-    console.log("commentsWithUserData:", commentsWithUserData);
     setCommentsData(commentsWithUserData);
   }
 
@@ -44,8 +47,31 @@ function MediaPage() {
     try {
       await postComment(mediaId, commentText);
       getComments();
+      handleSingleMedia();
+      handleCommentNotification();
     } catch (error) {
       console.error("Error al enviar el comentario:", error);
+    }
+  }
+
+  async function getLoggedUserInfo() {
+    const result = await getProfile();
+    setLoggedUserData(result);
+  }
+
+  async function handleCommentNotification() {
+    if (singleMediaData && loggedUserData) {
+      const media = singleMediaData.find((media) => media._id === mediaId);
+      if (media) {
+        await sendNotification({
+          notifiedUserId: media.uploadedBy,
+          actionUserId: loggedUserData._id,
+          associatedItemId: media._id,
+          message: `${loggedUserData.username} commented your post`,
+        });
+      } else {
+        console.error("Media not found with the given mediaId:", mediaId);
+      }
     }
   }
 

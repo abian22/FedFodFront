@@ -8,12 +8,7 @@ import SwitchComponent from "./components/SwitchComponent/SwitchComponent";
 
 function App() {
   const { contextTheme, setContextTheme } = useThemeContext();
-  const [checked, setChecked] = useState(true);
 
-  const handleSwitch = (nextChecked) => {
-    setContextTheme((state) => (state === "Light" ? "Dark" : "Light"));
-    setChecked(nextChecked);
-  };
   return (
     <>
       <main className="app" id={contextTheme}>

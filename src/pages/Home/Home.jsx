@@ -8,6 +8,7 @@ import { getProfile } from "../../services/user";
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
   const [myId, setMyId] = useState("");
+  const [loggedUserData, setLoggedUserData] = useState([])
   const [videoComments, setVideoComments] = useState(0);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function Home() {
     try {
       const result = await getProfile();
       setMyId(result._id);
+      setLoggedUserData(result)
     } catch (error) {
       console.error("error getting user profile info", error);
     }
@@ -52,19 +54,20 @@ function Home() {
     <>
       <SearchComponent />
       {randomVideoList.map((v, index) => (
-          <VideoContainer
-            key={index}
-            uploadedBy={v.uploadedBy}
-            profileImg={v.userData.profileImg}
-            name={v.userData.username}
-            description={v.description}
-            url={v.mediaUrl}
-            mediaId={v._id}
-            userId={v.userData._id}
-            likes={v.likedBy.length}
-            uploaded={v.createdAt.slice(0, 10)}
-            isLiked={v.likedBy.includes(myId)}
-          />
+        <VideoContainer
+          key={index}
+          loggedUserData={loggedUserData}
+          uploadedBy={v.uploadedBy}
+          profileImg={v.userData.profileImg}
+          name={v.userData.username}
+          description={v.description}
+          url={v.mediaUrl}
+          mediaId={v._id}
+          userId={v.userData._id}
+          likes={v.likedBy.length}
+          uploaded={v.createdAt.slice(0, 10)}
+          isLiked={v.likedBy.includes(myId)}
+        />
       ))}
     </>
   );

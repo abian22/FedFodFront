@@ -86,7 +86,6 @@ async function myLike(mediaId) {
         token: localStorage.getItem("token"),
       },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error al toggle likes:", error);
@@ -114,7 +113,6 @@ async function getSingleMedia(mediaId) {
         token: localStorage.getItem("token"),
       },
     });
-    console.log(result.data)
     return result.data;
   } catch (error) {
     throw new Error("Error fetching user information: " + error.message);
