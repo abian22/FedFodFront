@@ -111,6 +111,7 @@ function MediaPage() {
             profileImg={c.userData.profileImg}
             likes={c.likedBy.length}
             likedBy={c.likedBy}
+            isLiked={c.likedBy.includes(loggedUserData._id)}
           />
         ))}
       </div>

@@ -23,11 +23,12 @@ function CommentComponent({
   getComments,
   likes,
   likedBy,
+  isLiked,
 }) {
   const { contextTheme } = useThemeContext();
   const [userLoggedId, setUserLoggedId] = useState("");
   const [like, setLike] = useState(likes);
-  const [isLiked, setIsLiked] = useState(false);
+  const [likedState, setLikedState] = useState(isLiked);
   const [myId, setMyId] = useState("");
   const [loggedUserData, setLoggedUserData] = useState([])
 
@@ -35,7 +36,6 @@ function CommentComponent({
     myProfileInfo();
     getMyUserData();
   }, []);
-
 
 
   async function getMyUserData() {
@@ -58,13 +58,14 @@ function CommentComponent({
     try {
       const result = await commentLike(commentId);
       setLike(result.likedBy.length);
-      setIsLiked(!isLiked);
-      handleLikeCommentNotification()
+      setLikedState(!likedState);
+      if (result.likedBy.includes(userLoggedId)) {
+        await handleLikeCommentNotification();
+      }
     } catch (error) {
       console.error("Error liking comment", error);
     }
   }
-
   async function handleLikeCommentNotification() {
     try {
       const media = await getSingleMedia(mediaId);
@@ -79,9 +80,6 @@ function CommentComponent({
     }
   }
 
-  useEffect(() => {
-    setIsLiked(likedBy.includes(myId));
-  }, [likedBy, myId]);
 
   return (
     <>
@@ -105,7 +103,7 @@ function CommentComponent({
                 className="likeContainer__likeIcon"
                 alt="Like icon"
                 src={
-                  isLiked
+                  likedState
                     ? likedHeart
                     : contextTheme === "Light"
                     ? darkHeart

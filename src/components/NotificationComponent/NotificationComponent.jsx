@@ -1,27 +1,57 @@
 import imagen from "../../assets/images/descarga.png";
+import ReactPlayer from "react-player";
 import "./NotificationComponent.scss";
+import { Link } from "react-router-dom";
 
-function NotificationComponent({ profileImg, username, type, notificatedMedia}) {
+function NotificationComponent({
+  profileImgOfNotification,
+  usernameOfNotification,
+  message,
+  notificatedMedia,
+  mediaId,
+  userIdOfNotification,
+}) {
   return (
     <div className="notificationContainer">
       <div className="notificationContainer__alignContent">
-        <img
-          className="notificationContainer__alignContent--profileImg"
-          src={imagen}
-          alt="Avatar"
-        />
+        <Link to={`/home/${userIdOfNotification}`}>
+          <img
+            className="notificationContainer__alignContent--profileImg"
+            src={profileImgOfNotification}
+            alt="Avatar"
+          />
+        </Link>
         <div>
-          <h2 className="notificationContainer__username">usuario</h2>
-          <p className="notificationContainer__typeOfNotification">
-            ha comentado tu post
-          </p>
+          <Link
+            to={`/home/${userIdOfNotification}`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <h2 className="notificationContainer__username">
+              {usernameOfNotification}
+            </h2>
+          </Link>
+          <p className="notificationContainer__typeOfNotification">{message}</p>
         </div>
       </div>
-      <img
-        className="notificationContainer__notificatedMedia"
-        src={imagen}
-        alt="Comentario de usuario"
-      />
+      {notificatedMedia &&
+        (notificatedMedia.endsWith(".png") ||
+        notificatedMedia.endsWith(".jpg") ||
+        notificatedMedia.endsWith(".jfif") ? (
+          <img
+            className="notificationContainer__notificatedMedia"
+            src={notificatedMedia}
+            alt="Image"
+          />
+        ) : (
+          <Link to={`/home/media/${mediaId}`}>
+            <ReactPlayer
+              url={notificatedMedia}
+              width="80px"
+              height="50px"
+              controls={false}
+            />
+          </Link>
+        ))}
     </div>
   );
 }

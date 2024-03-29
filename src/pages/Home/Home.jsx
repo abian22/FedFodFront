@@ -19,18 +19,15 @@ function Home() {
   async function getRandomMedia() {
     try {
       const result = await getAllMedias();
-      //Take the media from feedfood folder
       const feedfoodVideos = result.data.filter((v) =>
         v.mediaUrl.includes("feedfood")
       );
-      //Iterate through all videos in the feedfood folder and retrieve user data for each video.
       const videosWithUserData = await Promise.all(
         feedfoodVideos.map(async (v) => {
           const userData = await getUserInfo(v.uploadedBy);
           return { ...v, userData };
         })
       );
-      //randomize the videos with the user info
       const randomizedVideos = videosWithUserData.sort(
         () => Math.random() - 0.5
       );

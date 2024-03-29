@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMyMedia } from "../../services/media";
 import { getProfile } from "../../services/user";
+import { getUserInfo } from "../../services/user";
 import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 
 function Profile() {
@@ -13,8 +14,16 @@ function Profile() {
   }, []);
 
   async function handleGetMyMedia() {
-    const result = await getMyMedia();
-    setMyMedia(result);
+    try {
+      const result = await getMyMedia();
+      const feedfoodMedia = result.filter((media) =>
+        media.mediaUrl.includes("feedfood")
+      );
+
+      setMyMedia(feedfoodMedia);
+    } catch (error) {
+      console.error("Error en la función handleGetMyMedia:", error);
+    }
   }
 
   async function handleUserInfo() {
