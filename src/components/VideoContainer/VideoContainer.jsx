@@ -61,7 +61,7 @@ function VideoContainer({
       notifiedUserId: uploadedBy,
       actionUserId: loggedUserData._id,
       associatedItemId: mediaId,
-      message: `${loggedUserData.username} liked your post`,
+      message: `${loggedUserData.username} liked your post at`,
     });
   }
 

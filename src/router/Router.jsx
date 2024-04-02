@@ -5,12 +5,13 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Home from "../pages/Home/Home";
 import Profile from "../pages/Profile/Profile";
-import Chat from "../pages/Chat/Chat";
+import Chats from "../pages/Chats/Chats";
 import Notifications from "../pages/Notifications/Notifications";
 import MyAccount from "../pages/MyAccount/MyAccount";
 import Upload from "../pages/Upload/Upload";
 import SomeoneProfile from "../pages/SomeoneProfile/SomeoneProfile";
 import MediaPage from "../pages/MediaPage/MediaPage";
+import Chat from "../pages/Chat/Chat"
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/home/notification",
         element: <Notifications />,
+      },
+      {
+        path: "/home/chats",
+        element: <Chats />,
       },
       {
         path: "/home/chat",
