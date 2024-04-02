@@ -11,6 +11,7 @@ function NotificationComponent({
   mediaId,
   userIdOfNotification,
 }) {
+  
   return (
     <div className="notificationContainer">
       <div className="notificationContainer__alignContent">

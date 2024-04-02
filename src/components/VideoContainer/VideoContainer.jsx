@@ -72,11 +72,12 @@ function VideoContainer({
 
   useEffect(() => {
     getAllComments();
+    setLikedState(isLiked)
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isLiked]);
 
   return (
     <>

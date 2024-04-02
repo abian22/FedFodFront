@@ -28,4 +28,18 @@ async function getNotifications() {
   }
 }
 
-export { sendNotification, getNotifications };
+async function readNotifications(userId) {
+  try {
+    const response = await api.post(`/notification/read`, null, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al toggle likes:", error);
+    throw error;
+  }
+}
+
+export { sendNotification, getNotifications, readNotifications };
