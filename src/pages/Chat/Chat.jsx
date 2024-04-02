@@ -1,57 +1,51 @@
-import imagen from "../../assets/images/descarga.png";
+import imagen from "../../assets/images/captura.png";
 import "./Chat.scss"; // Estilos CSS
 
 const Chat = () => {
   return (
     <>
-      <div className="centerContainer">
-        <div
-          style={{
-            margin: "10px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <img src={imagen} style={{ height: "30px", borderRadius: "20px" }} />
-          <span style={{ marginLeft: "10px" }}>usuario</span>
+      <header className="centerContainer">
+        <div className="userContainer">
+          <img
+            className="userContainer__profileImg"
+            src={imagen}
+            alt="Avatar del usuario"
+          />
+          <span className="userContainer__username">Usuario</span>
         </div>
-      </div>
-      <div className="centerContainer">
-        <div className="chat-container" style={{ border: "solid" }}>
-          <div className="chat">
-            <div className="message other">
+      </header>
+      <main className="centerContainer">
+        <div className="chatContainer">
+          <div className="chatContainer__chat">
+            <div className="chatContainer__chat--messageFromUser">
               <span>Mensaje de la otra persona</span>
-              <span className="timestamp">10:00 AM</span>
+              <span className="chatContainer__chat--timestamp">10:00 AM</span>
             </div>
-            <div className="message own">
+            <div className="chatContainer__chat--myMessage">
               <span>Mi mensaje</span>
-              <span className="timestamp">10:05 AM</span>
+              <span className="chatContainer__chat--timestamp">10:05 AM</span>
             </div>
-            <div className="message other">
+            <div className="chatContainer__chat--messageFromUser">
               <span>Otro mensaje de la otra persona</span>
-              <span className="timestamp">10:10 AM</span>
+              <span className="chatContainer__chat--timestamp">10:10 AM</span>
             </div>
           </div>
         </div>
-      </div>
-      <div className="centerContainer">
-  
+      </main>
+      <footer className="centerContainer">
+        <form className="messageInputContainer">
           <input
-            className="messageInput"
+            className="messageInputContainer__messageInput"
             type="text"
-            placeholder="Escribe tu mensaje..."
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              borderTopRightRadius: "0px",
-              borderBottomRightRadius: "0px",
-              border: "1px solid #ccc",
-              marginRight: "0px",
-            }}
+            id="mensaje"
+            name="mensaje"
+            placeholder="Write your message..."
           />
           <button
+            className="messageInputContainer__sendButton"
+            type="submit"
             style={{
-              padding: "11px",
+              padding: "11.2px",
               borderRadius: "5px",
               border: "none",
               borderTopLeftRadius: "0px",
@@ -63,8 +57,8 @@ const Chat = () => {
           >
             Enviar
           </button>
-        </div>
-
+        </form>
+      </footer>
     </>
   );
 };
