@@ -26,7 +26,6 @@ function MenuItem({ title, path }) {
     );
     setGetUnreadNotifications(unread);
   }
-  console.log(userLoggedData);
 
   async function getUserLoggedData() {
     const result = await getProfile();
@@ -43,9 +42,6 @@ function MenuItem({ title, path }) {
     }
   }
 
-  console.log();
-
-  console.log(getUnreadNotifications);
   return (
     <li
       className="menuItem"

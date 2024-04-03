@@ -1,7 +1,35 @@
 import imagen from "../../assets/images/captura.png";
-import "./Chat.scss"; // Estilos CSS
+import "./Chat.scss";
+import { sendMessage } from "../../services/chat";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import { getProfile } from "../../services/user";
 
 const Chat = () => {
+  const { receiverId } = useParams();
+  const [senderId, setSenderId] = useState();
+  const [message, setMessage] = useState(""); // Estado para almacenar el mensaje
+
+  async function getMyId() {
+    const result = await getProfile();
+    setSenderId(result._id);
+  }
+  
+  async function handleMessage() {
+    try {
+      await sendMessage(senderId, receiverId, message); 
+      console.log("Mensaje enviado con éxito");
+    } catch (error) {
+      console.error("Error al enviar el mensaje:", error);
+    }
+  }
+  console.log(senderId)
+
+
+  useEffect(() => {
+    getMyId();
+  }, []);
+
   return (
     <>
       <header className="centerContainer">
@@ -40,10 +68,12 @@ const Chat = () => {
             id="mensaje"
             name="mensaje"
             placeholder="Write your message..."
+            value={message} 
+            onChange={(e) => setMessage(e.target.value)} 
           />
           <button
             className="messageInputContainer__sendButton"
-            type="submit"
+            type="button"
             style={{
               padding: "11.2px",
               borderRadius: "5px",
@@ -54,6 +84,7 @@ const Chat = () => {
               color: "white",
               cursor: "pointer",
             }}
+            onClick={handleMessage}
           >
             Enviar
           </button>

@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         element: <Chats />,
       },
       {
-        path: "/home/chat",
+        path: "/home/chats/:receiverId",
         element: <Chat />,
       },
       {

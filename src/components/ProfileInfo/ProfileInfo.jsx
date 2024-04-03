@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import lightTrash from "../../assets/icons/lightTrash.svg";
 import { useThemeContext } from "../../context/ThemeContext";
 import darkTrash from "../../assets/icons/darkTrash.svg";
-import lightEdit from "../../assets/icons/lightEdit.svg";
-import darkEdit from "../../assets/icons/darkEdit.svg";
 import { deleteMyMedia } from "../../services/media";
 import "./ProfileInfo.scss";
 

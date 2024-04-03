@@ -60,4 +60,17 @@ async function searchUser(username) {
   }
 }
 
-export { getProfile, updateProfile, deleteMyAccount, getUserInfo, searchUser };
+async function getAllUsers() {
+  try {
+    const result = await api.get(`/user`, {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    });
+    return result.data;
+  } catch (error) {
+    throw new Error("Error fetching user information: " + error.message);
+  }
+}
+
+export { getProfile, updateProfile, deleteMyAccount, getUserInfo, searchUser, getAllUsers };
