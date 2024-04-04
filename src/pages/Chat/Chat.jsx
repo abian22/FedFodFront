@@ -1,34 +1,51 @@
+import { useState, useEffect, useRef } from "react";
 import imagen from "../../assets/images/captura.png";
 import "./Chat.scss";
-import { sendMessage } from "../../services/chat";
-import { useState, useEffect } from "react";
+import { sendMessage, getMessages } from "../../services/chat";
 import { useParams } from "react-router";
 import { getProfile } from "../../services/user";
 
 const Chat = () => {
   const { receiverId } = useParams();
   const [senderId, setSenderId] = useState();
-  const [message, setMessage] = useState(""); // Estado para almacenar el mensaje
+  const [message, setMessage] = useState("");
+  const [allMessages, setAllMessages] = useState([]);
+  const chatContainerRef = useRef(null);
 
   async function getMyId() {
     const result = await getProfile();
     setSenderId(result._id);
   }
-  
+
   async function handleMessage() {
     try {
-      await sendMessage(senderId, receiverId, message); 
+      await sendMessage(senderId, receiverId, message);
       console.log("Mensaje enviado con éxito");
+      getChatMessages();
+      setMessage(""); 
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
     }
   }
-  console.log(senderId)
 
+  async function getChatMessages() {
+    const result = await getMessages(receiverId);
+    setAllMessages(result);
+  }
+
+  console.log("mensajes", allMessages.map((m) => m));
 
   useEffect(() => {
     getMyId();
+    getChatMessages();
   }, []);
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      setTimeout(() => {
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      }, 0);
+    }
+  }, [allMessages]);
 
   return (
     <>
@@ -43,20 +60,30 @@ const Chat = () => {
         </div>
       </header>
       <main className="centerContainer">
-        <div className="chatContainer">
+        <div
+          className="chatContainer"
+          ref={chatContainerRef} 
+        >
           <div className="chatContainer__chat">
-            <div className="chatContainer__chat--messageFromUser">
-              <span>Mensaje de la otra persona</span>
-              <span className="chatContainer__chat--timestamp">10:00 AM</span>
-            </div>
-            <div className="chatContainer__chat--myMessage">
-              <span>Mi mensaje</span>
-              <span className="chatContainer__chat--timestamp">10:05 AM</span>
-            </div>
-            <div className="chatContainer__chat--messageFromUser">
-              <span>Otro mensaje de la otra persona</span>
-              <span className="chatContainer__chat--timestamp">10:10 AM</span>
-            </div>
+            {allMessages.map((m, index) => (
+              <div key={index}>
+                {m.sender === senderId ? (
+                  <div className="chatContainer__chat--myMessage">
+                    <span>{m.message}</span>
+                    <span className="chatContainer__chat--timestamp">
+                      {m.createdAt.slice(11, 16)}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="chatContainer__chat--messageFromUser">
+                    <span>{m.message}</span>
+                    <span className="chatContainer__chat--timestamp">
+                      {m.createdAt.slice(11, 16)}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </main>
@@ -68,8 +95,16 @@ const Chat = () => {
             id="mensaje"
             name="mensaje"
             placeholder="Write your message..."
-            value={message} 
-            onChange={(e) => setMessage(e.target.value)} 
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            autoComplete="off" 
+            onKeyDown={(e) => {
+
+              if (e.key === "Enter") {
+                e.preventDefault(); 
+                handleMessage();
+              }
+            }}
           />
           <button
             className="messageInputContainer__sendButton"
@@ -86,7 +121,7 @@ const Chat = () => {
             }}
             onClick={handleMessage}
           >
-            Enviar
+            Send
           </button>
         </form>
       </footer>

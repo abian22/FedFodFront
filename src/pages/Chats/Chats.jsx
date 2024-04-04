@@ -1,5 +1,4 @@
 import "./Chats.scss";
-import imagen from "../../assets/images/captura.png";
 import { Link } from "react-router-dom";
 import { getAllUsers } from "../../services/user";
 import { useState, useEffect } from "react";
