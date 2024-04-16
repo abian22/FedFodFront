@@ -2,6 +2,7 @@ import { useThemeContext } from "../../context/ThemeContext";
 import { useState } from "react";
 import SwitchComponent from "../SwitchComponent/SwitchComponent";
 import { Link } from "react-router-dom";
+import LanguageButton from "../LanguageButton/LanguageButton";
 
 import "./HeaderBeforeLogin.scss";
 function HeaderBeforeLogin() {
@@ -16,6 +17,7 @@ function HeaderBeforeLogin() {
   return (
     <>
       <div className="headerBeforeLogginContainer">
+        <LanguageButton/>
         <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
         <Link to="/" style={{ textDecoration: "none" }}>
           <svg

@@ -7,6 +7,7 @@ import lightPizza from "../../assets/images/lightMode pizza.png";
 import SignUpButton from "../../components/SignUpButton/SignUpButton";
 import LoginButton from "../../components/LoginButton/LoginButton";
 import SwitchComponent from "../../components/SwitchComponent/SwitchComponent";
+import LanguageButton from "../../components/LanguageButton/LanguageButton";
 
 function LandingPage() {
   const { contextTheme, setContextTheme } = useThemeContext();
@@ -20,6 +21,7 @@ function LandingPage() {
   return (
     <>
       <div style={{ position: "absolute", right: "0px" }}>
+      <LanguageButton/>
         <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
       </div>
       <main className="main">
@@ -36,6 +38,7 @@ function LandingPage() {
           <SignUpButton style={"section__buttons"} />
         </Link>
       </section>
+      
     </>
   );
 }

@@ -10,6 +10,7 @@ import darkComment from "../../assets/icons/darkComment.svg";
 import darkHeart from "../../assets/icons/darkHeart.svg";
 import ReactPlayer from "react-player";
 import likedHeart from "../../assets/icons/likedHeart.svg";
+import { useTranslation } from "react-i18next";
 import "./VideoContainer.scss";
 
 function VideoContainer({
@@ -29,6 +30,7 @@ function VideoContainer({
   const [like, setLike] = useState(likes);
   const [likedState, setLikedState] = useState(isLiked);
   const [commentsCount, setCommentsCount] = useState(0);
+  const [t, i18n] = useTranslation("global");
 
   async function getAllComments() {
     try {
@@ -117,7 +119,7 @@ function VideoContainer({
             )}
           </div>
           <span className="videoAndInteractionContainer__uploadDate">
-            Uploaded: {uploaded}
+          {t("videoContainer.uploaded")} {uploaded}
           </span>
           <div className="videoAndInteractionContainer__interactionContainer">
             <div className="videoAndInteractionContainer__interactionContainer--likes">

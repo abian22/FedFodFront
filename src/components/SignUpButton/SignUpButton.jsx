@@ -1,8 +1,10 @@
 import { useThemeContext } from "../../context/ThemeContext";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 
 function SignUpButton({ onCreateAccount, style }) {
   const { contextTheme } = useThemeContext();
+  const [t, i18n] = useTranslation("global");
 
   return (
     <>
@@ -13,7 +15,7 @@ function SignUpButton({ onCreateAccount, style }) {
         onClick={onCreateAccount}
         style={{ marginBottom: "20px" }}
       >
-        SIGN UP
+        {t("signUpButton.signUp")}
       </button>
     </>
   );

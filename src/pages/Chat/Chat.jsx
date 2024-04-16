@@ -1,20 +1,27 @@
 import { useState, useEffect, useRef } from "react";
-import imagen from "../../assets/images/captura.png";
-import "./Chat.scss";
 import { sendMessage, getMessages } from "../../services/chat";
 import { useParams } from "react-router";
-import { getProfile } from "../../services/user";
+import { getProfile, getUserInfo } from "../../services/user";
+import { useTranslation } from "react-i18next";
+import "./Chat.scss";
 
 const Chat = () => {
   const { receiverId } = useParams();
   const [senderId, setSenderId] = useState();
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
   const chatContainerRef = useRef(null);
+  const [t, i18n] = useTranslation("global");
 
   async function getMyId() {
     const result = await getProfile();
     setSenderId(result._id);
+  }
+
+  async function getUserData() {
+    const result = await getUserInfo(receiverId);
+    setUserInfo(result);
   }
 
   async function handleMessage() {
@@ -22,7 +29,7 @@ const Chat = () => {
       await sendMessage(senderId, receiverId, message);
       console.log("Mensaje enviado con éxito");
       getChatMessages();
-      setMessage(""); 
+      setMessage("");
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
     }
@@ -33,16 +40,22 @@ const Chat = () => {
     setAllMessages(result);
   }
 
-  console.log("mensajes", allMessages.map((m) => m));
+  console.log(
+    "mensajes",
+    allMessages.map((m) => m)
+  );
 
   useEffect(() => {
     getMyId();
     getChatMessages();
+    getUserData();
   }, []);
+
   useEffect(() => {
     if (chatContainerRef.current) {
       setTimeout(() => {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        chatContainerRef.current.scrollTop =
+          chatContainerRef.current.scrollHeight;
       }, 0);
     }
   }, [allMessages]);
@@ -53,17 +66,14 @@ const Chat = () => {
         <div className="userContainer">
           <img
             className="userContainer__profileImg"
-            src={imagen}
+            src={userInfo.profileImg}
             alt="Avatar del usuario"
           />
-          <span className="userContainer__username">Usuario</span>
+          <span className="userContainer__username"> {userInfo.username}</span>
         </div>
       </header>
       <main className="centerContainer">
-        <div
-          className="chatContainer"
-          ref={chatContainerRef} 
-        >
+        <div className="chatContainer" ref={chatContainerRef}>
           <div className="chatContainer__chat">
             {allMessages.map((m, index) => (
               <div key={index}>
@@ -94,14 +104,13 @@ const Chat = () => {
             type="text"
             id="mensaje"
             name="mensaje"
-            placeholder="Write your message..."
+            placeholder={t("chat.chatPlaceholder")}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            autoComplete="off" 
+            autoComplete="off"
             onKeyDown={(e) => {
-
               if (e.key === "Enter") {
-                e.preventDefault(); 
+                e.preventDefault();
                 handleMessage();
               }
             }}
@@ -121,7 +130,7 @@ const Chat = () => {
             }}
             onClick={handleMessage}
           >
-            Send
+            {t("chat.sendButton")}
           </button>
         </form>
       </footer>

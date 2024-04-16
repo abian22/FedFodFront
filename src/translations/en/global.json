@@ -1,0 +1,56 @@
+{
+  "signUpButton": {
+    "signUp": "SIGN UP"
+  },
+  "logginButton": {
+    "loggin": "LOG IN"
+  },
+  "signUpPage": {
+    "username": "Username",
+    "usernamePlaceHolder": "Your Username...",
+    "email": "Email",
+    "emailPlaceHolder": "Your email...",
+    "password": "Password",
+    "passwordPlaceHolder": "Your password..."
+  },
+  "myAccount": {
+    "title": "My Account",
+    "newPassword": "New password",
+    "newPasswordPlaceHolder": "Your new password...",
+    "confirmNewPassword": "Confirm new password",
+    "saveButton": "Save",
+    "leaveButton": "Leave",
+    "deleteButton": "Delete account",
+    "selectPhoto":" Select a photo (png, jpg or jpeg)"
+  },
+  "searchInput": {
+    "searchPlaceHolder": "Type to search..."
+  },
+  "videoContainer": {
+    "uploaded": "uploaded"
+  },
+  "upload": {
+    "title": "Upload file",
+    "noFileSelected": "No file selected",
+    "selectFileButton": "Click to select a file",
+    "description": "Description:",
+    "upload": "Upload"
+  },
+  "chat": {
+    "chatPlaceholder": "Write your message...",
+    "sendButton": "Send"
+  },
+  "profileMenu": {
+    "profile": "PROFILE",
+    "myAccount": "MY ACCOUNT",
+    "logout": "LOGOUT"
+  },
+  "donation":{
+    "donation":"Donation",
+    "amount":"Enter amount",
+    "donate":"Donate"
+  },
+  "posts":{
+    "posts":"Posts:"
+  }
+}

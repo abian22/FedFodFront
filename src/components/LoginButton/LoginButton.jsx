@@ -1,8 +1,11 @@
 import { useThemeContext } from "../../context/ThemeContext";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 
 function LoginButton({ onLogin, style }) {
   const { contextTheme } = useThemeContext();
+  const [t, i18n] = useTranslation("global");
+
 
   return (
     <>
@@ -13,7 +16,7 @@ function LoginButton({ onLogin, style }) {
         type="button"
         style={{ marginBottom: "20px" }}
       >
-        LOG IN
+        {t("logginButton.loggin")}
       </button>
     </>
   );

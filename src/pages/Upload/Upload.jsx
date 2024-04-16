@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useThemeContext } from "../../context/ThemeContext";
 import { postMedia } from "../../services/media";
+import { useTranslation } from "react-i18next";
 import "./Upload.scss";
 
 function Upload() {
   const { contextTheme } = useThemeContext();
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState("");
+  const [t, i18n] = useTranslation("global");
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
@@ -33,16 +35,16 @@ function Upload() {
 
   return (
     <>
-      <h2 className="centerContainer">Upload a file</h2>
+      <h2 className="centerContainer">{t("upload.title")}</h2>
       <div className="centerContainer">
         <form>
           <label className="fileSelectedStyle">
-            {selectedFile ? selectedFile.name : "No file selected"}
+            {selectedFile ? selectedFile.name : t("upload.noFileSelected")}
           </label>
 
           <div className="centerContainer">
             <label className="inputLabelStyle">
-              Click to select file
+            {t("upload.selectFileButton")}
               <input
                 id="fileInput"
                 type="file"
@@ -52,7 +54,7 @@ function Upload() {
             </label>
           </div>
           <div className="centerContainer">
-            <label className="descriptionStyle">Description:</label>
+            <label className="descriptionStyle">{t("upload.description")}</label>
           </div>
           <div className="centerContainer">
             <textarea
@@ -69,7 +71,7 @@ function Upload() {
               id={contextTheme}
               onClick={handleUploadFile}
             >
-              Upload
+              {t("upload.upload")}
             </button>
           </div>
         </form>

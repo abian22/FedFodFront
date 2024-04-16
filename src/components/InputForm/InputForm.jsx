@@ -1,4 +1,5 @@
 import { useThemeContext } from "../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 function InputForm({
   title,
@@ -12,9 +13,12 @@ function InputForm({
   handlePassword,
   isPassVisible,
   eyeIconStyle,
+  password,
 }) {
   const { contextTheme } = useThemeContext();
+  const [t, i18n] = useTranslation("global");
 
+  console.log(title);
   return (
     <>
       <label className="formContainer__signUpLabel">
@@ -31,7 +35,10 @@ function InputForm({
           type={
             (title === "Password" ||
               title === "New password" ||
-              title === "Confirm new password") &&
+              title === "Confirm new password" ||
+              title === "Contraseña" ||
+              title == "Nueva contraseña" ||
+              title == "Confirma la nueva contraseña") &&
             isPassVisible === false
               ? "password"
               : "text"
@@ -45,7 +52,7 @@ function InputForm({
           }}
         />
         <img className={iconStyle} src={icon} alt={icon} />
-        {title.toLowerCase().includes("password") && (
+        {password === "password" && (
           <img
             className={eyeIconStyle}
             onClick={handlePassword}

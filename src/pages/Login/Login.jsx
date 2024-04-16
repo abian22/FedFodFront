@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
 import { login } from "../../services/auth";
+import { useTranslation } from "react-i18next";
 import emailIcon from "../../assets/icons/emailIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import eyeIcon from "../../assets/icons/eyeIcon.svg";
@@ -15,6 +16,7 @@ import "./Login.scss";
 
 function Login() {
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
   const { contextTheme } = useThemeContext();
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(null);
@@ -55,10 +57,10 @@ function Login() {
   return (
     <>
       <HeaderBeforeLogin />
-      <AccountInfoContainer title="Login">
+      <AccountInfoContainer title={t("logginButton.loggin")}>
         <InputForm
-          title="Email"
-          placeholder="Your Email..."
+          title={t("signUpPage.email")}
+          placeholder={t("signUpPage.emailPlaceHolder")}
           isFieldValid={isEmailValid}
           iconStyle="formContainer__loginLabel--emailIcon"
           icon={emailIcon}
@@ -69,8 +71,9 @@ function Login() {
           loginOrSignupFunction={logAccount}
         />
         <InputForm
-          title="Password"
-          placeholder="Your Password..."
+          title={t("signUpPage.password")}
+          password="password"
+          placeholder={t("signUpPage.passwordPlaceHolder")}
           isFieldValid={isPasswordValid}
           iconStyle="formContainer__loginLabel--passwordIcon"
           icon={passwordIcon}

@@ -1,0 +1,59 @@
+{
+  "signUpButton": {
+    "signUp": "REGISTRARSE"
+  },
+  "logginButton": {
+    "loggin": "INICIAR SESIÓN"
+  },
+  "signUpPage": {
+    "username": "Usuario",
+    "usernamePlaceHolder": "Tu Usuario..",
+    "email": "Email",
+    "emailPlaceHolder": "Tu email...",
+    "password": "Contraseña",
+    "passwordPlaceHolder": "Tu contraseña..."
+  },
+  "myAccount": {
+    "title": "Mi Cuenta",
+    "newPassword": "Nueva contraseña",
+    "newPasswordPlaceHolder": "Tu nueva contraseña...",
+    "confirmNewPassword": "Confirma la nueva contraseña",
+    "saveButton": "Guardar",
+    "leaveButton": "Salir",
+    "deleteButton": "Borrar cuenta",
+    "selectPhoto":"Selecciona una foto (png, jpg o jpeg)"
+  },
+  "searchInput": {
+    "searchPlaceHolder": "Escribe para buscar..."
+  },
+  "videoContainer": {
+    "uploaded": "Subido el:"
+  },
+  "upload":{
+    "title":"Subir un archivo",
+    "noFileSelected": "No hay archivo seleccionado",
+    "selectFileButton": "Seleccionar un archivo",
+    "description":"Descripción:",
+    "upload":"Subir"
+  },
+  "chat":{
+    "chatPlaceholder":"Escribe tu mensaje...",
+    "sendButton":"Enviar"
+  },
+  "profileMenu":{
+    "profile":"PERFIL",
+    "myAccount":"MI CUENTA",
+    "logout":"CERRAR SESIÓN"
+  },
+  "donation":{
+    "donation":"Donación",
+    "amount":"Introduce cantidad",
+    "donate":"Donar"
+  },
+  "notification":{
+    "like":"Le ha gustado tu post a las"
+  },
+  "posts":{
+    "posts":"Publicaciones:"
+  }
+}

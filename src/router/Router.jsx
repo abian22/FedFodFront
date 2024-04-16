@@ -12,6 +12,8 @@ import Upload from "../pages/Upload/Upload";
 import SomeoneProfile from "../pages/SomeoneProfile/SomeoneProfile";
 import MediaPage from "../pages/MediaPage/MediaPage";
 import Chat from "../pages/Chat/Chat"
+import Donation from "../pages/Donation/Donation";
+import Streaming from "../pages/Streaming/Streaming";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       {
         path: "/home/myAccount",
         element: <MyAccount />,
+      },
+      {
+        path: "/home/donation",
+        element: <Donation />,
+      },
+      {
+        path: "/home/streaming",
+        element: <Streaming />,
       },
     ],
   },

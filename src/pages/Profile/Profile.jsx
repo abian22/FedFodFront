@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { getMyMedia } from "../../services/media";
 import { getProfile } from "../../services/user";
-import { getUserInfo } from "../../services/user";
 import ProfileInfo from "../../components/ProfileInfo/ProfileInfo";
 
 function Profile() {
+
   const [myMedia, setMyMedia] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
 

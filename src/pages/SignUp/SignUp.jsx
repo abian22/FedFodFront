@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { signUp } from "../../services/auth";
+import { useTranslation } from "react-i18next";
 import userIcon from "../../assets/icons/userIcon.svg";
 import emailIcon from "../../assets/icons/emailIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
@@ -16,6 +17,7 @@ import AccountInfoContainer from "../../components/AccountInfoContainer/AccountI
 
 function SignUp() {
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
   const { contextTheme } = useThemeContext();
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [isUsernameValid, setIsUsernameValid] = useState(null);
@@ -28,14 +30,12 @@ function SignUp() {
   });
 
   function handlePassword() {
-    console.log("funciona");
-    console.log(isPassVisible);
     setIsPassVisible(!isPassVisible);
   }
 
   async function createAccount() {
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    console.log("entra en create");
+
     try {
       if (account.username === "") {
         setIsUsernameValid(false);
@@ -65,10 +65,10 @@ function SignUp() {
   return (
     <>
       <HeaderBeforeLogin />
-      <AccountInfoContainer title="SignUp">
+      <AccountInfoContainer title={t("signUpButton.signUp")}>
         <InputForm
-          title="Username"
-          placeholder="Your Username..."
+          title={t("signUpPage.username")}
+          placeholder={t("signUpPage.usernamePlaceHolder")}
           isFieldValid={isUsernameValid}
           iconStyle="formContainer__signUpLabel__userIcon"
           icon={userIcon}
@@ -77,8 +77,8 @@ function SignUp() {
           loginOrSignupFunction={createAccount}
         />
         <InputForm
-          title="Email"
-          placeholder="Your email..."
+          title={t("signUpPage.email")}
+          placeholder={t("signUpPage.emailPlaceHolder")}
           isFieldValid={isEmailValid}
           iconStyle="formContainer__signUpLabel__emailIcon"
           icon={emailIcon}
@@ -87,8 +87,9 @@ function SignUp() {
           loginOrSignupFunction={createAccount}
         />
         <InputForm
-          title="Password"
-          placeholder="Your Password..."
+          title={t("signUpPage.password")}
+          password="password"
+          placeholder={t("signUpPage.passwordPlaceHolder")}
           isFieldValid={isPasswordValid}
           iconStyle="formContainer__signUpLabel__passwordIcon"
           icon={passwordIcon}

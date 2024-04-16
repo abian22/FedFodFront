@@ -5,6 +5,8 @@ import lightTrash from "../../assets/icons/lightTrash.svg";
 import { useThemeContext } from "../../context/ThemeContext";
 import darkTrash from "../../assets/icons/darkTrash.svg";
 import { deleteMyMedia } from "../../services/media";
+import { useTranslation } from 'react-i18next';
+
 import "./ProfileInfo.scss";
 
 function ProfileInfo({
@@ -15,6 +17,7 @@ function ProfileInfo({
   getProfileMedia,
 }) {
   const { contextTheme } = useThemeContext();
+  const { t, i18n } = useTranslation("global");
   const [videoMargin, setVideoMargin] = useState(50);
 
   const handleResize = () => {
@@ -48,9 +51,8 @@ function ProfileInfo({
       </div>
       <div className="centerContainer">
         <div>
-          <p>Followers: 100 </p>
-          <p>Following: 50</p>
-          <p>Posts: {posts}</p>
+
+          <p>{t("posts.posts")} {posts}</p>
         </div>
       </div>
       <div className="mediaDivider" />
@@ -107,7 +109,6 @@ function ProfileInfo({
                   <ReactPlayer
                     url={m.mediaUrl}
                     playing={true}
-               
                     muted={true}
                     controls={true}
                     width="100%"

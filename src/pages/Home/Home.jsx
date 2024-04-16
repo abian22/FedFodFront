@@ -9,7 +9,6 @@ function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
   const [myId, setMyId] = useState("");
   const [loggedUserData, setLoggedUserData] = useState([])
-  const [videoComments, setVideoComments] = useState(0);
 
   useEffect(() => {
     getRandomMedia();

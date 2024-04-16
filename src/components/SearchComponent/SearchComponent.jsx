@@ -3,9 +3,12 @@ import { searchUser } from "../../services/user";
 import close from "../../assets/icons/darkCancelIcon.svg";
 import "./SearchComponent.scss";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 function Search() {
   const [searchUsername, setSearchUsername] = useState("");
   const [users, setUsers] = useState([]);
+  const [t, i18n] = useTranslation("global");
 
   async function handleSearchUser() {
     try {
@@ -36,7 +39,7 @@ function Search() {
         <div className="searchInputContainer">
           <input
             className="searchInput"
-            placeholder="Type to search..."
+            placeholder={t("searchInput.searchPlaceHolder")}
             value={searchUsername}
             onChange={handleChange}
           />

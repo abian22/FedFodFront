@@ -7,6 +7,7 @@ import {
   deleteMyAccount,
 } from "../../services/user";
 import { uploadProfileImg } from "../../services/media";
+import { useTranslation } from "react-i18next";
 import userIcon from "../../assets/icons/userIcon.svg";
 import passwordIcon from "../../assets/icons/passwordIcon.svg";
 import emailIcon from "../../assets/icons/emailIcon.svg";
@@ -17,6 +18,7 @@ import "./MyAccount.scss";
 
 function MyAccount() {
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
   const { contextTheme } = useThemeContext();
   const [isNewPassVisible, setIsNewPassVisible] = useState(false);
   const [isProfileImgOpen, setIsProfileImgOpen] = useState(false);
@@ -112,11 +114,15 @@ function MyAccount() {
     }
   };
 
-  const buttons = ["Save", "Leave", "Delete account"];
+  const buttons = [
+    t("myAccount.saveButton"),
+    t("myAccount.leaveButton"),
+    t("myAccount.deleteButton"),
+  ];
 
   return (
     <>
-      <AccountInfoContainer title="My Account">
+      <AccountInfoContainer title={t("myAccount.title")}>
         <img
           src={accountData.profileImg}
           className="headerContainer__profileImg"
@@ -127,7 +133,7 @@ function MyAccount() {
           <>
             <form className="selectFileContainer">
               <label className="selectFileContainer__inputLabel">
-                Select a photo (png, jpg o jpeg)
+              {t("myAccount.selectPhoto")}
                 <input
                   type="file"
                   style={{ display: "none" }}
@@ -138,8 +144,8 @@ function MyAccount() {
           </>
         )}
         <InputForm
-          title="Username"
-          placeholder={accountData.username}
+          title={t("signUpPage.username")}
+          placeholder={t("signUpPage.usernamePlaceHolder")}
           iconStyle="MyAccountUserIcon"
           icon={userIcon}
           accountData={(value) =>
@@ -147,7 +153,7 @@ function MyAccount() {
           }
         />
         <InputForm
-          title="Email"
+          title={t("signUpPage.email")}
           placeholder={accountData.email}
           iconStyle="MyAccountEmailIcon"
           icon={emailIcon}
@@ -156,8 +162,9 @@ function MyAccount() {
           }
         />
         <InputForm
-          title="New password"
-          placeholder="Your new password ..."
+          title={t("myAccount.newPassword")}
+          password="password"
+          placeholder={t("myAccount.newPasswordPlaceHolder")}
           iconStyle="MyAccountNewPasswordIcon"
           icon={passwordIcon}
           eyeIcon={eyeIcon}
@@ -169,8 +176,9 @@ function MyAccount() {
           }
         />
         <InputForm
-          title="Confirm new password"
-          placeholder="Your new password ..."
+          title={t("myAccount.confirmNewPassword")}
+          password="password"
+          placeholder={t("myAccount.newPasswordPlaceHolder")}
           iconStyle="MyAccountConfirmNewPasswordIcon"
           icon={passwordIcon}
           eyeIcon={eyeIcon}
@@ -190,13 +198,16 @@ function MyAccount() {
                 type="button"
                 id={contextTheme}
                 onClick={() => {
-                  if (button === "Save") {
+                  if (button === "Save" || button === "Guardar") {
                     saveNewProfileData();
                   }
-                  if (button === "Leave") {
+                  if (button === "Leave" || button === "Salir") {
                     navigate("/home");
                   }
-                  if (button === "Delete account") {
+                  if (
+                    button === "Delete account" ||
+                    button === "Borrar cuenta"
+                  ) {
                     handleDeleteMyAccount();
                     navigate("/");
                   }
