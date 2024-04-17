@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import "./LanguageButton.scss"
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import "./LanguageButton.scss";
+import flagEn from "../../assets/icons/engFlag.svg";
+import flagEs from "../../assets/icons/espFlag.png";
 
 function LanguageButton() {
   const { i18n } = useTranslation();
@@ -13,16 +15,61 @@ function LanguageButton() {
 
   return (
     <div className="language-button">
-      <button onClick={() => setIsOpen(!isOpen)}>
-        {i18n.language === 'en' ? 'English' : 'Español'}
+      <button
+        className="language-button__toggle"
+        style={{
+          backgroundColor: "white",
+          color: isOpen ? "black" : "#333",
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {i18n.language === "en" ? (
+          <>
+            <img
+              src={flagEn}
+              alt="English Flag"
+              style={{ height: "13px", marginRight: "3px" }}
+            />
+            English
+          </>
+        ) : (
+          <>
+            <img
+              src={flagEs}
+              alt="Spanish Flag"
+              style={{ height: "13px", marginRight: "3px" }}
+            />
+            Español
+          </>
+        )}{" "}
       </button>
       {isOpen && (
         <ul className="language-menu">
-          <li>
-            <button onClick={() => changeLanguage('en')}>English</button>
+          <li style={{ listStyle: "none" }}>
+            <button
+              onClick={() => changeLanguage("en")}
+              style={{
+                backgroundColor: "white",
+                color: "black",
+                border: "none",
+              }}
+            >
+              <img src={flagEn} alt="English Flag" />
+              English
+            </button>
           </li>
-          <li>
-            <button onClick={() => changeLanguage('es')}>Español</button>
+          <li style={{ listStyle: "none" }}>
+            <button
+              onClick={() => changeLanguage("es")}
+              style={{
+                backgroundColor: isOpen ? "white" : "transparent",
+                color: isOpen ? "black" : "#333",
+                border: "none",
+              }}
+            >
+              <img src={flagEs} alt="Spanish Flag" />
+              Español
+            </button>
           </li>
         </ul>
       )}

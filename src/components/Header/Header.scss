@@ -15,10 +15,13 @@
   }
 }
 
+
+
 .profileMenuContainer {
   position: absolute;
   top: 55px;
   right: 24%;
+  
   &__profileMenuUl {
     display: flex;
     flex-direction: column;
@@ -34,5 +37,11 @@
   }
   :hover {
     color: white;
+  }
+}
+
+@media (min-width: 950px) {
+  .profileMenuContainer {
+    right: 33%; 
   }
 }

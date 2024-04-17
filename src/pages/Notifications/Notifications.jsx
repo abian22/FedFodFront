@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { getNotifications } from "../../services/notification";
 import { getUserInfo } from "../../services/user";
 import { getSingleMedia } from "../../services/media";
+import Loader from "../../components/Loader/Loader"; 
 
 function Notifications() {
   const [notificationData, setNotificationData] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     getNotificationInfo();
@@ -31,26 +33,30 @@ function Notifications() {
       );
 
       setNotificationData(processedNotifications);
+      setLoading(false); 
     } catch (error) {
       console.error("Error al obtener y procesar notificaciones:", error);
+      setLoading(false); 
     }
   }
 
-
-  console.log(notificationData);
   return (
     <>
-      {notificationData.map((n, index) => (
-        <NotificationComponent
-          key={index}
-          usernameOfNotification={n.username}
-          profileImgOfNotification={n.profileImg}
-          message={n.message}
-          notificatedMedia={n.mediaUrl.mediaUrl}
-          mediaId={n.associatedItemId}
-          userIdOfNotification={n.actionUserId}
-        />
-      ))}
+      {loading ? ( 
+        <Loader />
+      ) : (
+        notificationData.map((n, index) => (
+          <NotificationComponent
+            key={index}
+            usernameOfNotification={n.username}
+            profileImgOfNotification={n.profileImg}
+            message={n.message}
+            notificatedMedia={n.mediaUrl.mediaUrl}
+            mediaId={n.associatedItemId}
+            userIdOfNotification={n.actionUserId}
+          />
+        ))
+      )}
     </>
   );
 }

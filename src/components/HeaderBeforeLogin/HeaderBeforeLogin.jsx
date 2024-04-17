@@ -17,7 +17,10 @@ function HeaderBeforeLogin() {
   return (
     <>
       <div className="headerBeforeLogginContainer">
+        <div style={{marginTop:"10px"}}>
         <LanguageButton/>
+
+        </div>
         <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
         <Link to="/" style={{ textDecoration: "none" }}>
           <svg

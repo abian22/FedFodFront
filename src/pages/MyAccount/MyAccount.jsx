@@ -133,7 +133,7 @@ function MyAccount() {
           <>
             <form className="selectFileContainer">
               <label className="selectFileContainer__inputLabel">
-              {t("myAccount.selectPhoto")}
+                {t("myAccount.selectPhoto")}
                 <input
                   type="file"
                   style={{ display: "none" }}

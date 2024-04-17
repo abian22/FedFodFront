@@ -20,8 +20,10 @@ function LandingPage() {
 
   return (
     <>
-      <div style={{ position: "absolute", right: "0px" }}>
-      <LanguageButton/>
+      <div className="languageSwitchButtonWrapper">
+        <div style={{ marginTop: "6px" }}>
+          <LanguageButton />
+        </div>
         <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
       </div>
       <main className="main">
@@ -38,7 +40,6 @@ function LandingPage() {
           <SignUpButton style={"section__buttons"} />
         </Link>
       </section>
-      
     </>
   );
 }
