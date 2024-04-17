@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL:"https://faint-heartbreaking-animal.glitch.me/api"
+    baseURL:"https://ttk-back2-git-main-abian22s-projects.vercel.app/api"
 })
 
 export default api
