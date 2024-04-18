@@ -7,7 +7,8 @@ import { useThemeContext } from "../../context/ThemeContext";
 import { getProfile } from "../../services/user";
 import { useEffect, useState } from "react";
 import { sendNotification } from "../../services/notification";
-import { myLike, updateMyMedia, getSingleMedia } from "../../services/media";
+import { myLike, updateMyMedia } from "../../services/media";
+import { useTranslation } from "react-i18next";
 import ReactPlayer from "react-player";
 import "./SingleMedia.scss";
 
@@ -24,6 +25,7 @@ function SingleMedia({
   isLiked,
 }) {
   const { contextTheme } = useThemeContext();
+  const [t, i18n] = useTranslation("global");
   const [like, setLike] = useState(likes);
   const [isEditing, setIsEditing] = useState(false);
   const [myId, setMyId] = useState("");
@@ -142,7 +144,7 @@ function SingleMedia({
             )}
           </div>
           <span className="singleMediaContainer__uploadDate">
-            Uploaded: {uploaded}
+          {t("videoContainer.uploaded")} {uploaded}
           </span>
           <div className="singleMediaContainer__likesContainer">
             <img

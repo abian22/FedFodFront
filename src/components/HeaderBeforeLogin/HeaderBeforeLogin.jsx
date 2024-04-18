@@ -3,6 +3,7 @@ import { useState } from "react";
 import SwitchComponent from "../SwitchComponent/SwitchComponent";
 import { Link } from "react-router-dom";
 import LanguageButton from "../LanguageButton/LanguageButton";
+import DangerButton from "../DangerButton/DangerButton";
 
 import "./HeaderBeforeLogin.scss";
 function HeaderBeforeLogin() {
@@ -17,9 +18,17 @@ function HeaderBeforeLogin() {
   return (
     <>
       <div className="headerBeforeLogginContainer">
-        <div style={{marginTop:"10px"}}>
-        <LanguageButton/>
-
+        <div
+          style={{
+            position: "absolute",
+            justifyContent: "start",
+            left: "60px",
+          }}
+        >
+          <DangerButton />
+        </div>
+        <div style={{ marginTop: "10px" }}>
+          <LanguageButton />
         </div>
         <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
         <Link to="/" style={{ textDecoration: "none" }}>

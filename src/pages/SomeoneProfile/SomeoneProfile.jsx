@@ -21,7 +21,6 @@ function SomeoneProfile() {
 
   async function getUserMedia() {
     const result = await userMedia(id);
-    console.log("userMedia" + result);
     setUserMediaData(result);
   }
 

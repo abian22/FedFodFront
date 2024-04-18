@@ -21,7 +21,7 @@
     "saveButton": "Save",
     "leaveButton": "Leave",
     "deleteButton": "Delete account",
-    "selectPhoto":" Select a photo (png, jpg or jpeg)"
+    "selectPhoto": " Select a photo (png, jpg or jpeg)"
   },
   "searchInput": {
     "searchPlaceHolder": "Type to search..."
@@ -45,12 +45,15 @@
     "myAccount": "MY ACCOUNT",
     "logout": "LOGOUT"
   },
-  "donation":{
-    "donation":"Donation",
-    "amount":"Enter amount",
-    "donate":"Donate"
+  "donation": {
+    "donation": "Donation",
+    "amount": "Enter amount",
+    "donate": "Donate"
   },
-  "posts":{
-    "posts":"Posts:"
+  "posts": {
+    "posts": "Posts:"
+  },
+  "danger": {
+    "dangerMessage": "The server may take 30-60 seconds to start up. If you've tried to access and haven't succeeded, please try again in a few seconds. We apologize for the inconvenience."
   }
 }

@@ -15,7 +15,6 @@ async function sendMessage(sender, receiverId, message) {
         },
       }
     );
-    console.log("sendMessage result:", result);
     return result.data;
   } catch (error) {
     console.error("Error sending message:", error);

@@ -10,7 +10,6 @@ async function uploadProfileImg(file) {
         token: localStorage.getItem("token"),
       },
     });
-    console.log("uploadProfileImg result:", result);
     return result.data;
   } catch (error) {
     console.error("Error uploading profile image:", error);

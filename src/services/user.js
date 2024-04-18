@@ -53,7 +53,6 @@ async function searchUser(username) {
         },
       }
     );
-    console.log(result.data);
     return result.data;
   } catch (error) {
     throw new Error("Error fetching user information: " + error.message);

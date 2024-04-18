@@ -14,9 +14,9 @@ function LanguageButton() {
   };
 
   return (
-    <div className="language-button">
+    <div className="languageButton">
       <button
-        className="language-button__toggle"
+        className="languageButton__toggle"
         style={{
           backgroundColor: "white",
           color: isOpen ? "black" : "#333",
@@ -26,9 +26,9 @@ function LanguageButton() {
         {i18n.language === "en" ? (
           <>
             <img
+              className="languageButton__toggle--flag"
               src={flagEn}
               alt="English Flag"
-              style={{ height: "13px", marginRight: "3px" }}
             />
             English
           </>
@@ -37,7 +37,7 @@ function LanguageButton() {
             <img
               src={flagEs}
               alt="Spanish Flag"
-              style={{ height: "13px", marginRight: "3px" }}
+              className="languageButton__toggle--flag"
             />
             Español
           </>

@@ -1,4 +1,3 @@
-import imagen from "../../assets/images/descarga.png";
 import ReactPlayer from "react-player";
 import "./NotificationComponent.scss";
 import { Link } from "react-router-dom";

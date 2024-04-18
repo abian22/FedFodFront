@@ -17,13 +17,13 @@
     margin-bottom: 15px;
     cursor: pointer;
     &--profileImg {
-        display: flex;
-        flex-direction: row;
-        height: 40px;
-        border-radius: 20px;
+      display: flex;
+      flex-direction: row;
+      height: 40px;
+      border-radius: 20px;
     }
     &--username {
-        margin-left: 20px;
+      margin-left: 20px;
     }
   }
 }

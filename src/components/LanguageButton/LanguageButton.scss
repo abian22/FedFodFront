@@ -1,19 +1,22 @@
-.language-button {
+.languageButton {
   position: relative;
   display: inline-block;
-}
-
-.language-button__toggle {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #333;
+  &__toggle{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    &--flag{
+      height: 13px;
+      margin-right: 3px;
+    }
+  }
 }
 
 .language-menu {
   position: absolute;
-  top: calc(100% + 5px); /* Ajuste para separación entre el botón y el menú */
+  top: calc(100% + 5px); 
   left: 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -24,8 +27,8 @@
 }
 
 .language-menu button {
-  display: flex; /* Mostrar la bandera junto al texto */
-  align-items: center; /* Centrar verticalmente */
+  display: flex; 
+  align-items: center; 
   width: 100%;
   padding: 8px 16px;
   background-color: transparent;
@@ -39,7 +42,7 @@
 
 
 .language-menu img {
-  margin-right: 8px; /* Espacio entre la bandera y el texto */
-  width: 24px; /* Ancho de la bandera */
-  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 8px; 
+  width: 24px; 
+  height: auto; 
 }

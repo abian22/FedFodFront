@@ -40,11 +40,6 @@ const Chat = () => {
     setAllMessages(result);
   }
 
-  console.log(
-    "mensajes",
-    allMessages.map((m) => m)
-  );
-
   useEffect(() => {
     getMyId();
     getChatMessages();

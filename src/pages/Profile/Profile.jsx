@@ -22,13 +22,12 @@ function Profile() {
 
       setMyMedia(feedfoodMedia);
     } catch (error) {
-      console.error("Error en la función handleGetMyMedia:", error);
+      console.error("Error in handleGetMyMedia function:", error);
     }
   }
 
   async function handleUserInfo() {
     const result = await getProfile();
-    console.log(result);
     setUserInfo(result);
   }
 

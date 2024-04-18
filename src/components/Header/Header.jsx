@@ -5,7 +5,7 @@ import { getProfile } from "../../services/user";
 import SwitchComponent from "../SwitchComponent/SwitchComponent";
 import MenuItem from "../MenuItem/MenuItem";
 import menuData from "../../../menuData.json";
-import LanguageButton from "../LanguageButton/LanguageButton"
+import LanguageButton from "../LanguageButton/LanguageButton";
 import { useTranslation } from "react-i18next";
 import "./Header.scss";
 
@@ -16,8 +16,6 @@ function Header() {
   const [isMenuProfileOpen, setIsMenuProfileOpen] = useState(false);
   const [profileImg, setProfileImg] = useState("");
   const [checked, setChecked] = useState(true);
-
-
 
   const handleSwitch = (nextChecked) => {
     setContextTheme((state) => (state === "Light" ? "Dark" : "Light"));
@@ -95,7 +93,7 @@ function Header() {
               </ul>
             </div>
           )}
-          <LanguageButton/>
+          <LanguageButton />
           <SwitchComponent handleSwitch={handleSwitch} checked={checked} />
         </ul>
       </nav>

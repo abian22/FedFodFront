@@ -55,5 +55,8 @@
   },
   "posts":{
     "posts":"Publicaciones:"
+  },
+  "danger": {
+    "dangerMessage": "El servidor puede tardar en arrancar unos 30-60 segundos. Si has intentado entrar y no lo has conseguido, vuelve a intentarlo en unos segundos. Disculpa las molestias."
   }
 }

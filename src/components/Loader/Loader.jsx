@@ -1,11 +1,10 @@
 
-import React from 'react';
 import './Loader.scss'; 
 
 function Loader() {
   return (
-    <div className="loader-container">
-      <div className="loader"></div>
+    <div className="loaderContainer">
+      <div className="loaderContainer__loader"></div>
     </div>
   );
 }

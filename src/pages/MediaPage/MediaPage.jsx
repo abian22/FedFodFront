@@ -77,7 +77,6 @@ function MediaPage() {
 
   return (
     <>
-      {/*singlemedia es un map porque sino no me lee el length*/}
       {singleMediaData.map((s, index) => (
         <SingleMedia
           key={index}

@@ -23,8 +23,6 @@ function Chats() {
     setAllUsersData(result);
   }
 
-  console.log(allUsersData);
-
   return (
     <div className="chatsContainer">
       <div className="chatsContainer__users">

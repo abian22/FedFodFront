@@ -35,7 +35,7 @@ function Notifications() {
       setNotificationData(processedNotifications);
       setLoading(false); 
     } catch (error) {
-      console.error("Error al obtener y procesar notificaciones:", error);
+      console.error("Error obtaining notifications", error);
       setLoading(false); 
     }
   }
