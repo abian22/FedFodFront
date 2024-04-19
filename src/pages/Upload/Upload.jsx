@@ -9,7 +9,7 @@ function Upload() {
   const { contextTheme } = useThemeContext();
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Estado para controlar si la página está cargando
+  const [isLoading, setIsLoading] = useState(false); 
   const [t, i18n] = useTranslation("global");
 
   const handleDescriptionChange = (e) => {
@@ -26,7 +26,7 @@ function Upload() {
       alert("No file selected");
     }
     try {
-      setIsLoading(true); // Activa el loader durante la carga
+      setIsLoading(true); 
       await new Promise(resolve => setTimeout(resolve, 2000));
       const result = await postMedia(selectedFile, description);
       if (result.message === "Media uploaded") {
@@ -35,13 +35,13 @@ function Upload() {
     } catch (error) {
       console.error("Error uploading media:", error);
     } finally {
-      setIsLoading(false); // Desactiva el loader cuando la carga haya terminado
+      setIsLoading(false); 
     }
   };
 
   return (
     <>
-      {isLoading ? <Loader /> : ( // Muestra el Loader si isLoading es true
+      {isLoading ? <Loader /> : ( 
         <>
           <h2 className="centerContainer">{t("upload.title")}</h2>
           <div className="centerContainer">
