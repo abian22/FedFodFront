@@ -18,7 +18,6 @@ function InputForm({
   const { contextTheme } = useThemeContext();
   const [t, i18n] = useTranslation("global");
 
-  console.log(title);
   return (
     <>
       <label className="formContainer__signUpLabel">
