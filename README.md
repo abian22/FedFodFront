@@ -20,7 +20,7 @@ The primary objective of this project is to explore and understand the functiona
 
 ## Getting Started
 
-To get started with the TikTok Clone frontend application, follow these steps:
+To get started with the FedFod Project frontend application, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
