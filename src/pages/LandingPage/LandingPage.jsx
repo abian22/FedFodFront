@@ -33,7 +33,7 @@ function LandingPage() {
         />
       </main>
       <div className="centerContainer" style={{fontSize:"40px", marginTop:"30px"}}>
-      FeedFood
+      FedFod
       </div>
      
       <section className="section">
