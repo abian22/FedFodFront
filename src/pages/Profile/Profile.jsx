@@ -31,14 +31,18 @@ function Profile() {
     setUserInfo(result);
   }
 
+  console.log(myMedia)
+
   return (
     <>
       <ProfileInfo
         profileImg={userInfo.profileImg}
         username={userInfo.username}
+        userId={userInfo._id} 
         posts={myMedia.length}
         mediaData={myMedia}
         mediaId={myMedia._id}
+        userIdFromMedia={myMedia.uploadedBy}
         getProfileMedia={handleGetMyMedia}
       />
     </>

@@ -21,7 +21,10 @@ function SomeoneProfile() {
 
   async function getUserMedia() {
     const result = await userMedia(id);
-    setUserMediaData(result);
+    const feedfoodMedia = result.filter((media) =>
+    media.mediaUrl.includes("feedfood")
+  );
+    setUserMediaData(feedfoodMedia);
   }
 
   return (

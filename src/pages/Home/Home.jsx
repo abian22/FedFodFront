@@ -1,3 +1,4 @@
+import Loader from "../../components/Loader/Loader";
 import { useState, useEffect } from "react";
 import { getAllMedias } from "../../services/media";
 import { getUserInfo } from "../../services/user";
@@ -8,7 +9,8 @@ import { getProfile } from "../../services/user";
 function Home() {
   const [randomVideoList, setRandomVideoList] = useState([]);
   const [myId, setMyId] = useState("");
-  const [loggedUserData, setLoggedUserData] = useState([])
+  const [loggedUserData, setLoggedUserData] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     getRandomMedia();
@@ -31,6 +33,7 @@ function Home() {
         () => Math.random() - 0.5
       );
       setRandomVideoList(randomizedVideos);
+      setLoading(false); 
     } catch (error) {
       console.error("error with getRandomMedia function", error);
     }
@@ -40,7 +43,7 @@ function Home() {
     try {
       const result = await getProfile();
       setMyId(result._id);
-      setLoggedUserData(result)
+      setLoggedUserData(result);
     } catch (error) {
       console.error("error getting user profile info", error);
     }
@@ -49,22 +52,27 @@ function Home() {
   return (
     <>
       <SearchComponent />
-      {randomVideoList.map((v, index) => (
-        <VideoContainer
-          key={index}
-          loggedUserData={loggedUserData}
-          uploadedBy={v.uploadedBy}
-          profileImg={v.userData.profileImg}
-          name={v.userData.username}
-          description={v.description}
-          url={v.mediaUrl}
-          mediaId={v._id}
-          userId={v.userData._id}
-          likes={v.likedBy.length}
-          uploaded={v.createdAt.slice(0, 10)}
-          isLiked={v.likedBy.includes(myId)}
-        />
-      ))}
+    
+      {loading ? (
+        <Loader />
+      ) : (
+        randomVideoList.map((v, index) => (
+          <VideoContainer
+            key={index}
+            loggedUserData={loggedUserData}
+            uploadedBy={v.uploadedBy}
+            profileImg={v.userData.profileImg}
+            name={v.userData.username}
+            description={v.description}
+            url={v.mediaUrl}
+            mediaId={v._id}
+            userId={v.userData._id}
+            likes={v.likedBy.length}
+            uploaded={v.createdAt.slice(0, 10)}
+            isLiked={v.likedBy.includes(myId)}
+          />
+        ))
+      )}
     </>
   );
 }

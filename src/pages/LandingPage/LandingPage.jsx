@@ -32,6 +32,10 @@ function LandingPage() {
           src={contextTheme === "Light" ? lightPizza : darkPizza}
         />
       </main>
+      <div className="centerContainer" style={{fontSize:"40px", marginTop:"30px"}}>
+      FeedFood
+      </div>
+     
       <section className="section">
         <Link to="/login" style={{ textDecoration: "none" }}>
           <LoginButton style={"section__buttons"} />

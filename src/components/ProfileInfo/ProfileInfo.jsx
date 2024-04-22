@@ -14,7 +14,9 @@ function ProfileInfo({
   posts,
   username,
   profileImg,
+  userId, 
   getProfileMedia,
+  userIdFromMedia
 }) {
   const { contextTheme } = useThemeContext();
   const { t, i18n } = useTranslation("global");
@@ -51,7 +53,6 @@ function ProfileInfo({
       </div>
       <div className="centerContainer">
         <div>
-
           <p>{t("posts.posts")} {posts}</p>
         </div>
       </div>
@@ -68,16 +69,18 @@ function ProfileInfo({
               m.mediaUrl.endsWith(".jpg") ||
               m.mediaUrl.endsWith(".jfif")) ? (
               <>
-                <div>
-                  <div className="trashIconContainer">
-                    <img
-                      className="trashIconContainer__trashIcon"
-                      src={contextTheme === "Light" ? darkTrash : lightTrash}
-                      onClick={() => deleteMedia(m._id)}
-                      alt="Trash icon"
-                    />
+                {m.uploadedBy === userId && ( 
+                  <div>
+                    <div className="trashIconContainer">
+                      <img
+                        className="trashIconContainer__trashIcon"
+                        src={contextTheme === "Light" ? darkTrash : lightTrash}
+                        onClick={() => deleteMedia(m._id)}
+                        alt="Trash icon"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
                 <Link
                   to={`/home/media/${m._id}`}
                   style={{ textDecoration: "none", color: "inherit" }}
@@ -94,14 +97,16 @@ function ProfileInfo({
               </>
             ) : (
               <div>
-                <div className="trashIconContainer">
-                  <img
-                    className="trashIconContainer__trashIcon"
-                    src={contextTheme === "Light" ? darkTrash : lightTrash}
-                    onClick={() => deleteMedia(m._id)}
-                    alt="Trash icon"
-                  />
-                </div>
+                {m.uploadedBy === userId && ( 
+                  <div className="trashIconContainer">
+                    <img
+                      className="trashIconContainer__trashIcon"
+                      src={contextTheme === "Light" ? darkTrash : lightTrash}
+                      onClick={() => deleteMedia(m._id)}
+                      alt="Trash icon"
+                    />
+                  </div>
+                )}
                 <Link
                   to={`/home/media/${m._id}`}
                   style={{ textDecoration: "none", color: "inherit" }}
